@@ -1,31 +1,26 @@
 site:
-  name: AstroWind
-  site: 'https://astrowind.vercel.app'
+  name: GeDaC
+  site: 'https://www.gedac.org'
   base: '/'
   trailingSlash: false
 
-  googleSiteVerificationId: orcPxI47GSa-cRvY11tUe6iGg2IO_RPvnA1q95iEM3M
+  googleSiteVerificationId: nehc0tqA23qiMZMLO0K6GSVXOxzu_41K_t0nEOKsNXs
 
 # Default SEO metadata
 metadata:
   title:
-    default: AstroWind
-    template: '%s — AstroWind'
-  description: "\U0001F680 Suitable for Startups, Small Business, Sass Websites, Professional Portfolios, Marketing Websites, Landing Pages & Blogs."
+    default: GeDaC
+  description: "\U0001F680 Official website of GeDaC CSI, NUS ."
   robots:
     index: true
     follow: true
   openGraph:
-    site_name: AstroWind
+    site_name: GeDaC
     images:
       - url: '~/assets/images/default.png'
         width: 1200
         height: 628
     type: website
-  twitter:
-    handle: '@onwidget'
-    site: '@onwidget'
-    cardType: summary_large_image
 
 i18n:
   language: en
