@@ -24,7 +24,6 @@ const whenExternalScripts = (items: (() => AstroIntegration) | (() => AstroInteg
 export default defineConfig({
   output: 'static',
   site: 'https://CSI-Genomics-and-Data-Analytics-Core.github.io',
-  base: 'gedac-website',
   integrations: [
     tailwind({
       applyBaseStyles: false,
