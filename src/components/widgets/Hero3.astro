@@ -1,8 +1,5 @@
 ---
 import Button from '~/components/ui/Button.astro';
-const animation = '~/assets/images/animation.webm';
-import { Image } from "astro:assets";
-
 import type { Hero as Props } from '~/types';
 
 const {
@@ -12,7 +9,6 @@ const {
 
   content = await Astro.slots.render('content'),
   actions = await Astro.slots.render('actions'),
-  image = await Astro.slots.render('image'),
 
   id,
   bg = await Astro.slots.render('bg'),
