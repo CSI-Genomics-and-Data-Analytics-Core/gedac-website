@@ -1,6 +1,7 @@
 ---
 import { UI } from 'astrowind:config';
 ---
+<script type='text/javascript' src='https://widget.freshworks.com/widgets/150000001296.js' async defer></script>
 
 <script is:inline define:vars={{ defaultTheme: UI.theme }}>
   if (window.basic_script) {
@@ -8,6 +9,9 @@ import { UI } from 'astrowind:config';
   }
 
   window.basic_script = true;
+  window.fwSettings = {
+    'widget_id': 150000001296
+  };
 
   function applyTheme(theme) {
     if (theme === 'dark') {
@@ -150,6 +154,7 @@ import { UI } from 'astrowind:config';
     document.getElementById('header')?.classList.remove('expanded');
     document.querySelector('#header nav')?.classList.add('hidden');
   };
+
 
   window.onload = onLoad;
   window.onpageshow = onPageShow;

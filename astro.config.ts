@@ -23,7 +23,6 @@ const whenExternalScripts = (items: (() => AstroIntegration) | (() => AstroInteg
 
 export default defineConfig({
   output: 'static',
-  site: 'https://CSI-Genomics-and-Data-Analytics-Core.github.io',
   integrations: [
     tailwind({
       applyBaseStyles: false,

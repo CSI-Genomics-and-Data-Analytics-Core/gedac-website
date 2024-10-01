@@ -1,9 +1,17 @@
 ---
 import { SITE } from 'astrowind:config';
+import csiLogo from '~/assets/images/csi_nus_logo.png';
 ---
 
 <span
   class="self-center ml-2 rtl:ml-0 rtl:mr-2 text-2xl md:text-xl font-bold text-gray-900 whitespace-nowrap dark:text-white"
 >
- {SITE?.name}
+
+ 
+
+ <span class="flex items-center text-2xl">
+  <img src={csiLogo.src} class="w-1/2 mr-3" />
+    {SITE?.name}
+</span>
+
 </span>
