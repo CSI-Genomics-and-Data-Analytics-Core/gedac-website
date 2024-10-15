@@ -37,7 +37,7 @@ The RNA-seq pipeline comprises 5 steps:
 4. Read quantification
 5. Downstream analysis of the count matrix. 
 
-![Architecture of the GeDaC RNA-seq pipeline](/src/assets/images/rnaseq/14122022_RNAseq_structure/figure1_pipelinev2.png "Figure 1: Architecture of the GeDaC RNA-seq pipeline")
+![Architecture of the GeDaC RNA-seq pipeline](../../assets/images/rnaseq/14122022_RNAseq_structure/figure1_pipelinev2.png "Figure 1: Architecture of the GeDaC RNA-seq pipeline")
 
 ## Quality control
 

@@ -9,7 +9,6 @@ tags:
   - RNA-seq
   - architecture
 ---
-import figure1_exptDesing from '~/assets/images/rnaseq/13122022_RNAseq_downstream/figure1_exptDesign.png';
 
 # Objective
 
@@ -24,7 +23,7 @@ across 2 cell populations: basal stem-cell enriched cells and committed luminal 
 Hence, there are a total of 6 x 2 = 12 single-end fastq files which we uploaded
 to the GeDaC portal for RNA-seq analysis.
 
-![Summary of experimental design for Fu et al., (2015) \label{exptDesign}](/src/assets/images/rnaseq/13122022_RNAseq_downstream/figure1_exptDesign.png "Figure 1: Summary of experimental design for Fu et al., 2015")
+![Summary of experimental design for Fu et al., (2015) \label{exptDesign}](/assets/images/rnaseq/13122022_RNAseq_downstream/figure1_exptDesign.png "Figure 1: Summary of experimental design for Fu et al., 2015")
 
 # Guided results tour
 
@@ -70,7 +69,7 @@ and mitigate possible sources of batch effects before conducting the study. Howe
 computationally either by passing the factors or covariates into the design matrix
 or by implementing specific batch-effect correction tools such as `ComBat-Seq` (Zhang et al., 2015).
 
-![Exploratory plots: A) Multi-dimensional scaling (MDS) plot highlighting that samples are separated primarily by cell population (basal or luminal) B) MDS plot split by sample type C) MDS plot showing lane-specific effects along the second dimension (Lanes 002 vs 003). D) Mean-variance plot \label{exploratory}](/src/assets/images/rnaseq/13122022_RNAseq_downstream/figure3_diagnostics.png "Figure 3: Exploratory plots: A) Multi-dimensional scaling (MDS) plot highlighting that samples are separated primarily by cell population (basal or luminal) B) MDS plot split by sample type C) MDS plot showing lane-specific effects along the second dimension (Lanes 002 vs 003). D) Mean-variance plot")
+![Exploratory plots: A) Multi-dimensional scaling (MDS) plot highlighting that samples are separated primarily by cell population (basal or luminal) B) MDS plot split by sample type C) MDS plot showing lane-specific effects along the second dimension (Lanes 002 vs 003). D) Mean-variance plot \label{exploratory}](../../assets/images/rnaseq/13122022_RNAseq_downstream/figure3_diagnostics.png "Figure 3: Exploratory plots: A) Multi-dimensional scaling (MDS) plot highlighting that samples are separated primarily by cell population (basal or luminal) B) MDS plot split by sample type C) MDS plot showing lane-specific effects along the second dimension (Lanes 002 vs 003). D) Mean-variance plot")
 
 ### Mean-variance plot
 
@@ -127,11 +126,11 @@ qPCR or in-situ hybridisation experiments.
 
 As a test to the reader, what would you expect to find when checking the `Igkc` row in the `basal_dL-basal_dP_DEG_across_samples.tsv` file?
 
-![Top 3 differentially expressed genes in the basal_dL-basal_dP contrast \label{deg}](/src/assets/images/rnaseq/13122022_RNAseq_downstream/figure4_DEG.png "Figure 4: Top 3 differentially expressed genes in the basal_dL-basal_dP contrast")
+![Top 3 differentially expressed genes in the basal_dL-basal_dP contrast \label{deg}](../../assets/images/rnaseq/13122022_RNAseq_downstream/figure4_DEG.png "Figure 4: Top 3 differentially expressed genes in the basal_dL-basal_dP contrast")
 
 ### Heatmap and volcano plot
 
-![Visualisation of results of differential expression analysis between the basal_dL-basal_dP contrast A) Heatmap B) Volcano plot \label{degvisuals}](/src/assets/images/rnaseq/13122022_RNAseq_downstream/figure5_degvisuals.png "Figure 5: Visualisation of results of differential expression analysis between the basal_dL-basal_dP contrast A) Heatmap B) Volcano plot")
+![Visualisation of results of differential expression analysis between the basal_dL-basal_dP contrast A) Heatmap B) Volcano plot \label{degvisuals}](../../assets/images/rnaseq/13122022_RNAseq_downstream/figure5_degvisuals.png "Figure 5: Visualisation of results of differential expression analysis between the basal_dL-basal_dP contrast A) Heatmap B) Volcano plot")
 
 We also provide a heatmap (`basal_dL-basal_dP_heatmap.svg`) and volcano plot (`basal_dL-basal_dP_volcano.svg`) for visualisation of the results of the differential expression analysis. 
 
@@ -183,7 +182,7 @@ that are involved in these significant terms. The Cnet plot is useful for this
 purpose as it clusters the genes together by gene set association,
 and colors the edges connecting genes together by the gene set. 
 
-![Reactome pathway enrichment analysis results A) Bar plot B) Dot plot C) UpSet plot D) Emap Plot E) Cnet plot \label{reactome}](/src/assets/images/rnaseq/13122022_RNAseq_downstream/figure6_reactome.png "Figure 6: Reactome pathway enrichment analysis results A) Bar plot B) Dot plot C) UpSet plot D) Emap Plot E) Cnet plot")
+![Reactome pathway enrichment analysis results A) Bar plot B) Dot plot C) UpSet plot D) Emap Plot E) Cnet plot \label{reactome}](../../assets/images/rnaseq/13122022_RNAseq_downstream/figure6_reactome.png "Figure 6: Reactome pathway enrichment analysis results A) Bar plot B) Dot plot C) UpSet plot D) Emap Plot E) Cnet plot")
 
 # Conclusion
 
