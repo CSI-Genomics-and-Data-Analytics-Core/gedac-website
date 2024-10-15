@@ -38,16 +38,21 @@ const metadata = {
   <Hero3
     tagline="Cancer Science Institute of Singapore"
     actions={[
-      { variant: 'primary', target: '_blank', text: 'Cancer Science Institute', href: 'https://csi.nus.edu.sg/' },
+      {
+        variant: 'primary',
+        target: '_blank',
+        text: 'Cancer Science Institute',
+        href: 'https://csi.nus.edu.sg/',
+        icon: 'tabler:external-link',
+      },
       { text: 'Learn more', href: '#features' },
     ]}
   >
-    <Fragment slot="title">
-      Genomics and Data Analytics Core (GeDaC)
-    </Fragment>
+    <Fragment slot="title"> Genomics and Data Analytics Core (GeDaC) </Fragment>
 
     <Fragment slot="subtitle">
-      The Genomics and Data Analytics Core (GeDaC) at the Cancer Science Institute of Singapore (CSI) is designed to meet the increasing need of bioinformatics and computational support for institute labs.
+      The Genomics and Data Analytics Core (GeDaC) at the Cancer Science Institute of Singapore (CSI) is designed to
+      meet the increasing need of bioinformatics and computational support for institute labs.
     </Fragment>
   </Hero3>
 
@@ -56,61 +61,63 @@ const metadata = {
   <Features
     id="features"
     title="GeDaC Services"
-    subtitle="Each of the following features enhances AstroWind's value proposition."
+    subtitle="Our core focus points"
     columns={2}
     items={[
       {
-        title: 'Bioinformatics Consultation',
+        title: 'Bioinformatics Consultations',
         description:
           'Providing expert guidance and support in bioinformatics, including data analysis, interpretation, and visualization to help researchers achieve their scientific goals.',
         icon: 'tabler:layers-union',
       },
       {
-        title: 'GeDaC Portal',
-        description: 'A centralized platform providing access to all GeDaC services, resources, and tools for efficient bioinformatics research and collaboration.',
+        title: 'GeDaC Cloud Flow',
+        description:
+          'A centralized platform providing access to all GeDaC services, resources, and tools for efficient bioinformatics research and collaboration.',
         icon: 'tabler:podium',
       },
       {
         title: 'Data Storage and Management',
-        description: 'Secure and scalable solutions for storing, managing, and accessing large volumes of genomic and bioinformatics data.',
+        description:
+          'Secure and scalable solutions for storing, managing, and accessing large volumes of genomic and bioinformatics data.',
         icon: 'tabler:artboard',
       },
       {
-        title: 'Software Development',
-        description: 'Custom software solutions tailored to meet the specific needs of bioinformatics research, including data analysis pipelines and visualization tools.',
+        title: 'Software and Cloud Solutions',
+        description:
+          'Custom software solutions tailored to meet the specific needs of bioinformatics research, including data analysis pipelines and visualization tools.',
         icon: 'tabler:writing',
-      }
+      },
     ]}
   />
 
   <!-- Content Widget **************** -->
 
   <Content
-    title="Use cases"
-    subtitle="Discover how GeDaC serves as the ideal solution for various use cases, providing tailored solutions to drive success."
+    id="use-cases"
+    title="Use Cases"
+    subtitle="Discover how GeDaC serves as the ideal solution for diverse research needs, providing customized services and tools to accelerate scientific discovery and enhance data-driven research outcomes."
     isReversed
     items={[
       {
-        title: 'Description:',
+        title: 'Bioinformatics Consultation:',
         description:
-          'Are you a startup with big dreams? AstroWind propels your success. Our template forges a seamless online presence, attracting investors and customers from day one. Astro 4.0 and Tailwind CSS ensure striking, responsive sites, leaving lasting impressions. Countless startups leverage AstroWind to kickstart their journey and resonate with audiences.',
+          'GeDaC offers comprehensive bioinformatics support for academic research. Whether you are conducting genomics, transcriptomics, or proteomics research, our platform provides seamless data management and analysis solutions. Leveraging AWS infrastructure and cutting-edge pipelines like nf-core, GeDaC ensures your research is scalable, reproducible, and efficient.',
       },
       {
-        title: 'Benefits:',
-        description: `Allow startups to quickly create professional websites without investing extensive time and resources. <br /> Make a memorable first impression with visually appealing design elements that highlight your startup's unique value proposition. <br /> Ensures your website looks stunning and works well on all devices. <br /> Engage potential investors and customers with engaging content, clear messaging, and intuitive navigation.`,
+        title: 'Cloud Computing:',
+        description: `Empower researchers to focus on scientific discovery by automating complex analysis tasks. <br /> Streamline data handling with secure, scalable cloud infrastructure. <br /> Utilize customizable, reproducible pipelines to generate high-quality results. <br /> Enhance collaboration by providing access to data and results through an intuitive web portal.`,
+      },
+      {
+        title: 'Data Solutions:',
+        description: `Our Storage unit is responsible for the maintenance of CSI servers and storage management such as backup and archiving. The unit also provides support for the institute’s cloud computing transition, security, and network maintenance.`,
       },
     ]}
     image={{
-      src: 'https://images.unsplash.com/photo-1620558138198-cfb9b4f3c294?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1671&q=80',
-      alt: 'Startup Image',
+      src: '/src/assets/images/computational-biology.jpg',
+      alt: 'Computational Biology Image',
     }}
   >
-    <Fragment slot="content">
-      <h3 class="text-2xl font-bold tracking-tight dark:text-white sm:text-3xl mb-2">
-        Startup success stories: <br /><span class="text-2xl">Launching with AstroWind</span>
-      </h3>
-    </Fragment>
-
     <Fragment slot="bg">
       <div class="absolute inset-0 bg-blue-50 dark:bg-transparent"></div>
     </Fragment>
@@ -119,25 +126,31 @@ const metadata = {
   <!-- Content Widget **************** -->
 
   <Content
+    id="showcase"
     isAfterContent={true}
     items={[
-      {
-        title: 'Description:',
-        description: `For SaaS businesses, user experience is key. AstroWind enhances showcasing SaaS solutions intuitively. The template's Astro 4.0 and Tailwind CSS integration guarantees user-friendly experience, mirroring your software's efficiency. Customize pages to communicate SaaS value and solutions for your audience.`,
-      },
-      {
-        title: 'Benefits:',
-        description: `Ensuring a cohesive and user-centric design for your SaaS website. <br /> Effectively communicate complex SaaS features through visual aids, animations, and interactive elements. <br /> Prioritize user needs and pain points through well-structured layouts and clear navigation. <br /> Encourage visitors to take action with strategically placed CTAs. <br /> Ensures your SaaS website works seamlessly across all devices.`,
-      },
+{
+  title: 'GeDaC Cloud Flow:',
+  description: `GeDaC Cloud Flow provides a streamlined data processing pipeline that enables efficient management and analysis of bioinformatics data. Utilizing cloud infrastructure, it facilitates scalability and reproducibility, allowing researchers to focus on their scientific discoveries without the hassle of data handling.`,
+},
+{
+  title: 'Consultation Project:',
+  description: `Our Consultation Project offers tailored guidance for researchers seeking to optimize their bioinformatics workflows. Our experts work closely with your team to understand your specific needs and provide actionable insights, ensuring that your research projects are efficient and successful.`,
+},
+{
+  title: 'N2CR Avatar Portal:',
+  description: `The N2CR Avatar Portal serves as a user-friendly interface for accessing and managing cancer models. It allows researchers to easily submit Patitent derived models and enhancing collaboration and transparency throughout the research process.`,
+},
+      
     ]}
     image={{
-      src: 'https://images.unsplash.com/photo-1531973486364-5fa64260d75b?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1658&q=80',
-      alt: 'SaaS Businesses Image',
+      src: '/src/assets/images/showcase.jpg',
+      alt: 'Bioinformatics Showcase',
     }}
   >
     <Fragment slot="content">
       <h3 class="text-2xl font-bold tracking-tight dark:text-white sm:text-3xl mb-2">
-        SaaS showcase: <br /><span class="text-2xl">Streamlining user experience</span>
+        GeDaC Showcase: <br /><span class="text-2xl">Success Stories</span>
       </h3>
     </Fragment>
 
@@ -149,28 +162,29 @@ const metadata = {
   <!-- FAQs Widget ******************* -->
 
   <FAQs
+    id="faq"
     title="Frequently Asked Questions"
     items={[
       {
-        title: 'Is AstroWind compatible with the latest versions of Astro and Tailwind CSS?',
+        title: 'What services does the Bioinformatics Core Lab provide?',
         description:
-          'Yes, AstroWind is designed to be compatible with the latest versions of both Astro and Tailwind CSS. This ensures that you can harness the full capabilities of these technologies while benefiting from the features offered by AstroWind.',
+          'Our Core Lab offers a range of bioinformatics services, including data analysis, pipeline development, and customized support for genomics, transcriptomics, proteomics, and more. We also provide consultations to help design experiments and optimize data processing workflows.',
         icon: 'tabler:chevrons-right',
       },
       {
-        title: 'Can I use AstroWind for both personal and commercial projects?',
-        description: `Certainly! AstroWind is versatile and can be used for a wide range of projects, including both personal and commercial endeavors. Whether you're building a professional portfolio, launching a startup, or creating a marketing website, AstroWind has you covered.`,
+        title: 'Can I request a custom bioinformatics pipeline for my project?',
+        description: `Yes, we can develop and customize pipelines based on the specific needs of your project. Whether you're working on high-throughput sequencing data, metagenomics, or single-cell analysis, our team can tailor the solution to fit your research requirements.`,
         icon: 'tabler:chevrons-right',
       },
       {
-        title: 'What level of coding knowledge is required to use AstroWind?',
+        title: 'Do I need bioinformatics expertise to use the services?',
         description:
-          'While some familiarity with HTML, CSS, and web development concepts is helpful, the user-friendly interface and customization options allow those with limited coding experience to create impressive websites. For more advanced users, AstroWind offers extensive customization capabilities.',
+          'No prior bioinformatics knowledge is required. Our team will guide you through every step of the process, from project consultation to data analysis. We ensure that our services are accessible to researchers from all backgrounds.',
         icon: 'tabler:chevrons-right',
       },
       {
-        title: 'Is customer support available for AstroWind users seeking guidance?',
-        description: `Absolutely, our dedicated customer support team is here to assist you with any questions or challenges you may encounter. Feel free to reach out to us through our support channels, and we'll be happy to provide the help you need.`,
+        title: 'How can I get started with the Bioinformatics Core Lab?',
+        description: `To get started, simply reach out to us via our contact form or email to discuss your project. We will schedule a consultation to assess your needs and provide a tailored service plan.`,
         icon: 'tabler:chevrons-right',
       },
     ]}
@@ -188,7 +202,7 @@ const metadata = {
     items={[
       {
         title: 'Email us',
-        description: 'support@geedac.org',
+        description: 'support[at]gedac.org',
         icon: 'tabler:mail',
       },
     ]}
@@ -199,7 +213,7 @@ const metadata = {
   <BlogLatestPosts
     id="blog"
     title="Stay informed with our blog"
-    information={`Explore our collection of articles, guides, and tutorials on web development, design trends, and using AstroWind effectively for your projects.`}
+    information={`Explore our collection of articles, guides, and tutorials on bioinformatics, computational biology, and more.`}
   >
     <Fragment slot="bg">
       <div class="absolute inset-0 bg-blue-50 dark:bg-transparent"></div>

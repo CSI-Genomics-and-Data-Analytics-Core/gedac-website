@@ -1,39 +1,46 @@
-name: Deploy to GitHub Pages
+# Workflow name
+name: Continuous Deployment
 
+# This allows manual start of the pipeline as needed.
 on:
-  # Trigger the workflow every time you push to the `main` branch
-  # Using a different branch name? Replace `main` with your branch’s name
-  push:
-    branches: [ main ]
-  # Allows you to run this workflow manually from the Actions tab on GitHub.
-  workflow_dispatch:
+    push:
+      branches:
+      - main
 
-# Allow this job to clone the repo and create a page deployment
-permissions:
-  contents: read
-  pages: write
-  id-token: write
-
+# The list of jobs to run 
 jobs:
-  build:
+  build_and_deploy_job:
     runs-on: ubuntu-latest
+    name: Build and Deploy Job
     steps:
-      - name: Checkout your repository using git
-        uses: actions/checkout@v4
-      - name: Install, build, and upload your site
-        uses: withastro/action@v3
-        # with:
-          # path: . # The root location of your Astro project inside the repository. (optional)
-          # node-version: 20 # The specific version of Node that should be used to build your site. Defaults to 20. (optional)
-          # package-manager: pnpm@latest # The Node package manager that should be used to install dependencies and build your site. Automatically detected based on your lockfile. (optional)
 
-  deploy:
-    needs: build
-    runs-on: ubuntu-latest
-    environment:
-      name: github-pages
-      url: ${{ steps.deployment.outputs.page_url }}
-    steps:
-      - name: Deploy to GitHub Pages
-        id: deployment
-        uses: actions/deploy-pages@v4
+      # 1. Configure AWS credentials      
+      - name: Configure AWS credentials
+        uses: aws-actions/configure-aws-credentials@v3
+        with:
+          aws-access-key-id: ${{ secrets.AWS_ACCESS_KEY_ID }}
+          aws-secret-access-key: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
+          aws-region: ${{ secrets.AWS_DEFAULT_REGION }}
+          
+      # 2. Checkout Repository
+      - name: Checkout Repository
+        uses: actions/checkout@v3
+        with:
+          ref: main
+      
+      - name: Setup Node 
+        uses: actions/setup-node@v3
+        with:
+          node-version: '22.5.1'
+
+
+      - name: Build Website
+        run: |
+          npm install
+          npm run build
+          
+      - name: Copy to S3 Bucket
+        run: |
+          aws s3 rm ${{ secrets.AWS_S3_BUCKET }}/ --recursive
+          aws s3 cp ./dist  ${{ secrets.AWS_S3_BUCKET }} --recursive
+          

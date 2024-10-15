@@ -1,12 +1,15 @@
 # GeDaC Website
 
-Welcome to the GeDaC Website! This platform is designed to provide users with a comprehensive overview of our services and an easy access point to all our services.
+Welcome to the GeDaC Website!
 
-## Key Features
+This platform is designed to provide users with a comprehensive overview of our services and an easy access point to all our services.
+
+## Key Highlights
+- **One Stop**: This website serves as one stop for all the GeDaC related information and logistics.
+- **Help Desk**: Facilitate user interaction and support.
 - **User-Friendly Interface**: Navigate through the website with ease, thanks to our intuitive design.
 - **Responsive Design**: Enjoy a seamless experience on both desktop and mobile devices.
 - **Blog**: Publish and manage content effortlessly.
-- **Help Desk**: Facilitate user interaction and support.
 
 ## Technologies Used
 This site was scaffolded using AstroWind (Astro)
@@ -23,17 +26,7 @@ This site was scaffolded using AstroWind (Astro)
 
 <br>
 
-## Getting started
-
-**AstroWind** tries to give you quick access to creating a website using [Astro 4.0](https://astro.build/) + [Tailwind CSS](https://tailwindcss.com/). It's a free theme which focuses on simplicity, good practices and high performance.
-
-Very little vanilla javascript is used only to provide basic functionality so that each developer decides which framework (React, Vue, Svelte, Solid JS...) to use and how to approach their goals.
-
-In this version the template supports all the options in the `output` configuration, `static`, `hybrid` and `server`, but the blog only works with `prerender = true`. We are working on the next version and aim to make it fully compatible with SSR.
-
 ### Project structure
-
-Inside **AstroWind** template, you'll see the following folders and files:
 
 ```
 /

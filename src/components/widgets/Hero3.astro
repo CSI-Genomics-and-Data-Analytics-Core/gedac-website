@@ -63,10 +63,21 @@ const {
         {content && <Fragment set:html={content} />}
       </div>
       <div class="basis-1/2 hidden sm:block">
-        <video width="100%" height="auto" autoplay loop muted>
-          <source src="https://cdnl.iconscout.com/lottie/premium/thumb/dna-sequence-cloning-and-recombination-animation-download-in-lottie-json-gif-static-svg-file-formats--structure-management-research-bioinformatics-biological-information-medical-pack-people-animations-3070425.mp4" type="video/mp4" />
-          Your browser does not support the video tag.
-        </video>
+        <video
+        playsinline
+        class="inline-block pointer-events-none"
+        width="100%"
+        autoplay
+        loop
+        muted
+        style={{
+          display: "inline-block",
+          verticalAlign: "middle",
+        }}
+      >
+        <source src="/src/assets/images/hero-page.mp4" type="video/mp4" />
+        Your browser does not support the video tag.
+      </video>
       </div>
     </div>
   </div>

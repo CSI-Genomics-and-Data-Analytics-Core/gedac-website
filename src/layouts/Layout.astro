@@ -32,7 +32,25 @@ const { language, textDirection } = I18N;
 	};
 	!function(){if("function"!=typeof window.FreshworksWidget){var n=function(){n.q.push(arguments)};n.q=[],window.FreshworksWidget=n}}() 
 </script>
-<script type='text/javascript' src='https://widget.freshworks.com/widgets/150000001296.js' async defer></script>
+<script type='text/javascript' src='https://widget.freshworks.com/widgets/150000001296.js' async defer>
+// Add this script to handle the click event
+document.addEventListener('DOMContentLoaded', () => {
+  const helpDeskLink = document.getElementById('help-desk-link');
+  if (helpDeskLink) {
+    helpDeskLink.addEventListener('click', (event) => {
+      event.preventDefault(); // Prevent the default link behavior
+      if (typeof window.FreshworksWidget !== 'undefined') {
+        window.FreshworksWidget('open');
+      } else {
+        console.error('FreshworksWidget is not defined');
+      }
+    });
+  }
+});
+
+</script>
+
+
 <html lang={language} dir={textDirection} class="2xl:text-[20px]">
   <head>
     <CommonMeta />

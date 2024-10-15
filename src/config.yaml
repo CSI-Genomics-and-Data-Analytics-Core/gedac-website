@@ -1,7 +1,7 @@
 site:
   name: GeDaC
   site: 'https://CSI-Genomics-and-Data-Analytics-Core.github.io'
-  base: '/gedac-website'
+  base: '/'
   trailingSlash: false
 
   googleSiteVerificationId: nehc0tqA23qiMZMLO0K6GSVXOxzu_41K_t0nEOKsNXs
