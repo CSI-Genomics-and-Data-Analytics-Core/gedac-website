@@ -3,7 +3,7 @@ publishDate: 2023-12-14T00:00:00Z
 author: Kane Toh
 title: "GeDaC RNA-seq pipeline Walkthrough: How does the pipeline work?"
 excerpt: "Part 2: Guiding users through the architecture of the RNA-seq pipeline"
-image: "/src/assets/images/rnaseq/13122022_RNAseq_downstream/figure1_exptDesign.png"
+# image: "../../assets/images/rnaseq/13122022_RNAseq_downstream/figure1_exptDesign.png"
 category: Pipelines
 tags:
   - RNA-seq
