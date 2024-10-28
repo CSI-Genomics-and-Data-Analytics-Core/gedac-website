@@ -11,6 +11,7 @@ const {
   tagline,
   callToAction = await Astro.slots.render('callToAction'),
   items = [],
+  links = [],
   isReversed = false,
 
   id,
@@ -63,6 +64,24 @@ const {
                     <p class="text-muted dark:text-gray-400" set:html={description} />
                   </div>
                 </li>
+              ))
+            : ''
+        }
+        {
+          links && links.length
+            ? links.map(({ text: text, href, icon, target }, index) => (
+                <a href={href} target={target}>
+                  <li class="flex md:-mx-4 pt-4 ">
+                    <div class="pr-4 sm:pl-4 rtl:pr-0 rtl:pl-4 rtl:sm:pl-0 rtl:sm:pr-4">
+                      <span class="flex w-16 h-16 mx-auto items-center justify-center text-2xl font-bold rounded-full bg-blue-100 text-primary">
+                        {icon ? <Icon name={icon} class="w-6 h-6 icon-bold" /> : index + 1}
+                      </span>
+                    </div>
+                    <div class="pl-4 flex justify-center items-center">
+                      <h3 class=" text-xl font-semibold font-heading" set:html={text} />
+                    </div>
+                  </li>
+                </a>
               ))
             : ''
         }

@@ -268,6 +268,12 @@ export interface Steps extends Omit<Headline, 'classes'>, Widget {
     icon?: string;
     classes?: Record<string, string>;
   }>;
+  links: Array<{
+    text: string;
+    href: string;
+    icon?: string;
+    target?: string;
+  }>;
   callToAction?: string | CallToAction;
   image?: string | Image;
   isReversed?: boolean;

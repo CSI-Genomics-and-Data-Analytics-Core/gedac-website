@@ -44,7 +44,7 @@ export const footerData = {
     {
       title: 'Support',
       links: [
-        { text: 'Help Desk',  href: '', id: 'help-desk-link' },
+        { text: 'Help Desk',  href: 'https://support.gedac.org/support/tickets/new', id: 'help-desk-link', target: '_blank' },
       ],
     },
     {

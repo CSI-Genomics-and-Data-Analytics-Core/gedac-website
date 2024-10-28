@@ -25,7 +25,7 @@ const metadata = {
       actions={[
         {
           variant: 'secondary',
-          text: 'Portal',
+          text: 'Cloud Flow',
           href: 'https://pipeline.gedac.org/',
           target: '_blank',
         },
@@ -47,6 +47,7 @@ const metadata = {
         href: 'https://csi.nus.edu.sg/',
         icon: 'tabler:external-link',
       },
+
       { text: 'Learn more', href: '#features' },
     ]}
   >
@@ -131,19 +132,18 @@ const metadata = {
     id="showcase"
     isAfterContent={true}
     items={[
-{
-  title: 'GeDaC Cloud Flow:',
-  description: `GeDaC Cloud Flow provides a streamlined data processing pipeline that enables efficient management and analysis of bioinformatics data. Utilizing cloud infrastructure, it facilitates scalability and reproducibility, allowing researchers to focus on their scientific discoveries without the hassle of data handling.`,
-},
-{
-  title: 'Consultation Project:',
-  description: `Our Consultation Project offers tailored guidance for researchers seeking to optimize their bioinformatics workflows. Our experts work closely with your team to understand your specific needs and provide actionable insights, ensuring that your research projects are efficient and successful.`,
-},
-{
-  title: 'N2CR Avatar Portal:',
-  description: `The N2CR Avatar Portal serves as a user-friendly interface for accessing and managing cancer models. It allows researchers to easily submit Patitent derived models and enhancing collaboration and transparency throughout the research process.`,
-},
-      
+      {
+        title: 'GeDaC Cloud Flow:',
+        description: `GeDaC Cloud Flow provides a streamlined data processing pipeline that enables efficient management and analysis of bioinformatics data. Utilizing cloud infrastructure, it facilitates scalability and reproducibility, allowing researchers to focus on their scientific discoveries without the hassle of data handling.`,
+      },
+      {
+        title: 'Consultation Project:',
+        description: `Our Consultation Project offers tailored guidance for researchers seeking to optimize their bioinformatics workflows. Our experts work closely with your team to understand your specific needs and provide actionable insights, ensuring that your research projects are efficient and successful.`,
+      },
+      {
+        title: 'N2CR Avatar Portal:',
+        description: `The N2CR Avatar Portal serves as a user-friendly interface for accessing and managing cancer models. It allows researchers to easily submit Patitent derived models and enhancing collaboration and transparency throughout the research process.`,
+      },
     ]}
     image={{
       src: showcaseImage,
@@ -206,6 +206,14 @@ const metadata = {
         title: 'Email us',
         description: 'support[at]gedac.org',
         icon: 'tabler:mail',
+      },
+    ]}
+    links={[
+      {
+        text: 'Help Desk',
+        href: 'https://support.gedac.org/support/tickets/new',
+        target: '_blank',
+        icon: 'tabler:external-link',
       },
     ]}
   />
