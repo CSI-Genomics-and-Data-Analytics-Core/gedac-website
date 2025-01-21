@@ -20,7 +20,7 @@ export const headerData = {
     },
 
   ],
-  actions: [{ text: 'Cloud Flow', href: 'https://www.pipeline.gedac.org', target: '_blank' }],
+  actions: [{ text: 'Cloud Flow', href: 'https://www.cloudflow.gedac.org', target: '_blank' }],
 };
 
 export const footerData = {
@@ -36,7 +36,7 @@ export const footerData = {
     {
       title: 'Platform',
       links: [
-        { text: 'GeDaC Cloud Flow', href: 'https://www.pipeline.gedac.org', target: '_blank' },
+        { text: 'GeDaC Cloud Flow', href: 'https://www.cloudflow.gedac.org', target: '_blank' },
         { text: 'GeDaC Connect', href: 'https://connect.gedac.org/', target: '_blank' },
         { text: 'S3 Cost Analyzer', href: 'https://www.s3.gedac.org/', target: '_blank' },
       ],
