@@ -1,0 +1,158 @@
+---
+import Layout from '~/layouts/PageLayout.astro';
+import HeroText from '~/components/widgets/HeroText.astro';
+import Prices from '~/components/widgets/Pricing.astro';
+import Image from '~/components/common/Image.astro';
+import CallToAction from '~/components/widgets/CallToAction.astro';
+import Features2 from '~/components/widgets/Features2.astro';
+
+const metadata = {
+  title: 'Pricing',
+};
+---
+
+<Layout metadata={metadata}>
+  <HeroText
+    tagline="Bioinformatics Data Storage"
+    title="Scalable & Secure Hybrid Storage Solutions"
+    subtitle="Store, retrieve, and manage your bioinformatics data with ease. We also help labs configure their NAS servers and backup to the cloud based on their requirements."
+    background="https://images.unsplash.com/photo-1517819655378-25fe37197692"
+  />
+
+  <Features2
+    title="Why Choose AWS S3 for Bioinformatics?"
+    subtitle="Leverage the power of AWS S3 to optimize the storage, security, and compliance of your bioinformatics data."
+    columns={2}
+    items={[
+      {
+        title: 'Scalable Storage',
+        description:
+          'Effortlessly scale to store petabytes of sequencing and genomic data without compromising performance.',
+        icon: 'tabler:database',
+      },
+      {
+        title: 'Robust Security',
+        description:
+          'Utilize encryption and fine-grained IAM policies to ensure your sensitive bioinformatics data is protected.',
+        icon: 'tabler:shield-lock',
+      },
+      {
+        title: 'Compliance Ready',
+        description:
+          'Supports industry-leading standards like GDPR, HIPAA, and other regulations to meet your data compliance needs.',
+        icon: 'tabler:check',
+      },
+      {
+        title: 'Cost-Effective',
+        description:
+          'Optimize storage costs with lifecycle policies that automatically transition data to more affordable tiers based on usage.',
+        icon: 'tabler:coin',
+      },
+    ]}
+  />
+
+  <Prices
+    title="Data Storage"
+    subtitle="Storing genomic data on the cloud is a cost-effective and convenient option for short and long-term data storage."
+    prices={[
+      {
+        title: 'Standard',
+        subtitle: 'Best for active projects',
+        price: '25',
+        period: 'per TB/month',
+        items: [
+          { description: 'Frequent access' },
+          { description: 'High performance' },
+          { description: 'Ongoing experiments' },
+        ],
+        callToAction: { text: 'Learn More', href: '#' },
+      },
+      {
+        title: 'Archive',
+        subtitle: 'Ideal for ongoing projects',
+        price: '10',
+        period: 'per TB/month',
+        items: [
+          { description: 'Infrequent access' },
+          { description: 'Moderate cost' },
+          { description: 'Long-term projects' },
+        ],
+        callToAction: { text: 'Learn More', href: '#' },
+        hasRibbon: true,
+        ribbonTitle: 'Recommended',
+      },
+      {
+        title: 'Deep Archive',
+        subtitle: 'Recommended for completed projects',
+        price: '5',
+        period: 'per TB/month',
+        items: [
+          { description: 'Rarely access' },
+          { description: 'Lowest cost' },
+          { description: 'Compliance and backup' },
+          { description: 'Retrieval time: < 12 hours' },
+        ],
+        callToAction: { text: 'Learn More', href: '#' },
+      },
+    ]}
+  />
+
+  <Prices
+    title="Data Retrieval"
+    subtitle="Retrieving genomic data on the cloud is a more expensive operation as compared to data storage"
+    prices={[
+      {
+        title: 'Standard',
+        subtitle: 'Best for active projects',
+        price: '125',
+        period: 'per TB/month',
+        items: [
+          { description: 'Frequent access' },
+          { description: 'High performance' },
+          { description: 'Ongoing experiments' },
+        ],
+        callToAction: { text: 'Learn More', href: '#' },
+        hasRibbon: true,
+        ribbonTitle: 'Recommended',
+      },
+      {
+        title: 'Archive',
+        subtitle: 'Ideal for ongoing projects',
+        price: '150',
+        period: 'per TB/month',
+        items: [
+          { description: 'Infrequent access' },
+          { description: 'Moderate cost' },
+          { description: 'Long-term projects' },
+        ],
+        callToAction: { text: 'Learn More', href: '#' },
+      },
+      {
+        title: 'Deep Archive',
+        subtitle: 'Recommended for completed projects',
+        price: '200',
+        period: 'per TB/month',
+        items: [
+          { description: 'Rarely access' },
+          { description: 'Lowest cost' },
+          { description: 'Compliance and backup' },
+          { description: 'Retrieval time: < 12 hours' },
+        ],
+        callToAction: { text: 'Learn More', href: '#' },
+      },
+    ]}
+  />
+
+  <CallToAction
+    title="Use our S3 calculator to estimate your storage costs."
+    actions={[
+      {
+        variant: 'primary',
+        text: 'Use S3 Calculator',
+        target: '_blank',
+        icon: 'tabler:chevrons-right',
+        href: 'https://www.s3.gedac.org',
+      },
+    ]}
+  />
+</Layout>

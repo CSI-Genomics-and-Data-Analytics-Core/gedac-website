@@ -3,24 +3,47 @@ import { getPermalink, getBlogPermalink } from './utils/permalinks';
 export const headerData = {
   links: [
     {
-      text: 'Use Cases',
-      href: getPermalink('/#use-cases'),
+      text: 'Services',
+      href: getPermalink('/#features'),
+      icon: 'tabler:settings',
     },
     {
-      text: 'Showcase',
-      href: getPermalink('/#showcase'),
+      text: 'Use Cases',
+      links: [
+        {
+          text: 'Hire Bioinformatician(s)',
+          href: getPermalink('/consultation'),
+          icon: 'tabler:user',
+        },
+        {
+          text: 'CloudFlow',
+          href: getPermalink('/cloudflow'),
+          icon: 'tabler:cloud',
+        },
+        {
+          text: 'Software Development',
+          href: getPermalink('/software'),
+          icon: 'tabler:code',
+        },
+        {
+          text: 'Data Storage Solutions',
+          href: getPermalink('/storage'),
+          icon: 'tabler:database',
+        }
+      ],
     },
     {
       text: 'Blog',
       href: getBlogPermalink(),
+      icon: 'tabler:book',
     },
     {
       text: 'FAQ',
       href: getPermalink('/#faq'),
+      icon: 'tabler:help',
     },
-
   ],
-  actions: [{ text: 'Cloud Flow', href: 'https://www.cloudflow.gedac.org', target: '_blank' }],
+  actions: [{ text: 'Cloud Flow', href: 'https://www.cloudflow.gedac.org', target: '_blank', icon: 'tabler:rocket', }],
 };
 
 export const footerData = {
@@ -52,16 +75,17 @@ export const footerData = {
       links: [
         { text: 'About', href: '/#about' },
         { text: 'Blog', href: '/blog' },
+        { text: 'Pricing', href: '/pricing' },
       ],
     },
   ],
   secondaryLinks: [
-    { text: 'Terms', href: getPermalink('/terms') },
+    // { text: 'Terms', href: getPermalink('/terms') },
     { text: 'Privacy Policy', href: getPermalink('/privacy') },
   ],
   socialLinks: [
     { ariaLabel: 'X', icon: 'tabler:brand-x', href: 'https://x.com/csi_singapore' },
     { ariaLabel: 'Github', icon: 'tabler:brand-github', href: 'https://github.com/CSI-Genomics-and-Data-Analytics-Core' },
   ],
-  footNote: ' &copy; 2024 GeDaC · All rights reserved',
+  footNote: ' &copy; 2025 GeDaC · All rights reserved',
 };

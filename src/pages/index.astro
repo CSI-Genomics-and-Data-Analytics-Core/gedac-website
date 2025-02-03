@@ -48,7 +48,7 @@ const metadata = {
         icon: 'tabler:external-link',
       },
 
-      { text: 'Learn more', href: '#features' },
+      { text: 'Learn more', href: '#features',  icon: 'tabler:chevrons-right', },
     ]}
   >
     <Fragment slot="title"> Genomics and Data Analytics Core (GeDaC) </Fragment>
@@ -96,25 +96,24 @@ const metadata = {
 
   <!-- Content Widget **************** -->
 
-  <Content
+  <!-- <Content
     id="use-cases"
     title="Use Cases"
     subtitle="Discover how GeDaC serves as the ideal solution for diverse research needs, providing customized services and tools to accelerate scientific discovery and enhance data-driven research outcomes."
     isReversed
     items={[
-      {
-        title: 'Bioinformatics Consultation:',
-        description:
-          'GeDaC offers comprehensive bioinformatics support for academic research. Whether you are conducting genomics, transcriptomics, or proteomics research, our platform provides seamless data management and analysis solutions. Leveraging AWS infrastructure and cutting-edge pipelines like nf-core, GeDaC ensures your research is scalable, reproducible, and efficient.',
-      },
-      {
-        title: 'Cloud Computing:',
-        description: `Empower researchers to focus on scientific discovery by automating complex analysis tasks. <br /> Streamline data handling with secure, scalable cloud infrastructure. <br /> Utilize customizable, reproducible pipelines to generate high-quality results. <br /> Enhance collaboration by providing access to data and results through an intuitive web portal.`,
-      },
-      {
-        title: 'Data Solutions:',
-        description: `Our Storage unit is responsible for the maintenance of CSI servers and storage management such as backup and archiving. The unit also provides support for the institute’s cloud computing transition, security, and network maintenance.`,
-      },
+        {
+    "title": "Bioinformatics Consultation",
+    "description": "GeDaC offers expert bioinformatics consultation to support academic research across various disciplines such as genomics, transcriptomics, and proteomics. Our platform integrates seamless data management and robust analysis solutions, powered by AWS infrastructure and cutting-edge pipelines like nf-core. This ensures that your research is scalable, reproducible, and efficient, empowering you to focus on groundbreaking discoveries."
+  },
+  {
+    "title": "Cloud Computing",
+    "description": "GeDaC enables researchers to concentrate on scientific breakthroughs by automating complex analysis workflows. Our secure and scalable cloud infrastructure simplifies data management, while customizable and reproducible pipelines ensure the generation of high-quality results. Collaboration is enhanced through an intuitive web portal that grants researchers easy access to data, results, and analysis tools."
+  },
+  {
+    "title": "Software and Data Storage Solutions",
+    "description": "Our Storage Unit plays a crucial role in maintaining CSI servers and managing storage tasks such as backup, archiving, and data integrity. We provide vital support for the institute’s transition to cloud computing, ensuring robust security, network maintenance, and seamless data access. Our solutions are designed to ensure smooth operations and secure storage management throughout the entire research lifecycle."
+  }
     ]}
     image={{
       src: usecaseImage,
@@ -124,11 +123,11 @@ const metadata = {
     <Fragment slot="bg">
       <div class="absolute inset-0 bg-blue-50 dark:bg-transparent"></div>
     </Fragment>
-  </Content>
+  </Content> -->
 
   <!-- Content Widget **************** -->
 
-  <Content
+  <!-- <Content
     id="showcase"
     isAfterContent={true}
     items={[
@@ -159,7 +158,7 @@ const metadata = {
     <Fragment slot="bg">
       <div class="absolute inset-0 bg-blue-50 dark:bg-transparent"></div>
     </Fragment>
-  </Content>
+  </Content> -->
 
   <!-- FAQs Widget ******************* -->
 
@@ -200,7 +199,7 @@ const metadata = {
 
   <Steps2
     title="Reach out to us"
-    subtitle="Have questions? Feel free to contact us using the form below. We're here to help!"
+    subtitle="Have questions? Feel free to contact us using our Help Desk. We're here to help!"
     items={[
       {
         title: 'Email us',

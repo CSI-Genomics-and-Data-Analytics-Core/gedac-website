@@ -1,0 +1,184 @@
+---
+import CallToAction from '~/components/widgets/CallToAction.astro';
+import Content from '~/components/widgets/Content.astro';
+import Features2 from '~/components/widgets/Features2.astro';
+import Hero from '~/components/widgets/Hero.astro';
+import Testimonials from '~/components/widgets/Testimonials.astro';
+import Layout from '~/layouts/PageLayout.astro';
+
+const metadata = {
+  title: 'Bioinformatics Consultation',
+};
+---
+
+<Layout metadata={metadata}>
+  <!-- Hero Widget ******************* -->
+
+  <Hero
+    actions={[
+      {
+        variant: 'primary',
+        target: '_blank',
+        text: 'Start your consultation today',
+        href: 'https://support.gedac.org/support/tickets/new',
+        icon: 'tabler:chevrons-right',
+      },
+    ]}
+    image={{
+      src: 'https://images.unsplash.com/photo-1519389950473-47ba0277781c?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1740&q=80',
+      alt: 'Bioinformatics Consultation',
+    }}
+  >
+    <Fragment slot="title">
+      Advanced Bioinformatics <br />
+      <span class="text-accent dark:text-white highlight"> & Computational Support</span>
+    </Fragment>
+
+    <Fragment slot="subtitle">
+      Our Consultation Project offers tailored guidance for researchers seeking to optimize their bioinformatics
+      workflows. Our experts work closely with your team to understand your specific needs and provide actionable
+      insights, ensuring that your research projects are efficient and successful.
+    </Fragment>
+  </Hero>
+
+  <!-- Features2 Widget ************** -->
+
+  <Features2
+    title="Our Comprehensive Bioinformatics Services"
+    subtitle="Explore our diverse range of bioinformatics consultation services designed to meet your project needs."
+    columns={3}
+    items={[
+      {
+        title: 'Genomic Data Analysis',
+        description:
+          'We specialize in the analysis of high-throughput genomic data, including sequencing, transcriptomics, and epigenomics, to uncover meaningful biological insights.',
+        icon: 'tabler:dna',
+      },
+      {
+        title: 'Computational Modeling',
+        description:
+          'Our team provides advanced computational modeling to simulate biological processes, predict outcomes, and enhance decision-making for complex research scenarios.',
+        icon: 'tabler:cpu',
+      },
+      {
+        title: 'Data Visualization',
+        description: `We offer expert data visualization services, helping you to effectively communicate your findings through intuitive and informative visual representations.`,
+        icon: 'tabler:chart-pie',
+      },
+      {
+        title: 'Pipeline Development',
+        description:
+          'Our team builds and optimizes bioinformatics workflows and pipelines to automate and streamline data analysis, improving efficiency and reproducibility.',
+        icon: 'tabler:git-branch',
+      },
+      {
+        title: 'Cloud Infrastructure',
+        description:
+          'We provide cloud-based solutions for scalable and cost-efficient bioinformatics analysis, offering secure access to vast datasets and computational resources.',
+        icon: 'tabler:cloud',
+      },
+      {
+        title: 'Training & Support',
+        description:
+          'GeDaC offers training sessions to empower your team with bioinformatics tools, techniques, and best practices to ensure effective analysis of your data.',
+        icon: 'tabler:help',
+      },
+    ]}
+  />
+
+  <!-- Content Widget **************** -->
+
+  <Content
+    isReversed
+    items={[
+      {
+        title: 'Expert Bioinformaticians',
+        description:
+          'Our team of experienced bioinformaticians and computational biologists provide tailored support to meet the unique needs of your research projects.',
+        icon: 'tabler:user-check',
+      },
+      {
+        title: 'Cutting-edge Tools & Technologies',
+        description:
+          'We use state-of-the-art software and computational resources to deliver accurate, reproducible, and insightful analysis for your biological data.',
+        icon: 'tabler:tools',
+      },
+      {
+        title: 'Collaborative Approach',
+        description:
+          'We work closely with your research team, ensuring that our solutions align with your project goals and contribute to the success of your research endeavors.',
+        icon: 'tabler:users',
+      },
+      {
+        title: 'Custom Solutions',
+        description:
+          'We understand that each project is unique, and we offer customized bioinformatics services tailored to meet the specific requirements of your research.',
+        icon: 'tabler:adjustments',
+      },
+    ]}
+    image={{
+      src: 'https://images.unsplash.com/photo-1525909002-1b05e0c869d8?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=870&q=80',
+      alt: 'Bioinformatics Services Image',
+    }}
+  >
+    <Fragment slot="content">
+      <h3 class="text-2xl font-bold tracking-tight dark:text-white sm:text-3xl mb-2">Core Services</h3>
+    </Fragment>
+  </Content>
+
+  <!-- Content Widget **************** -->
+
+  <Content
+    isAfterContent
+    items={[
+      {
+        title: 'Scalability',
+        description:
+          'Leverage cloud-based infrastructure that allows for scalable processing of large datasets, optimizing both time and resources for complex bioinformatics tasks.',
+        icon: 'tabler:cloud-upload',
+      },
+      {
+        title: 'Data Integrity',
+        description:
+          'Our services prioritize the integrity and security of your data, ensuring that sensitive biological data is handled with the utmost care and confidentiality.',
+        icon: 'tabler:shield-check',
+      },
+      {
+        title: 'Research Impact',
+        description:
+          'By providing innovative solutions and insights, we help your research make significant contributions to the scientific community, accelerating discovery and progress.',
+        icon: 'tabler:flame',
+      },
+      {
+        title: 'Time-Efficiency',
+        description:
+          'Optimize your research timeline by utilizing our automated workflows, which save time and increase the reproducibility of your bioinformatics analysis.',
+        icon: 'tabler:clock',
+      },
+    ]}
+    image={{
+      src: 'https://images.unsplash.com/photo-1552664688-cf412ec27db2?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=774&q=80',
+      alt: 'Consultation Benefits Image',
+    }}
+  >
+    <Fragment slot="content">
+      <h3 class="text-2xl font-bold tracking-tight dark:text-white sm:text-3xl mb-2">Why Choose GeDaC?</h3>
+    </Fragment>
+  </Content>
+
+  <!-- CallToAction Widget *********** -->
+
+  <CallToAction
+    actions={[
+      {
+        variant: 'primary',
+        text: 'Start your consultation today',
+        target: '_blank',
+        icon: 'tabler:chevrons-right',
+        href: 'https://support.gedac.org/support/tickets/new',
+      },
+    ]}
+    title="Transform Your Research with GeDaC"
+    subtitle="Get in touch with our expert team to learn more about how we can support your bioinformatics needs and drive your research forward."
+  />
+</Layout>
