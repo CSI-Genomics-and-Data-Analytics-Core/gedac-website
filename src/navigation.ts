@@ -74,19 +74,18 @@ export const footerData = {
     {
       title: 'Company',
       links: [
-        { text: 'About', href: '/' },
-        { text: 'Team', href: 'https://csi.nus.edu.sg/our-research/core-facilities/genomics-and-data-analytics-core-gedac/' },
+        { text: 'About', target:'_blank', href: 'https://csi.nus.edu.sg/' },
         { text: 'Blog', href: '/blog' },
       ],
     },
   ],
   secondaryLinks: [
-    // { text: 'Terms', href: getPermalink('/terms') },
+    { text: 'Team', target: '_blank', href: 'https://csi.nus.edu.sg/our-research/core-facilities/genomics-and-data-analytics-core-gedac/' },
     { text: 'Privacy Policy', href: getPermalink('/privacy') },
   ],
   socialLinks: [
-    { ariaLabel: 'X', icon: 'tabler:brand-x', href: 'https://x.com/csi_singapore' },
     { ariaLabel: 'Github', icon: 'tabler:brand-github', href: 'https://github.com/CSI-Genomics-and-Data-Analytics-Core' },
+    { ariaLabel: 'X', icon: 'tabler:brand-x', href: 'https://x.com/csi_singapore' },
   ],
   footNote: ' &copy; 2025 GeDaC · All rights reserved',
 };
