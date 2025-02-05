@@ -12,7 +12,7 @@ export interface Props {
 
 const { post } = Astro.props;
 
-const relatedPosts = post.tags ? await getRelatedPosts(post, 4) : [];
+const relatedPosts = post.tags ? await getRelatedPosts(post, 3) : [];
 ---
 
 {

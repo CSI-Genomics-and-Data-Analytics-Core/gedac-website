@@ -4,7 +4,7 @@ author: Mani
 title: GeDaC CloudFlow Release is Here!
 excerpt: Announcing the release of our advanced cloud-based bioinformatics service, CloudFlow.
 category: CloudFlow
-image: "/src/assets/images/cloudflow/cloud-banner-full.png"
+image: "~/assets/images/cloudflow/cloud-banner-full.png"
 tags:
   - Cloudflow
   - Cloud
