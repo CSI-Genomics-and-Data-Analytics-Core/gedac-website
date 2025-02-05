@@ -51,9 +51,10 @@ export const footerData = {
     {
       title: 'Services',
       links: [
-        { text: 'Features', href: '/#features' },
-        { text: 'Team', href: '/#team' },
-        { text: 'Usecase', href: '/#use-cases' },
+        { text: 'Bioinformatics Consultaitons', href: '/consultation' },
+        { text: 'Software Development', href: '/software' },
+        { text: 'Data Storage Solutions', href: '/storage' },
+
       ],
     },
     {
@@ -73,9 +74,9 @@ export const footerData = {
     {
       title: 'Company',
       links: [
-        { text: 'About', href: '/#about' },
+        { text: 'About', href: '/' },
+        { text: 'Team', href: 'https://csi.nus.edu.sg/our-research/core-facilities/genomics-and-data-analytics-core-gedac/' },
         { text: 'Blog', href: '/blog' },
-        { text: 'Pricing', href: '/pricing' },
       ],
     },
   ],
