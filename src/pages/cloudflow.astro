@@ -15,25 +15,23 @@ const metadata = {
   <!-- Hero Widget ******************* -->
 
   <Hero
-    image={{
-      src: '~/assets/images/cloudflow/cloudflow-banner.png',
-      alt: 'CloudFlow Image',
-      width: 2040,
-      height: 700,
-      class: 'object-cover m=0 p-0',
-    }}
+  image={{
+    src: '~/assets/images/cloudflow/cloudflow-banner-min.png',
+    alt: 'Cloudflow banner'
+  }}
     actions={[
       {
         variant: 'primary',
-        text: 'Get started now',
+        text: 'Get started with CloudFlow',
         target: '_blank',
         icon: 'tabler:chevrons-right',
         href: 'https://cloudflow.gedac.org',
       },
     ]}
+
   >
     <Fragment slot="title" class="m-0 p-0">
-      Elevate your bioinformatics workflows <br />
+      Elevate your bioinformatics workflows <span class="text-accent dark:text-white highlight"> with CloudFlow</span>
     </Fragment>
   </Hero>
 
@@ -88,7 +86,7 @@ const metadata = {
       {
         title: 'What pipelines does CloudFlow support?',
         description:
-          'CloudFlow fully supports nf-core pipelines, enabling users to run high-quality, reproducible bioinformatics workflows on the cloud.',
+          "CloudFlow fully supports Nextflow-written pipelines, including those from the nf-core community. This allows users to run high-quality, reproducible bioinformatics workflows tailored to their lab's specific requirements on the cloud.",
       },
       {
         title: 'How do I submit my data?',
@@ -96,14 +94,14 @@ const metadata = {
           'Data submission is simple. Once you choose a pipeline, you can upload your sequencing data directly to CloudFlow, where it will be processed in a secure cloud environment.',
       },
       {
-        title: 'Is there a trial period for CloudFlow?',
+        title: 'How do we pay for CloudFlow services?',
         description:
-          'Currently, CloudFlow does not offer trial periods, but we provide comprehensive documentation and a demo section to showcase the features and capabilities of our platform.',
+          "For NUS labs, payment for CloudFlow services is processed internally using the lab's associated WBS Codes. This ensures seamless and efficient billing within the university's financial system.",
       },
       {
         title: 'How can I access CloudFlow documentation?',
         description:
-          'CloudFlow provides guided, detailed documentation at <a href="https://docs.cloudflow.gedac.org" target="_blank">docs.cloudflow.gedac.org</a>, covering everything from setting up your account to running and monitoring analysis workflows.',
+          'CloudFlow provides guided, detailed documentation at <a href="https://docs.cloudflow.gedac.org" target="_blank" class="text-accent">docs.cloudflow.gedac.org</a>, covering everything from setting up your account to running and monitoring analysis workflows.',
       },
     ]}
   />

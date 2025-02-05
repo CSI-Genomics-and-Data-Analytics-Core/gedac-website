@@ -5,19 +5,35 @@ import Prices from '~/components/widgets/Pricing.astro';
 import Image from '~/components/common/Image.astro';
 import CallToAction from '~/components/widgets/CallToAction.astro';
 import Features2 from '~/components/widgets/Features2.astro';
+import Hero from '~/components/widgets/Hero.astro';
 
 const metadata = {
-  title: 'Pricing',
+  title: 'Storage',
 };
 ---
 
 <Layout metadata={metadata}>
-  <HeroText
-    tagline="Bioinformatics Data Storage"
-    title="Scalable & Secure Hybrid Storage Solutions"
-    subtitle="Store, retrieve, and manage your bioinformatics data with ease. We also help labs configure their NAS servers and backup to the cloud based on their requirements."
-    background="https://images.unsplash.com/photo-1517819655378-25fe37197692"
-  />
+
+  <Hero
+  tagline="Genomics Data Storage"
+  title="Scalable & Secure Hybrid Storage Solutions"
+  subtitle="Effortlessly store, retrieve, and manage your bioinformatics data. We assist labs in configuring NAS servers and cloud backups tailored to their specific requirements. Our consultation services ensure customized storage solutions for your lab's unique needs."
+  image={{
+    src: '~/assets/images/storage/storage-flow.svg',
+    alt: 'Software Development Hero Image',
+    width: 3000,
+  }}
+  actions={[
+    {
+      variant: 'primary',
+      target: '_blank',
+      text: 'Start your free consultation today',
+      href: 'https://support.gedac.org/support/tickets/new',
+      icon: 'tabler:chevrons-right',
+    },
+  ]}
+/>
+
 
   <Features2
     title="Why Choose AWS S3 for Bioinformatics?"
