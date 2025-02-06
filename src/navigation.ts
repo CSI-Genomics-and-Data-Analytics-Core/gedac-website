@@ -11,7 +11,7 @@ export const headerData = {
       text: 'Use Cases',
       links: [
         {
-          text: 'Hire Bioinformatician(s)',
+          text: 'Bioinformaticians On-Demand',
           href: getPermalink('/consultation'),
           icon: 'tabler:user',
         },
