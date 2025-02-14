@@ -89,7 +89,7 @@ const config: Config = {
           label: 'Contact',
         },
         {
-          href: 'https://github.com/facebook/docusaurus',
+          href: 'https://github.com/CSI-Genomics-and-Data-Analytics-Core',
           label: 'GitHub',
           position: 'right',
         },
