@@ -55,7 +55,7 @@ const config: Config = {
       title: 'Genomics and Data Analytics Core',
       logo: {
         alt: 'Genomics and Data Analytics Core',
-        src: 'img/logo.svg',
+        src: 'img/csi_nus_logo.png',
       },
       items: [
         {
