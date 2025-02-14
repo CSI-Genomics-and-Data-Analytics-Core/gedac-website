@@ -62,6 +62,16 @@ const sidebars: SidebarsConfig = {
         },
       ],
     },
+    {
+      type: 'category',
+      label: 'Research',
+      items: [
+            'Research/Areas',
+            'Research/Publications',
+            'Research/Collaborations',
+            'Research/Innovation',
+      ],
+    },
   ],
 };
 
