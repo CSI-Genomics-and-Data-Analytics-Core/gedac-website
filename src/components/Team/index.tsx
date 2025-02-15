@@ -1,7 +1,13 @@
 import type {ReactNode} from 'react';
 import clsx from 'clsx';
 import Heading from '@theme/Heading';
-//import styles from './styles.module.css';
+
+import Avatar from '@mui/material/Avatar';
+import Card from '@mui/material/Card';
+import CardContent from '@mui/material/CardContent';
+import CardMedia from '@mui/material/CardMedia';
+import Typography from '@mui/material/Typography';
+import styles from './styles.module.css';
 
 type TeamMember = {
   name: string;
@@ -13,67 +19,96 @@ type TeamMember = {
 
 const team: TeamMember[] = [
   {
-    name: "Chris Dean",
+    name: "Person 1",
     github: "https://github.com/alicejohnson",
     scholar: "https://scholar.google.com/citations?user=alice123",
-    position: "Data Scientist",
+    position: "Prinicpal Investigator",
     image: "",
   },
   {
-    name: "Mani L.",
+    name: "Person 2",
     github: "https://github.com/bsmith",
     scholar: "https://scholar.google.com/citations?user=bob456",
+    position: "Research Associate Professor",
+    image: "",
+  },
+  {
+    name: "Person 3",
+    github: "https://github.com/catlee",
+    scholar: "https://scholar.google.com/citations?user=cat789",
+    position: "Senior Research Scientist",
+    image: "",
+  },
+  {
+    name: "Person 4",
+    github: "https://github.com/catlee",
+    scholar: "https://scholar.google.com/citations?user=cat789",
+    position: "Senior Research Scientist",
+    image: "",
+  },
+  {
+    name: "Person 5",
+    github: "https://github.com/catlee",
+    scholar: "https://scholar.google.com/citations?user=cat789",
+    position: "IT Manager",
+    image: "",
+  },
+  {
+    name: "Person 6",
+    github: "https://github.com/catlee",
+    scholar: "https://scholar.google.com/citations?user=cat789",
+    position: "Research Associate",
+    image: "",
+  },
+  {
+    name: "Person 7",
+    github: "https://github.com/catlee",
+    scholar: "https://scholar.google.com/citations?user=cat789",
     position: "Software Engineer",
     image: "",
   },
   {
-    name: "Kumar A.",
+    name: "Person 8",
     github: "https://github.com/catlee",
     scholar: "https://scholar.google.com/citations?user=cat789",
-    position: "Researcher",
+    position: "Research Fellow",
+    image: "",
+  },
+  {
+    name: "Person 9",
+    github: "https://github.com/catlee",
+    scholar: "https://scholar.google.com/citations?user=cat789",
+    position: "Research Fellow",
+    image: "",
+  },
+  {
+    name: "Person 10",
+    github: "https://github.com/catlee",
+    scholar: "https://scholar.google.com/citations?user=cat789",
+    position: "IT Analyst",
     image: "",
   },
 ];
 
 const TeamCard: React.FC<TeamMember> = ({ name, github, scholar, position }) => {
   return(
-    <div className="max-w-sm p-6 bg-white border border-gray-400 rounded-lg shadow-sm dark:bg-gray-800 dark:border-gray-700">
-    <a href="#">
-        <h5 className="mb-2 text-2xl font-bold tracking-tight text-gray-900 dark:text-white">{name}</h5>
-    </a>
-    <p className="mb-3 font-normal text-gray-700 dark:text-gray-400">{position}</p>
-    </div>
+      <Card sx={{ maxWidth: 200 }}>
+        <Avatar alt="Remy Sharp" src="/static/images/avatar/1.jpg" />
+        <CardContent>
+          <Typography gutterBottom variant="h5" component="div">
+            { name }
+          </Typography>
+          <Typography variant="body2" sx={{ color: 'text.secondary' }}>
+            { position }
+          </Typography>
+        </CardContent>
+      </Card>
   );
 };
-  /*return (
-    <div className="p-4 bg-white border border-gray-200 shadow-lg rounded-2xl max-w-xs">
-      <h2 className="text-xl font-bold">{name}</h2>
-      <p className="text-gray-500">{position}</p>
-      <div className="mt-4 flex flex-col gap-2">
-        <a
-          href={github}
-          target="_blank"
-          rel="noopener noreferrer"
-          className="text-blue-500 hover:underline"
-        >
-          GitHub Profile
-        </a>
-        <a
-          href={scholar}
-          target="_blank"
-          rel="noopener noreferrer"
-          className="text-blue-500 hover:underline"
-        >
-          Google Scholar
-        </a>
-      </div>
-    </div>
-  );
-};*/
 
 const TeamPagePeople: React.FC = () => {
   return (
-    <div className="grid grid-cols-3 md:grid-cols-3 gap-6 p-6">
+    <div className={styles.flexContainer}>
       {team.map((member) => (
         <TeamCard key={member.name} {...member} />
       ))}
