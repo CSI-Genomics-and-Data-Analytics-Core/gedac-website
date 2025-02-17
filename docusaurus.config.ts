@@ -77,13 +77,13 @@ const config: Config = {
           label: 'Research',
         },
         {
-          type: 'docSidebar',
+          to: 'team',
           sidebarId: 'tutorialSidebar',
           position: 'right',
           label: 'Team',
         },
         {
-          type: 'docSidebar',
+          to: 'contact',
           sidebarId: 'tutorialSidebar',
           position: 'right',
           label: 'Contact',
