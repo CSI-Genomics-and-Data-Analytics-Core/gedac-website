@@ -12,3 +12,4 @@ We offer data management support to research groups looking to archive large gen
 Our engineers work closely with our partners at Amazon Web Services (AWS) to provide a low cost, secure and reliable data storage solution for your genomics data.  We manage genomics data for research groups at the Cancer Science Institute of Singapore (CSI), NUS School of Medicine, and National University Health System.  In fact, **47% of CSI faculty work with us to manage their data from legacy or ongoing genomics projects**.
 
 ## How to Get Started?
+If you made it this far, it sounds like you might be ready to start a conversation. To get the ball moving, send us an email introducing yourself and a member of our team will respond shortly. We look forward to the possibility of working with you and learning more about your data management needs.
