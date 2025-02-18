@@ -18,7 +18,7 @@ We offer access to highly trained bioinformaticians who can help you and your te
 
 ## Why Choose Us?
 
-Lorem ipsum dolor sit amet consectetur, adipisicing elit. Assumenda quas omnis nesciunt ab quae maxime quod dolor modi necessitatibus. Impedit ipsam consequatur saepe, explicabo ex vel. Repellendus adipisci nam atque.
+Our team of staff scientists have decades of experience collaborating with clinicians and researchers on high-throughput sequencing projects.  We understand that every study design and every research question is unique, and we use this information to tailor our analysis specific to your study.
 
 ## How to Get Started?
 
