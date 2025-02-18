@@ -29,44 +29,11 @@ const sidebars: SidebarsConfig = {
     {
       type: 'category',
       label: 'Services',
-      collapsible: true,
-      collapsed: true,
       items: [
-        {
-          type: 'category',
-          label: 'Support Services',
-          collapsed: true,
-          items: [
-            'Services/Support/Bioinformatics',
-            'Services/Support/Statistics',
-            'Services/Support/Proposal',
-          ],
-        },
-        {
-          type: 'category',
-          label: 'Compute Services',
-          items: [
-            'Services/Compute/Dedicated',
-            'Services/Compute/Interactive',
-          ],
-        },
-        {
-          type: 'category',
-          label: 'Data Management Services',
-          items: [
-            'Services/Data/Storage',
-            'Services/Data/Transfer',
-          ],
-        },
-        {
-          type: 'category',
-          label: 'Specialized Services',
-          items: [
-            'Services/Specialized/Database',
-            'Services/Specialized/Portals',
-            'Services/Specialized/Software',
-          ],
-        },
+            'Services/Analytics',
+            'Services/Compute',
+            'Services/Storage',
+            'Services/Special',
       ],
     },
     {
