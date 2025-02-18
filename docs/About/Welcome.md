@@ -4,7 +4,7 @@ sidebar_position: 1
 
 # Welcome
 
-Welcome to the Genomics and Data Analytics Core at the National University of Singapore.  We are an interdisciplinary team of scientists, engineers and biologists working alongside researchers to provide high-quality bioinformatics and data analytics support, access to the latest high performance computing infrastructure, and robust data storage and retrieval solutions.
+Welcome to the Genomics and Data Analytics Core at the National University of Singapore.  We are an interdisciplinary team of scientists and engineers working alongside researchers and clinicians to provide high-quality bioinformatics and data analytics support, access to the latest high performance computing infrastructure, and robust data storage and retrieval solutions.
 
 ## Services
 
@@ -12,8 +12,6 @@ We offer a range of services to support our clients at the university and indust
 - Plan, design and analyze data produced from high-throughput sequencing experiments
 - Provide dedicated access to HPC resources to support data-driven genomics research
 - Securely archive, store and retrieve large-scale genomics datasets from the cloud
-
-To learn more about the services we offer, please visit our **[Services](https:www.google.com)** page.
 
 ## Research
 

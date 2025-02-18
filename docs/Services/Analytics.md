@@ -17,6 +17,7 @@ We offer access to highly trained bioinformaticians who can help you and your te
     - Transcriptomics
 
 ## Why Choose Us?
+
 Lorem ipsum dolor sit amet consectetur, adipisicing elit. Assumenda quas omnis nesciunt ab quae maxime quod dolor modi necessitatibus. Impedit ipsam consequatur saepe, explicabo ex vel. Repellendus adipisci nam atque.
 
 ## How to Get Started?
