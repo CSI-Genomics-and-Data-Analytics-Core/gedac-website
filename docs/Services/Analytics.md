@@ -21,7 +21,8 @@ We offer access to highly trained bioinformaticians who can help you and your te
 Lorem ipsum dolor sit amet consectetur, adipisicing elit. Assumenda quas omnis nesciunt ab quae maxime quod dolor modi necessitatibus. Impedit ipsam consequatur saepe, explicabo ex vel. Repellendus adipisci nam atque.
 
 ## How to Get Started?
-Lorem ipsum dolor sit amet consectetur, adipisicing elit. Assumenda quas omnis nesciunt ab quae maxime quod dolor modi necessitatibus. Impedit ipsam consequatur saepe, explicabo ex vel. Repellendus adipisci nam atque.
+
+If you made it this far, it sounds like you might be ready to start a conversation.  To get the ball moving, send us an email introducing yourself and a member of our team will respond shortly.  We look forward to the possibility of working with you and learning more about your amazing science.
 
 ## Ready to Get Help?
 Lorem ipsum dolor sit amet consectetur, adipisicing elit. Assumenda quas omnis nesciunt ab quae maxime quod dolor modi necessitatibus. Impedit ipsam consequatur saepe, explicabo ex vel. Repellendus adipisci nam atque.
