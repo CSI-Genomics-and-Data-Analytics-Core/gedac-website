@@ -30,6 +30,3 @@ The best way to answer this question is to show you what we have built.
 
 ## How to Get Started?
 Lorem ipsum dolor sit amet consectetur, adipisicing elit. Assumenda quas omnis nesciunt ab quae maxime quod dolor modi necessitatibus. Impedit ipsam consequatur saepe, explicabo ex vel. Repellendus adipisci nam atque.
-
-## Ready to Get Help?
-Lorem ipsum dolor sit amet consectetur, adipisicing elit. Assumenda quas omnis nesciunt ab quae maxime quod dolor modi necessitatibus. Impedit ipsam consequatur saepe, explicabo ex vel. Repellendus adipisci nam atque.
