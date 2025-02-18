@@ -25,7 +25,7 @@ The best way to answer this question is to show you what we have built.
 ![Cloud Flow](/img/cloudflow.png)
 
 ### Project 3: N2CR Avatar Portal
-[N2CR Avatar Portal](https://n2cr.gedac.org/login) We developed a web application around the N2CR patient-derived-model database, allowing users to add, update, and query model records.  For more information about this application, please visit our [online documentation](https://n2cr.gedac.org/guide).
+[**N2CR Avatar Portal**](https://n2cr.gedac.org/login) We developed a web application around the N2CR patient-derived-model database, allowing users to add, update, and query model records.  For more information about this application, please visit our [online documentation](https://n2cr.gedac.org/guide).
 ![N2CR Avatar Portal](/img/docusaurus-social-card.jpg)
 
 
