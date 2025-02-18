@@ -3,6 +3,7 @@ sidebar_position: 4
 ---
 
 # Specialized Services
+Welcome to our Specialized Services page. We are happy that you made it here. This page will walk you through the services we offer, the benefits of working with us, and how to get started working together.
 
 ## What we Offer
 
