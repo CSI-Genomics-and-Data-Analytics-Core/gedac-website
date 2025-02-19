@@ -16,7 +16,7 @@ For individuals or research groups.
 For university departments.
 
 ## Why Choose Us?
-Lorem ipsum dolor sit amet consectetur, adipisicing elit. Assumenda quas omnis nesciunt ab quae maxime quod dolor modi necessitatibus. Impedit ipsam consequatur saepe, explicabo ex vel. Repellendus adipisci nam atque.
+We know how hard it can be to get access to the resources you need when when you need them most.  We will work with you and your team to set up, manage, and monitor HPC infrastructure in the cloud so you can focus on the things that matter most.
 
 ## How to Get Started?
 Lorem ipsum dolor sit amet consectetur, adipisicing elit. Assumenda quas omnis nesciunt ab quae maxime quod dolor modi necessitatibus. Impedit ipsam consequatur saepe, explicabo ex vel. Repellendus adipisci nam atque.
