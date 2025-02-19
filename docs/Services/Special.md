@@ -30,4 +30,4 @@ The best way to answer this question is to show you what we have built.
 
 
 ## How to Get Started?
-If you made it this far, it sounds like you might be ready to start a conversation. To get the ball moving, send us an email introducing yourself and a member of our team will respond shortly. We look forward to the possibility of working with you and learning more about your amazing science.
+If you made it this far, it sounds like you might be ready to start a conversation. To get the ball moving, send us an email introducing yourself and a member of our team will respond shortly. We look forward to the possibility of working with you and learning more about your software needs.
