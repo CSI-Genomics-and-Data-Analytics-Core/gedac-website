@@ -8,6 +8,13 @@ Welcome to our Computing and Processing page. We are happy that you made it here
 ## What we Offer
 We offer on-demand and dedicated access to high performance computing infrastructure for students, research groups and departments conducting resource intensive genomics research at a low cost.
 
+#### Educational HPC
+For classrooms, university courses or workshops.
+#### Research HPC
+For individuals or research groups.
+#### Departmental HPC
+For university departments.
+
 ## Why Choose Us?
 Lorem ipsum dolor sit amet consectetur, adipisicing elit. Assumenda quas omnis nesciunt ab quae maxime quod dolor modi necessitatibus. Impedit ipsam consequatur saepe, explicabo ex vel. Repellendus adipisci nam atque.
 
