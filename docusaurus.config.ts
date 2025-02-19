@@ -40,6 +40,7 @@ const config: Config = {
           // Please change this to your repo.
           // Remove this to remove the "edit this page" links.
           editUrl: 'https://github.com/CSI-Genomics-and-Data-Analytics-Core/gedac-website',
+          routeBasePath: '/',
         },
         theme: {
           customCss: './src/css/custom.css',
