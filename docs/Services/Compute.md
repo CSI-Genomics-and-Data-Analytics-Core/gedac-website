@@ -19,4 +19,4 @@ For university departments.
 We know how hard it can be to get access to the resources you need when when you need them most.  We will work with you and your team to set up, manage, and monitor HPC infrastructure in the cloud so you can focus on the things that matter most.
 
 ## How to Get Started?
-Lorem ipsum dolor sit amet consectetur, adipisicing elit. Assumenda quas omnis nesciunt ab quae maxime quod dolor modi necessitatibus. Impedit ipsam consequatur saepe, explicabo ex vel. Repellendus adipisci nam atque.
+If you made it this far, it sounds like you might be ready to start a conversation. To get the ball moving, send us an email introducing yourself and a member of our team will respond shortly. We look forward to the possibility of working with you and learning more about your computing needs.
