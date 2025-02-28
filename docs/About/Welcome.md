@@ -27,8 +27,3 @@ Our team has domain expertise in a wide range of research areas:
     - Exploring gene expression dynamics through RNA sequencing (RNA-Seq).
     - Applications: Differential gene expression analysis, single-cell RNA-Seq, and spatial transcriptomics.
 
-
-## Resources
-
-The Genomics and Data Analytics Core (GeDaC) at the Cancer Science Institute of Singapore (CSI) is designed to meet the increasing need of bioinformatics and computational support for the institute labs and the university. Its mission is to: (1) provide investigators access to bioinformatics expertise and solutions, (2) use data science to enhance the impact of CSI’s research and (3) develop innovative platforms for cancer genome analytics.
-
