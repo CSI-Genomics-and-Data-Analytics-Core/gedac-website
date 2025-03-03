@@ -14,16 +14,3 @@ We offer a range of services to support our clients at the university and indust
 - Provide dedicated access to HPC resources to support data-driven genomics research
 - Securely archive, store and retrieve large-scale genomics datasets from the cloud
 
-## Research
-
-Our team has domain expertise in a wide range of research areas:
-- Cancer Genomics
-    - Characterizing genetic mutations and molecular pathways driving cancer.
-    - Applications: Somatic mutation analysis, tumor evolution studies, and biomarker discovery.
-- Epigenetics and Epitranscriptomics
-    - Investigating genome structure, function, and regulation.
-    - Applications: Whole genome sequencing (WGS), epigenetic modifications, and genome-wide association studies (GWAS).
-- Transcriptomics
-    - Exploring gene expression dynamics through RNA sequencing (RNA-Seq).
-    - Applications: Differential gene expression analysis, single-cell RNA-Seq, and spatial transcriptomics.
-
