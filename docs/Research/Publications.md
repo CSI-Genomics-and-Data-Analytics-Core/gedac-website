@@ -4,7 +4,7 @@ sidebar_position: 2
 
 # Publications
 
-Our team has played a major role in the analysis of many published studies at the Cancer Science Institute, NUS School of Medicine and National University Health System.
+Our team works closely with researchers at the Cancer Science Institute of Singapore, NUS School of Medicine and National University Health System to publish impactful research using the latest sequencing technologies.  Explore our growing list of publications to learn more about our scientific contributions and areas of expertise.
 
 ### Epigenetics
 Xiong S, Zhou J, Tan TK, Chung TH, Tan TZ, Toh SH, Tang NXN, Jia Y, See YX, Fullwood MJ, Sanda T, Chng WJ. Super enhancer acquisition drives expression of oncogenic PPP1R15B that regulates protein homeostasis in multiple myeloma. Nat Commun. 2024 Aug 9;15(1):6810. PMID: 39122682;
