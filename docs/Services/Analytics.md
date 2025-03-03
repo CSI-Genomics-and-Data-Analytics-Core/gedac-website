@@ -9,11 +9,11 @@ Welcome to our Support and Consultation page.  We are happy that you made it her
 ## What we Offer
 
 We offer access to highly trained bioinformaticians who can help you and your team plan, design and analyze data produced from your high-throughput sequencing experiments.  Our staff scientists have expertise working on a wide range of sequencing applications from both short- and long-read sequencing experiments:
-    - Direct RNA sequencing
+    - Long-read sequencing
     - Microbiome and shotgun metagenomoics
     - Single-cell and spatial genomics
-    - Whole genome sequencing
     - Whole exome sequencing
+    - Whole genome sequencing
     - Transcriptomics
 
 ## Why Choose Us?
