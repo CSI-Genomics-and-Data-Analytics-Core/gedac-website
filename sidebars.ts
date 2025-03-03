@@ -42,8 +42,6 @@ const sidebars: SidebarsConfig = {
       items: [
             'Research/Areas',
             'Research/Publications',
-            'Research/Collaborations',
-            'Research/Innovation',
       ],
     },
   ],

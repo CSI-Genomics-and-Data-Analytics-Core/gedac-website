@@ -69,12 +69,6 @@ const config: Config = {
           type: 'docSidebar',
           sidebarId: 'tutorialSidebar',
           position: 'right',
-          label: 'Resources',
-        },
-        {
-          type: 'docSidebar',
-          sidebarId: 'tutorialSidebar',
-          position: 'right',
           label: 'Research',
         },
         {
