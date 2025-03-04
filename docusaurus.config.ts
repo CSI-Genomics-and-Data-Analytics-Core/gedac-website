@@ -66,7 +66,7 @@ const config: Config = {
           label: 'Services',
         },
         {
-          type: 'docSidebar',
+          to: '/Research/Publications',
           sidebarId: 'tutorialSidebar',
           position: 'right',
           label: 'Research',
