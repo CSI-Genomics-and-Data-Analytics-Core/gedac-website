@@ -3,12 +3,14 @@
 
 # Production
 /build
+/dist
 
 # Generated files
 .docusaurus
 .cache-loader
 
 # Misc
+.astro
 .DS_Store
 .env.local
 .env.development.local
