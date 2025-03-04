@@ -22,7 +22,7 @@ const facilityHead: TeamMember[] = [
   {
     name: "Jason Pitt",
     position: "Principal Investigator",
-    image: hero,
+    image: 'https://csi.nus.edu.sg/wp-content/uploads/2022/12/image7-150x150-1.png',
   },
 ];
 
@@ -30,22 +30,17 @@ const serviceLeads: TeamMember[] = [
   {
     name: "Henry Yang",
     position: "Associate Professor",
-    image: hero,
-  },
-  {
-    name: "Kumaran Mande",
-    position: "Senior Research Scientist",
-    image: hero,
+    image: 'https://csi.nus.edu.sg/wp-content/uploads/2022/12/henry-150x150-1.png',
   },
   {
     name: "Tony Tan",
     position: "Senior Research Scientist",
-    image: hero,
+    image: 'https://csi.nus.edu.sg/wp-content/uploads/2022/12/Tony-TAN-150x150-1.jpg',
   },
   {
     name: "CK Ong",
     position: "IT Manager",
-    image: hero,
+    image: 'https://csi.nus.edu.sg/wp-content/uploads/2022/12/ck-1-150x150-1.jpg',
   },
 ];
 
@@ -53,27 +48,27 @@ const teamMembers: TeamMember[] = [
   {
     name: "Li Ying",
     position: "IT Manager",
-    image: hero,
+    image: 'https://csi.nus.edu.sg/wp-content/uploads/2022/12/Wordpress-671-x-515-px-5-150x150-1.png',
   },
   {
     name: "Linganesan Mani",
     position: "Software Engineer",
-    image: hero,
+    image: 'https://csi.nus.edu.sg/wp-content/uploads/2022/12/Linganesan-Kularatnarajah-GeDaC-150x150-1.jpg',
   },
   {
     name: "Chris Dean",
     position: "Research Fellow",
-    image: hero,
+    image: 'https://csi.nus.edu.sg/wp-content/uploads/2024/09/Wordpress-671-x-515-px-91.png',
   },
   {
     name: "Hannan Wong",
     position: "Research Fellow",
-    image: hero,
+    image: 'https://csi.nus.edu.sg/wp-content/uploads/2022/11/JP-Hannan-Wong-PhD-Student-1.jpg',
   },
   {
     name: "Chia Y. Keng",
     position: "IT Analyst",
-    image: hero,
+    image: 'https://csi.nus.edu.sg/wp-content/uploads/2022/12/PHOTO_20210918_103645-03-150x150-1.jpeg',
   },
 ];
 
