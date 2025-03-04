@@ -1,49 +1,50 @@
-import {themes as prismThemes} from 'prism-react-renderer';
-import type {Config} from '@docusaurus/types';
-import type * as Preset from '@docusaurus/preset-classic';
+import { themes as prismThemes } from "prism-react-renderer";
+import type { Config } from "@docusaurus/types";
+import type * as Preset from "@docusaurus/preset-classic";
 
 // This runs in Node.js - Don't use client-side code here (browser APIs, JSX...)
 
 const config: Config = {
-  title: 'Genomics and Data Analytics Core',
-  tagline: '',
-  favicon: 'img/favicon.ico',
+  title: "Genomics and Data Analytics Core",
+  tagline: "",
+  favicon: "img/favicon.ico",
 
   // Set the production url of your site here
-  url: 'https://www.gedac.org/',
+  url: "https://www.gedac.org/",
   // Set the /<baseUrl>/ pathname under which your site is served
   // For GitHub pages deployment, it is often '/<projectName>/'
-  baseUrl: '/',
+  baseUrl: "/",
 
   // GitHub pages deployment config.
   // If you aren't using GitHub pages, you don't need these.
-  organizationName: '', // Usually your GitHub org/user name.
-  projectName: '', // Usually your repo name.
+  organizationName: "", // Usually your GitHub org/user name.
+  projectName: "", // Usually your repo name.
 
-  onBrokenLinks: 'throw',
-  onBrokenMarkdownLinks: 'warn',
+  onBrokenLinks: "throw",
+  onBrokenMarkdownLinks: "warn",
 
   // Even if you don't use internationalization, you can use this field to set
   // useful metadata like html lang. For example, if your site is Chinese, you
   // may want to replace "en" with "zh-Hans".
   i18n: {
-    defaultLocale: 'en',
-    locales: ['en'],
+    defaultLocale: "en",
+    locales: ["en"],
   },
 
   presets: [
     [
-      'classic',
+      "classic",
       {
         docs: {
-          sidebarPath: './sidebars.ts',
+          sidebarPath: "./sidebars.ts",
           // Please change this to your repo.
           // Remove this to remove the "edit this page" links.
-          editUrl: 'https://github.com/CSI-Genomics-and-Data-Analytics-Core/gedac-website',
-          routeBasePath: '/',
+          editUrl:
+            "https://github.com/CSI-Genomics-and-Data-Analytics-Core/gedac-website",
+          routeBasePath: "/",
         },
         theme: {
-          customCss: './src/css/custom.css',
+          customCss: "./src/css/custom.css",
         },
       } satisfies Preset.Options,
     ],
@@ -51,47 +52,48 @@ const config: Config = {
 
   themeConfig: {
     // Replace with your project's social card
-    image: 'img/docusaurus-social-card.jpg',
+    image: "favicon.ico",
     navbar: {
-      title: 'Genomics and Data Analytics Core',
+      title: "Genomics and Data Analytics Core",
       logo: {
-        alt: 'Genomics and Data Analytics Core',
-        src: 'img/csi_nus_logo.png',
+        alt: "Genomics and Data Analytics Core",
+        src: "img/csi_nus_logo.png",
+        style: { height: '40px' }, // Increase the size of the logo
       },
       items: [
         {
-          type: 'docSidebar',
-          sidebarId: 'tutorialSidebar',
-          position: 'right',
-          label: 'Services',
+          type: "docSidebar",
+          sidebarId: "tutorialSidebar",
+          position: "right",
+          label: "Services",
         },
         {
-          to: '/Research/Publications',
-          sidebarId: 'tutorialSidebar',
-          position: 'right',
-          label: 'Research',
+          to: "/Research/Publications",
+          sidebarId: "tutorialSidebar",
+          position: "right",
+          label: "Research",
         },
         {
-          to: 'team',
-          sidebarId: 'tutorialSidebar',
-          position: 'right',
-          label: 'Team',
+          to: "team",
+          sidebarId: "tutorialSidebar",
+          position: "right",
+          label: "Team",
         },
         {
-          to: 'contact',
-          sidebarId: 'tutorialSidebar',
-          position: 'right',
-          label: 'Contact',
+          to: "contact",
+          sidebarId: "tutorialSidebar",
+          position: "right",
+          label: "Contact",
         },
         {
-          href: 'https://github.com/CSI-Genomics-and-Data-Analytics-Core',
-          label: 'GitHub',
-          position: 'right',
+          href: "https://github.com/CSI-Genomics-and-Data-Analytics-Core",
+          label: "GitHub",
+          position: "right",
         },
       ],
     },
     footer: {
-      style: 'dark',
+      style: "dark",
       copyright: `Copyright © ${new Date().getFullYear()} Genomics and Data Analytics Core. Built with Docusaurus.`,
     },
     prism: {
@@ -99,6 +101,19 @@ const config: Config = {
       darkTheme: prismThemes.dracula,
     },
   } satisfies Preset.ThemeConfig,
+
+  scripts: [
+    {
+      src: "https://widget.freshworks.com/widgets/150000001296.js",
+      async: true,
+      defer: true,
+    },
+    // For inline scripts, use this format instead
+    {
+      src: "/freshworks-init.js",
+      async: false,
+    },
+  ],
 };
 
 export default config;
