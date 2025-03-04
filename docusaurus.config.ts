@@ -17,10 +17,10 @@ const config: Config = {
 
   // GitHub pages deployment config.
   // If you aren't using GitHub pages, you don't need these.
-  organizationName: "", // Usually your GitHub org/user name.
-  projectName: "", // Usually your repo name.
+  organizationName: "CSI-Genomics-and-Data-Analytics-Core", // Usually your GitHub org/user name.
+  projectName: "gedac-website", // Usually your repo name.
 
-  onBrokenLinks: "throw",
+  onBrokenLinks: "warn",
   onBrokenMarkdownLinks: "warn",
 
   // Even if you don't use internationalization, you can use this field to set
@@ -58,7 +58,7 @@ const config: Config = {
       logo: {
         alt: "Genomics and Data Analytics Core",
         src: "img/csi_nus_logo.png",
-        style: { height: '40px' }, // Increase the size of the logo
+        style: { height: "40px" }, // Increase the size of the logo
       },
       items: [
         {
@@ -74,13 +74,13 @@ const config: Config = {
           label: "Research",
         },
         {
-          to: "team",
+          to: "/Team", 
           sidebarId: "tutorialSidebar",
           position: "right",
           label: "Team",
         },
         {
-          to: "contact",
+          to: "/Contact", 
           sidebarId: "tutorialSidebar",
           position: "right",
           label: "Contact",
