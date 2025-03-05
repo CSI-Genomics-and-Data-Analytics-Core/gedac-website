@@ -31,6 +31,26 @@ const config: Config = {
     locales: ["en"],
   },
 
+  plugins: [
+    [
+      '@docusaurus/plugin-content-blog',
+      {
+        /**
+         * Required for any multi-instance plugin
+         */
+        id: 'news',
+        /**
+         * URL route for the blog section of your site.
+         * *DO NOT* include a trailing slash.
+         */
+        routeBasePath: 'news',
+        /**
+         * Path to data on filesystem relative to site dir.
+         */
+        path: './news',
+      },
+    ],
+  ],
   presets: [
     [
       "classic",
@@ -61,12 +81,7 @@ const config: Config = {
         style: { height: "40px" }, // Increase the size of the logo
       },
       items: [
-        {
-          type: "docSidebar",
-          sidebarId: "tutorialSidebar",
-          position: "right",
-          label: "Services",
-        },
+        { to: '/news', label: 'News', position: 'right' },
         {
           to: "/Research/Publications",
           sidebarId: "tutorialSidebar",
@@ -93,8 +108,36 @@ const config: Config = {
       ],
     },
     footer: {
-      style: "dark",
-      copyright: `Copyright © ${new Date().getFullYear()} Genomics and Data Analytics Core. Built with Docusaurus.`,
+      style: 'dark',
+      links: [
+        {
+          title: 'Social',
+          items: [
+            {
+              label: 'Twitter',
+              href: 'https://x.com/csi_singapore',
+            },
+            {
+              label: 'Github',
+              href: 'https://github.com/CSI-Genomics-and-Data-Analytics-Core',
+            },
+          ],
+        },
+        {
+          title: 'More',
+          items: [
+            {
+              label: 'News',
+              to: '/news',
+            },
+            {
+              label: 'CSI',
+              href: 'https://csi.nus.edu.sg/researcher/jason-pitt/',
+            },
+          ],
+        },
+      ],
+      copyright: `Copyright © ${new Date().getFullYear()} Genomics and Data Analytics Core.`,
     },
     prism: {
       theme: prismThemes.github,

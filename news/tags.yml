@@ -1,0 +1,12 @@
+paper:
+  label: Paper
+  permalink: /paper
+  description: News about New Reseach Papers
+new_joinee:
+  label: 'New Join'
+  permalink: /new-join
+  description: News about New Joiners
+phd:
+  label: 'Newsletter'
+  permalink: /newsletter
+  description: Monthly Newsletter
