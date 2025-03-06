@@ -83,6 +83,12 @@ const config: Config = {
       items: [
         { to: '/news', label: 'News', position: 'right' },
         {
+          to: "/category/services",
+          sidebarId: "tutorialSidebar",
+          position: "right",
+          label: "Services",
+        },
+        {
           to: "/Research/Publications",
           sidebarId: "tutorialSidebar",
           position: "right",
