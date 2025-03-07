@@ -35,7 +35,7 @@ const sidebars: SidebarsConfig = {
             'Services/Analytics',
             'Services/Compute',
             'Services/Storage',
-            'Services/Special',
+            'Services/Software',
       ],
     },
     {
