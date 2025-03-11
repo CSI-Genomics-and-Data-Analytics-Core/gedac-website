@@ -2,13 +2,13 @@
 sidebar_position: 1
 ---
 
-# Support and Consultation
+# Bioinformatics Support
 
-Welcome to our Support and Consultation page.  We are happy that you made it here.  This page will walk you through the services we offer, the benefits of working with us, and how to get started working together.
+Welcome to our Bioinformatics Support page.  We are happy that you made it here.  This page will walk you through the services we offer, the benefits of working with us, and how to get started working together.
 
 ## What we Offer
 
-We offer access to highly trained bioinformaticians who can help you and your team plan, design and analyze data produced from your high-throughput sequencing experiments.  Our staff scientists have expertise working on a wide range of sequencing applications from both short- and long-read sequencing experiments:
+We offer access to highly trained bioinformaticians who can help you and your team plan, design and analyze data produced from your high-throughput sequencing experiment.  Our staff scientists have expertise working on a wide range of sequencing applications:
     - Long-read sequencing
     - Microbiome and shotgun metagenomoics
     - Single-cell and spatial genomics
