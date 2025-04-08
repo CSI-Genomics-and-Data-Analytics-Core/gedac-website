@@ -115,6 +115,11 @@ const config: Config = {
           label: "GitHub",
           position: "right",
         },
+        {
+          href: "https://cloudflow.gedac.org",
+          label: "Cloudflow",
+          position: "right",
+        },
       ],
     },
     footer: {
