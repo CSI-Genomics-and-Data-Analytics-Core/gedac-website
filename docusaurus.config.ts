@@ -99,79 +99,117 @@ const config: Config = {
           label: "Research",
         },
         {
-          to: "/Helper", 
-          sidebarId: "tutorialSidebar",
-          position: "right",
+          type: 'dropdown',
+          label: 'Tools',
+          position: 'right',
+          items: [
+        {
+          to: "/Helper",
           label: "Resource Helper",
         },
         {
-          to: "/Team", 
-          sidebarId: "tutorialSidebar",
-          position: "right",
-          label: "Team",
+          to: "/s3",
+          label: "S3 Calculator",
         },
         {
-          to: "/Contact", 
-          sidebarId: "tutorialSidebar",
-          position: "right",
-          label: "Contact",
+          to: "https://cloudflow.gedac.org",
+          label: "Cloudflow",
         },
+          ],
+        },
+        // {
+        //   to: "/Team", 
+        //   sidebarId: "tutorialSidebar",
+        //   position: "right",
+        //   label: "Team",
+        // },
+        // {
+        //   to: "/Contact", 
+        //   sidebarId: "tutorialSidebar",
+        //   position: "right",
+        //   label: "Contact",
+        // },
         {
           href: "https://github.com/CSI-Genomics-and-Data-Analytics-Core",
           label: "GitHub",
           position: "right",
         },
-        {
-          href: "https://cloudflow.gedac.org",
-          label: "Cloudflow",
-          position: "right",
-        },
+        // {
+        //   href: "https://cloudflow.gedac.org",
+        //   label: "Cloudflow",
+        //   position: "right",
+        // },
       ],
-    },
-    footer: {
+        },
+        footer: {
       style: 'dark',
       links: [
         {
-          title: 'Social',
+          title: 'Site',
           items: [
-            {
-              label: 'Twitter',
-              href: 'https://x.com/csi_singapore',
-            },
-            {
-              label: 'Github',
-              href: 'https://github.com/CSI-Genomics-and-Data-Analytics-Core',
-            },
+        {
+          label: 'Services',
+          to: '/category/services',
+        },
+        {
+          label: 'Research',
+          to: '/Research/Publications',
+        },
+        {
+          label: 'Resource Helper',
+          to: '/Helper',
+        },
+          ],
+        },
+        {
+          title: 'Connect',
+          items: [
+        {
+          label: 'Twitter',
+          href: 'https://x.com/csi_singapore',
+        },
+        {
+          label: 'GitHub',
+          href: 'https://github.com/CSI-Genomics-and-Data-Analytics-Core',
+        },
+        {
+          label: 'Cloudflow',
+          href: 'https://cloudflow.gedac.org',
+        },
           ],
         },
         {
           title: 'More',
           items: [
-            {
-              label: 'News',
-              to: '/news',
-            },
-            {
-              label: 'CSI',
-              href: 'https://csi.nus.edu.sg/researcher/jason-pitt/',
-            },
+        {
+          label: 'News',
+          to: '/news',
+        },
+        {
+          label: 'CSI Singapore',
+          href: 'https://csi.nus.edu.sg/',
+        },
+        {
+          label: 'NUS',
+          href: 'https://nus.edu.sg/',
+        },
           ],
         },
       ],
-      copyright: `Copyright © ${new Date().getFullYear()} Genomics and Data Analytics Core.`,
-    },
-    prism: {
+      copyright: `Copyright © ${new Date().getFullYear()} CSI - Genomics and Data Analytics Core, National University of Singapore. All rights reserved.`,
+        },
+        prism: {
       theme: prismThemes.github,
       darkTheme: prismThemes.dracula,
-    },
-  } satisfies Preset.ThemeConfig,
+        },
+      } satisfies Preset.ThemeConfig,
 
-  scripts: [
-    {
+      scripts: [
+        {
       src: "https://widget.freshworks.com/widgets/150000001296.js",
       async: true,
       defer: true,
-    },
+        },
     // For inline scripts, use this format instead
     {
       src: "/freshworks-init.js",
