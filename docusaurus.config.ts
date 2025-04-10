@@ -99,6 +99,12 @@ const config: Config = {
           label: "Research",
         },
         {
+          to: "/Helper", 
+          sidebarId: "tutorialSidebar",
+          position: "right",
+          label: "Resource Helper",
+        },
+        {
           to: "/Team", 
           sidebarId: "tutorialSidebar",
           position: "right",
