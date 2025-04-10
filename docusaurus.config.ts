@@ -126,7 +126,7 @@ const config: Config = {
         //   label: "Contact",
         // },
         {
-          href: "https://github.com/CSI-Genomics-and-Data-Analytics-Core",
+          to: "https://github.com/CSI-Genomics-and-Data-Analytics-Core",
           label: "GitHub",
           position: "right",
         },

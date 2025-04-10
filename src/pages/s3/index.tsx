@@ -12,23 +12,21 @@ export default function Helper(): ReactNode {
       description="Interactive calculator to help you estimate storage requirements for your research data"
     >
       <main>
-        <ChakraProvider>
-          <section className="container margin-top--lg margin-bottom--xl">
-            <div className="row">
-              <div className="card shadow--md">
-                <div className="card__body">
-                  <S3CostCalculator />
-                </div>
-                <div className="card__footer text--center">
-                  <small>
-                    Adjust your inputs to see how they affect storage
-                    requirements.
-                  </small>
-                </div>
+        <section className="container margin-top--lg margin-bottom--xl">
+          <div className="row">
+            <div className="card shadow--md">
+              <div className="card__body">
+                <S3CostCalculator />
+              </div>
+              <div className="card__footer text--center">
+                <small>
+                  Adjust your inputs to see how they affect storage
+                  requirements.
+                </small>
               </div>
             </div>
-          </section>
-        </ChakraProvider>
+          </div>
+        </section>
       </main>
     </Layout>
   );

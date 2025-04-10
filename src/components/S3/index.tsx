@@ -11,38 +11,43 @@ import {
 } from "react-icons/fa";
 import { Pie, Bar } from "react-chartjs-2";
 import {
-    Box,
-    Button,
-    Card,
-    Flex,
-    Grid,
-    Heading,
-    RadioGroup,
-    Radio,
-    Select,
-    Slider,
-    Stack,
-    Text,
-    NumberInput,
-    NumberInputField,
-    NumberInputStepper,
-    NumberIncrementStepper,
-    NumberDecrementStepper,
-    Accordion,
-    AccordionItem,
-    AccordionButton,
-    AccordionPanel,
-    AccordionIcon,
-    Tooltip,
-    useDisclosure,
-    Modal,
-    ModalOverlay,
-    ModalContent,
-    ModalHeader,
-    ModalFooter,
-    ModalBody,
-    ModalCloseButton,
-  } from "@chakra-ui/react";
+  Box,
+  Button,
+  Card,
+  Flex,
+  Grid,
+  Heading,
+  RadioGroup,
+  Radio,
+  Select,
+  Slider,
+  Stack,
+  Text,
+  NumberInput,
+  NumberInputField,
+  NumberInputStepper,
+  NumberIncrementStepper,
+  NumberDecrementStepper,
+  Accordion,
+  AccordionItem,
+  AccordionButton,
+  AccordionPanel,
+  AccordionIcon,
+  Tooltip,
+  useDisclosure,
+  Modal,
+  ModalOverlay,
+  ModalContent,
+  ModalHeader,
+  ModalFooter,
+  ModalBody,
+  ModalCloseButton,
+  ChakraProvider,
+  HStack,
+  SliderTrack,
+  SliderFilledTrack,
+  SliderThumb,
+} from "@chakra-ui/react";
 
 // Constants
 const KB_IN_GB = 1048576;
@@ -320,385 +325,401 @@ const S3CostCalculator: React.FC = () => {
   };
 
   return (
-    <Box maxWidth="1200px" mx="auto" p={4}>
-      <Text fontStyle="italic">
-        Calculations made based on the pricing information retrieved from AWS
-        (Singapore) as of June 05, 2024.
-      </Text>
+    <ChakraProvider>
+      <Box maxWidth="1200px" mx="auto" p={4}>
+        <Text fontStyle="italic">
+          Calculations made based on the pricing information retrieved from AWS
+          (Singapore) as of June 05, 2024.
+        </Text>
 
-      <Grid templateColumns="1fr 2fr" gap={6} mt={4}>
-        <Box p={4} borderWidth={1} borderRadius="lg">
-          <Button
-            colorScheme="blue"
-            onClick={onNgsModalOpen}
-            mb={4}
-          >
-            <Flex align="center">
-              <FaDna style={{ marginRight: '8px' }} />
-              <Text>Show NGS Size Details</Text>
-            </Flex>
-          </Button>
-
-          <RadioGroup value={mode} onChange={setMode} mb={4}>
-            <Stack direction="row">
-              <Radio value="Simple">
-                <Text color="green.500">Simple</Text>
-              </Radio>
-              <Radio value="Advanced">
-                <Text color="red.500">Advanced</Text>
-              </Radio>
-            </Stack>
-          </RadioGroup>
-
-          <Text fontSize="sm" fontStyle="italic" mb={4}>
-            Simple mode is for quick calculations, while Advanced mode allows
-            for more detailed inputs.
-          </Text>
-
-          {mode === "Simple" && (
-            <>
-              <RadioGroup
-                value={storageClass}
-                onChange={setStorageClass}
-                mb={4}
-              >
-                <Stack direction="row">
-                  <Radio value="Standard Storage">Standard Storage</Radio>
-                  <Radio value="Deep Archive">Glacier Deep Archive</Radio>
-                </Stack>
-              </RadioGroup>
-
-              <Accordion defaultIndex={[0]} allowMultiple>
-                <AccordionItem>
-                  <AccordionButton>
-                    <Box flex="1" textAlign="left">
-                      <FaFolderOpen
-                        style={{ display: "inline", marginRight: "8px" }}
-                      />
-                      Storage Inputs
-                    </Box>
-                    <AccordionIcon />
-                  </AccordionButton>
-                  <AccordionPanel pb={4} bg="gray.50">
-                    <Stack spacing={4}>
-                      <Box>
-                        <Text mb={1}>No of Samples/Files:</Text>
-                        <NumberInput
-                          min={1}
-                          max={100000}
-                          value={sSamples}
-                          onChange={(_, val) => setSSamples(val)}
-                        >
-                          <NumberInputField />
-                          <NumberInputStepper>
-                            <NumberIncrementStepper />
-                            <NumberDecrementStepper />
-                          </NumberInputStepper>
-                        </NumberInput>
-                      </Box>
-
-                      <Box>
-                        <Text mb={1}>Total Storage Size (TB):</Text>
-                        <NumberInput
-                          min={1}
-                          max={1000}
-                          value={sSize}
-                          onChange={(_, val) => setSSize(val)}
-                        >
-                          <NumberInputField />
-                          <NumberInputStepper>
-                            <NumberIncrementStepper />
-                            <NumberDecrementStepper />
-                          </NumberInputStepper>
-                        </NumberInput>
-                      </Box>
-
-                      <Box>
-                        <Text mb={1}>Storage Duration (Months):</Text>
-                        <Slider
-                          min={0}
-                          max={120}
-                          step={1}
-                          value={sDuration}
-                          onChange={(val) => setSDuration(val)}
-                        ></Slider>
-                        <Text textAlign="right">{sDuration} months</Text>
-                      </Box>
-                    </Stack>
-                  </AccordionPanel>
-                </AccordionItem>
-
-                <AccordionItem>
-                  <AccordionButton>
-                    <Box flex="1" textAlign="left">
-                      <FaExchangeAlt
-                        style={{ display: "inline", marginRight: "8px" }}
-                      />
-                      Data-Transfer Inputs
-                    </Box>
-                    <AccordionIcon />
-                  </AccordionButton>
-                  <AccordionPanel pb={4} bg="gray.50">
-                    <Stack spacing={4}>
-                      <Box>
-                        <Text mb={1}>Download Size (TB):</Text>
-                        <NumberInput
-                          min={0}
-                          max={1000}
-                          value={sDownload}
-                          onChange={(_, val) => setSDownload(val)}
-                        >
-                          <NumberInputField />
-                          <NumberInputStepper>
-                            <NumberIncrementStepper />
-                            <NumberDecrementStepper />
-                          </NumberInputStepper>
-                        </NumberInput>
-                      </Box>
-
-                      <Box>
-                        <Text mb={1}>Download Times:</Text>
-                        <NumberInput
-                          min={0}
-                          max={100}
-                          step={1}
-                          value={sDownloadTimes}
-                          onChange={(_, val) => setSDownloadTimes(val)}
-                        >
-                          <NumberInputField />
-                          <NumberInputStepper>
-                            <NumberIncrementStepper />
-                            <NumberDecrementStepper />
-                          </NumberInputStepper>
-                        </NumberInput>
-                      </Box>
-
-                      <Box>
-                        <Text mb={1}>No of Downloading Samples/Files:</Text>
-                        <NumberInput
-                          min={1}
-                          max={100000}
-                          value={sDownloadSamples}
-                          onChange={(_, val) => setSDownloadSamples(val)}
-                        >
-                          <NumberInputField />
-                          <NumberInputStepper>
-                            <NumberIncrementStepper />
-                            <NumberDecrementStepper />
-                          </NumberInputStepper>
-                        </NumberInput>
-                      </Box>
-                    </Stack>
-                  </AccordionPanel>
-                </AccordionItem>
-              </Accordion>
-            </>
-          )}
-
-          {mode === "Advanced" && (
-            <Stack spacing={4}>
-              <Box>
-                <Text mb={1}>Number of Samples incoming per Month:</Text>
-                <NumberInput
-                  min={1}
-                  max={10000}
-                  value={aSamples}
-                  onChange={(_, val) => setASamples(val)}
-                >
-                  <NumberInputField />
-                  <NumberInputStepper>
-                    <NumberIncrementStepper />
-                    <NumberDecrementStepper />
-                  </NumberInputStepper>
-                </NumberInput>
-              </Box>
-
-              <Box>
-                <Text mb={1}>Average Sample Size (GB):</Text>
-                <NumberInput
-                  min={1}
-                  max={10000}
-                  value={aSampleAvgSize}
-                  onChange={(_, val) => setASampleAvgSize(val)}
-                >
-                  <NumberInputField />
-                  <NumberInputStepper>
-                    <NumberIncrementStepper />
-                    <NumberDecrementStepper />
-                  </NumberInputStepper>
-                </NumberInput>
-              </Box>
-
-              <Box>
-                <Text mb={1}>Storage Timeline (Months):</Text>
-                {/* In a real implementation, you'd use a range slider here */}
-                <Text fontSize="sm" fontStyle="italic">
-                  * Data incoming till {aDuration[0]} months and stored for
-                  totally {aDuration[1]} months.
-                </Text>
-              </Box>
-            </Stack>
-          )}
-
-          <Button mt={4} colorScheme="red" onClick={resetInputs}>
-            Reset filter
-          </Button>
-
-          <Box mt={4}>
-            <Select
-              value={currency}
-              onChange={(e) => setCurrency(e.target.value)}
+        <Grid templateColumns="1fr 2fr" gap={6} mt={4}>
+          <Box p={4} borderWidth={1} borderRadius="lg">
+            <Button
+              colorScheme="blue"
+              onClick={onNgsModalOpen}
+              mb={4}
+              leftIcon={<FaDna />}
             >
-              <option value="USD">US Dollar</option>
-              <option value="SGD">Singapore Dollar</option>
-            </Select>
+              Show NGS Size Details
+            </Button>
+
+            <RadioGroup value={mode} onChange={setMode} mb={4}>
+              <Stack direction="row" spacing={6} align="center">
+                <Radio value="Simple" colorScheme="green">
+                  Simple
+                </Radio>
+                <Radio value="Advanced" colorScheme="red">
+                  Advanced
+                </Radio>
+              </Stack>
+            </RadioGroup>
+
+            <Text fontSize="sm" fontStyle="italic" mb={4}>
+              Simple mode is for quick calculations, while Advanced mode allows
+              for more detailed inputs.
+            </Text>
+
+            {mode === "Simple" && (
+              <>
+                <RadioGroup
+                  value={storageClass}
+                  onChange={setStorageClass}
+                  mb={4}
+                >
+                  <Stack direction="row">
+                    <Radio value="Standard Storage">Standard Storage</Radio>
+                    <Radio value="Deep Archive">Glacier Deep Archive</Radio>
+                  </Stack>
+                </RadioGroup>
+
+                <Accordion defaultIndex={[0]} allowMultiple>
+                  <AccordionItem>
+                    <AccordionButton>
+                      <Box flex="1" textAlign="left">
+                        <FaFolderOpen
+                          style={{ display: "inline", marginRight: "8px" }}
+                        />
+                        Storage Inputs
+                      </Box>
+                      <AccordionIcon />
+                    </AccordionButton>
+                    <AccordionPanel pb={4} bg="gray.50">
+                      <Stack spacing={4}>
+                        <Box>
+                          <Text mb={1}>No of Samples/Files:</Text>
+                          <NumberInput
+                            min={0}
+                            max={100000}
+                            value={sSamples}
+                            onChange={(_, val) => setSSamples(val)}
+                          >
+                            <NumberInputField />
+                            <NumberInputStepper>
+                              <NumberIncrementStepper />
+                              <NumberDecrementStepper />
+                            </NumberInputStepper>
+                          </NumberInput>
+                        </Box>
+
+                        <Box>
+                          <Text mb={1}>Total Storage Size (TB):</Text>
+                          <NumberInput
+                            min={1}
+                            max={1000}
+                            value={sSize}
+                            onChange={(_, val) => setSSize(val)}
+                          >
+                            <NumberInputField />
+                            <NumberInputStepper>
+                              <NumberIncrementStepper />
+                              <NumberDecrementStepper />
+                            </NumberInputStepper>
+                          </NumberInput>
+                        </Box>
+
+                        <Box>
+                          <Text mb={1}>Storage Duration (Months):</Text>
+                          <Slider
+                            min={0}
+                            max={120}
+                            step={1}
+                            value={sDuration}
+                            onChange={(val) => setSDuration(val)}
+                          >
+                            <SliderTrack>
+                              <SliderFilledTrack />
+                            </SliderTrack>
+                            <SliderThumb />
+                          </Slider>
+                          <Text textAlign="right">{sDuration} months</Text>
+                        </Box>
+                      </Stack>
+                    </AccordionPanel>
+                  </AccordionItem>
+
+                  <AccordionItem>
+                    <AccordionButton>
+                      <Box flex="1" textAlign="left">
+                        <FaExchangeAlt
+                          style={{ display: "inline", marginRight: "8px" }}
+                        />
+                        Data-Transfer Inputs
+                      </Box>
+                      <AccordionIcon />
+                    </AccordionButton>
+                    <AccordionPanel pb={4} bg="gray.50">
+                      <Stack spacing={4}>
+                        <Box>
+                          <Text mb={1}>Download Size (TB):</Text>
+                          <NumberInput
+                            min={0}
+                            max={1000}
+                            value={sDownload}
+                            onChange={(_, val) => setSDownload(val)}
+                          >
+                            <NumberInputField />
+                            <NumberInputStepper>
+                              <NumberIncrementStepper />
+                              <NumberDecrementStepper />
+                            </NumberInputStepper>
+                          </NumberInput>
+                        </Box>
+
+                        <Box>
+                          <Text mb={1}>Download Times:</Text>
+                          <NumberInput
+                            min={0}
+                            max={100}
+                            step={1}
+                            value={sDownloadTimes}
+                            onChange={(_, val) => setSDownloadTimes(val)}
+                          >
+                            <NumberInputField />
+                            <NumberInputStepper>
+                              <NumberIncrementStepper />
+                              <NumberDecrementStepper />
+                            </NumberInputStepper>
+                          </NumberInput>
+                        </Box>
+
+                        <Box>
+                          <Text mb={1}>No of Downloading Samples/Files:</Text>
+                          <NumberInput
+                            min={1}
+                            max={100000}
+                            value={sDownloadSamples}
+                            onChange={(_, val) => setSDownloadSamples(val)}
+                          >
+                            <NumberInputField />
+                            <NumberInputStepper>
+                              <NumberIncrementStepper />
+                              <NumberDecrementStepper />
+                            </NumberInputStepper>
+                          </NumberInput>
+                        </Box>
+                      </Stack>
+                    </AccordionPanel>
+                  </AccordionItem>
+                </Accordion>
+              </>
+            )}
+
+            {mode === "Advanced" && (
+              <Stack spacing={4}>
+                <Box>
+                  <Text mb={1}>Number of Samples incoming per Month:</Text>
+                  <NumberInput
+                    min={1}
+                    max={10000}
+                    value={aSamples}
+                    onChange={(_, val) => setASamples(val)}
+                  >
+                    <NumberInputField />
+                    <NumberInputStepper>
+                      <NumberIncrementStepper />
+                      <NumberDecrementStepper />
+                    </NumberInputStepper>
+                  </NumberInput>
+                </Box>
+
+                <Box>
+                  <Text mb={1}>Average Sample Size (GB):</Text>
+                  <NumberInput
+                    min={1}
+                    max={10000}
+                    value={aSampleAvgSize}
+                    onChange={(_, val) => setASampleAvgSize(val)}
+                  >
+                    <NumberInputField />
+                    <NumberInputStepper>
+                      <NumberIncrementStepper />
+                      <NumberDecrementStepper />
+                    </NumberInputStepper>
+                  </NumberInput>
+                </Box>
+
+                <Box>
+                  <Text mb={1}>Storage Timeline (Months):</Text>
+                  {/* In a real implementation, you'd use a range slider here */}
+                  <Text fontSize="sm" fontStyle="italic">
+                    * Data incoming till {aDuration[0]} months and stored for
+                    totally {aDuration[1]} months.
+                  </Text>
+                </Box>
+              </Stack>
+            )}
+
+            <Button mt={4} colorScheme="red" onClick={resetInputs}>
+              Reset filter
+            </Button>
+
+
           </Box>
-        </Box>
 
-        {/* Results Panel */}
-        <Box>
-          <Grid templateColumns="repeat(3, 1fr)" gap={6} mb={6}>
-            {/* Value boxes */}
-            <Card p={4} boxShadow="md">
-              <Flex alignItems="center">
-                <FaDollarSign size={30} />
-                <Box ml={4}>
-                  <Text fontWeight="bold">Total Cost</Text>
-                  <Heading size="md">
-                    {(currency === "SGD"
-                      ? totalCost * 1.35
-                      : totalCost
-                    ).toFixed(2)}{" "}
-                    {currency}
-                  </Heading>
-                </Box>
-              </Flex>
-            </Card>
-
-            <Card p={4} boxShadow="md">
-              <Flex alignItems="center">
-                <FaFolderOpen size={30} />
-                <Box ml={4}>
-                  <Text fontWeight="bold">Storage Cost</Text>
-                  <Heading size="md">
-                    {(currency === "SGD"
-                      ? storageCost * 1.35
-                      : storageCost
-                    ).toFixed(2)}{" "}
-                    {currency}
-                  </Heading>
-                </Box>
-              </Flex>
-            </Card>
-
-            <Card p={4} boxShadow="md">
-              <Flex alignItems="center">
-                <FaExchangeAlt size={30} />
-                <Box ml={4}>
-                  <Text fontWeight="bold">Data-Transfer Cost</Text>
-                  <Heading size="md">
-                    {(currency === "SGD"
-                      ? downloadCost * 1.35
-                      : downloadCost
-                    ).toFixed(2)}{" "}
-                    {currency}
-                  </Heading>
-                </Box>
-              </Flex>
-            </Card>
-          </Grid>
-
-          <Button colorScheme="blue" onClick={onCostModalOpen} mb={6}>
-            Show Cost Breakdown
-          </Button>
-
-          <Grid templateColumns="5fr 7fr" gap={6} h="300px">
-            {/* Charts would go here - using placeholders for the skeleton */}
-            <Box borderWidth={1} p={4} textAlign="center">
-              <Text>Pie Chart: Cost Distribution</Text>
-            </Box>
-
-            <Box borderWidth={1} p={4} textAlign="center">
-              <Text>Bar Chart: Storage Cost Distribution</Text>
-            </Box>
-          </Grid>
-
-          <Box mt={6} h="300px" borderWidth={1} p={4} textAlign="center">
-            <Text>Bar Chart: Accumulated Cost over Time</Text>
-          </Box>
-        </Box>
-      </Grid>
-
-      <Modal isOpen={isCostModalOpen} onClose={onCostModalClose} size="lg">
-        <ModalOverlay />
-        <ModalContent>
-          <ModalHeader>Cost Breakdown</ModalHeader>
-          <ModalCloseButton />
-          <ModalBody>
-            {costBreakdown.map((item, idx) => (
-              <Text
-                key={idx}
-                fontWeight={item.endsWith(":") ? "bold" : "normal"}
-                textDecoration={item.endsWith(":") ? "underline" : "none"}
-                mb={2}
+          {/* Results Panel */}
+          <Box>
+          <Box mt={4} mb={2}>
+              <Select
+                value={currency}
+                onChange={(e) => setCurrency(e.target.value)}
               >
-                {item}
-              </Text>
-            ))}
-          </ModalBody>
-          <ModalFooter>
-            <Text>GeDaC, 2024</Text>
-          </ModalFooter>
-        </ModalContent>
-      </Modal>
-
-      <Modal isOpen={isNgsModalOpen} onClose={onNgsModalClose} size="xl">
-        <ModalOverlay />
-        <ModalContent>
-          <ModalHeader>
-            Sequencing Data Size Summary Across Various Techniques
-          </ModalHeader>
-          <ModalCloseButton />
-          <ModalBody>
-            <Box overflowX="auto">
-              <table style={{ borderCollapse: "collapse", width: "100%" }}>
-                <thead>
-                  <tr style={{ backgroundColor: "#f2f2f2" }}>
-                    <th style={{ border: "1px solid black", padding: "8px" }}>
-                      Sequencing Type
-                    </th>
-                    <th style={{ border: "1px solid black", padding: "8px" }}>
-                      Coverage/Read Details
-                    </th>
-                    <th style={{ border: "1px solid black", padding: "8px" }}>
-                      Data Size
-                    </th>
-                  </tr>
-                </thead>
-                <tbody>
-                  {NGS_DETAILS.map((row, idx) => (
-                    <tr key={idx}>
-                      <td style={{ border: "1px solid black", padding: "8px" }}>
-                        {row["Sequencing Type"]}
-                      </td>
-                      <td style={{ border: "1px solid black", padding: "8px" }}>
-                        {row["Coverage/Read Details"]}
-                      </td>
-                      <td style={{ border: "1px solid black", padding: "8px" }}>
-                        {row["Data Size"]}
-                      </td>
-                    </tr>
-                  ))}
-                </tbody>
-              </table>
+                <option value="USD">US Dollar</option>
+                <option value="SGD">Singapore Dollar</option>
+              </Select>
             </Box>
-          </ModalBody>
-          <ModalFooter>
-            <Text>GeDaC, 2025</Text>
-          </ModalFooter>
-        </ModalContent>
-      </Modal>
-    </Box>
+            <Grid templateColumns="repeat(3, 1fr)" gap={6} mb={6}>
+              {/* Value boxes */}
+              <Card p={4} boxShadow="md">
+                <Flex alignItems="center">
+                  <FaDollarSign size={30} />
+                  <Box ml={4}>
+                    <Text fontWeight="bold">Total Cost</Text>
+                    <Heading size="md">
+                      {(currency === "SGD"
+                        ? totalCost * 1.35
+                        : totalCost
+                      ).toFixed(2)}{" "}
+                      {currency}
+                    </Heading>
+                  </Box>
+                </Flex>
+              </Card>
+
+              <Card p={4} boxShadow="md">
+                <Flex alignItems="center">
+                  <FaFolderOpen size={30} />
+                  <Box ml={4}>
+                    <Text fontWeight="bold">Storage Cost</Text>
+                    <Heading size="md">
+                      {(currency === "SGD"
+                        ? storageCost * 1.35
+                        : storageCost
+                      ).toFixed(2)}{" "}
+                      {currency}
+                    </Heading>
+                  </Box>
+                </Flex>
+              </Card>
+
+              <Card p={4} boxShadow="md">
+                <Flex alignItems="center">
+                  <FaExchangeAlt size={30} />
+                  <Box ml={4}>
+                    <Text fontWeight="bold">Data-Transfer Cost</Text>
+                    <Heading size="md">
+                      {(currency === "SGD"
+                        ? downloadCost * 1.35
+                        : downloadCost
+                      ).toFixed(2)}{" "}
+                      {currency}
+                    </Heading>
+                  </Box>
+                </Flex>
+              </Card>
+            </Grid>
+
+            <Button
+              colorScheme="blue"
+              onClick={onCostModalOpen}
+              mb={6}
+              leftIcon={<FaDollarSign />}
+            >
+              Show Cost Breakdown
+            </Button>
+
+            <Grid templateColumns="5fr 7fr" gap={6} h="300px">
+              <Box borderWidth={1} p={4} textAlign="center">
+                <Text>Pie Chart: Cost Distribution</Text>
+              </Box>
+
+              <Box borderWidth={1} p={4} textAlign="center">
+                <Text>Bar Chart: Storage Cost Distribution</Text>
+              </Box>
+            </Grid>
+
+            <Box mt={6} h="300px" borderWidth={1} p={4} textAlign="center">
+              <Text>Bar Chart: Accumulated Cost over Time</Text>
+            </Box>
+          </Box>
+        </Grid>
+
+        <Modal isOpen={isCostModalOpen} onClose={onCostModalClose} size="lg">
+          <ModalOverlay />
+          <ModalContent>
+            <ModalHeader>Cost Breakdown</ModalHeader>
+            <ModalCloseButton />
+            <ModalBody>
+              {costBreakdown.map((item, idx) => (
+                <Text
+                  key={idx}
+                  fontWeight={item.endsWith(":") ? "bold" : "normal"}
+                  textDecoration={item.endsWith(":") ? "underline" : "none"}
+                  mb={2}
+                >
+                  {item}
+                </Text>
+              ))}
+            </ModalBody>
+            <ModalFooter>
+              <Text>GeDaC, CSI</Text>
+            </ModalFooter>
+          </ModalContent>
+        </Modal>
+
+        <Modal isOpen={isNgsModalOpen} onClose={onNgsModalClose} size="xl">
+          <ModalOverlay />
+          <ModalContent>
+            <ModalHeader>
+              Sequencing Data Size Summary Across Various Techniques
+            </ModalHeader>
+            <ModalCloseButton />
+            <ModalBody>
+              <Box overflowX="auto">
+                <table style={{ borderCollapse: "collapse", width: "100%" }}>
+                  <thead>
+                    <tr style={{ backgroundColor: "#f2f2f2" }}>
+                      <th style={{ border: "1px solid black", padding: "8px" }}>
+                        Sequencing Type
+                      </th>
+                      <th style={{ border: "1px solid black", padding: "8px" }}>
+                        Coverage/Read Details
+                      </th>
+                      <th style={{ border: "1px solid black", padding: "8px" }}>
+                        Data Size
+                      </th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    {NGS_DETAILS.map((row, idx) => (
+                      <tr key={idx}>
+                        <td
+                          style={{ border: "1px solid black", padding: "8px" }}
+                        >
+                          {row["Sequencing Type"]}
+                        </td>
+                        <td
+                          style={{ border: "1px solid black", padding: "8px" }}
+                        >
+                          {row["Coverage/Read Details"]}
+                        </td>
+                        <td
+                          style={{ border: "1px solid black", padding: "8px" }}
+                        >
+                          {row["Data Size"]}
+                        </td>
+                      </tr>
+                    ))}
+                  </tbody>
+                </table>
+              </Box>
+            </ModalBody>
+            <ModalFooter>
+              <Text>GeDaC, 2025</Text>
+            </ModalFooter>
+          </ModalContent>
+        </Modal>
+      </Box>
+    </ChakraProvider>
   );
 };
 
