@@ -1,12 +1,26 @@
 import React, { useState, useEffect, useCallback } from "react";
 import {
-  FaUser,
-  FaWallet,
+  Chart as ChartJS,
+  ArcElement,
+  LinearScale,
+  CategoryScale,
+  BarElement,
+  Legend,
+  Tooltip as ChartToolTip,
+} from "chart.js";
+ChartJS.register(
+  ArcElement,
+  Legend,
+  LinearScale,
+  CategoryScale,
+  BarElement,
+  ChartToolTip
+);
+
+import {
   FaDollarSign,
-  FaEllipsisH,
   FaFolderOpen,
   FaDna,
-  FaPlusCircle,
   FaExchangeAlt,
 } from "react-icons/fa";
 import { Pie, Bar } from "react-chartjs-2";
@@ -66,19 +80,94 @@ const DEEP_ARCHIVE_REQUEST_COST = 0.0000025;
 // Sample NGS details data
 const NGS_DETAILS = [
   {
-    "Sequencing Type": "Whole Genome Sequencing (WGS)",
-    "Coverage/Read Details": "30x coverage",
-    "Data Size": "100-150 GB",
+    "Sequencing Type": "Human WGS",
+    "Coverage/Read Details": "30x coverage, 150 bp paired-end reads",
+    "Data Size": "~100-200 GB per sample",
   },
   {
-    "Sequencing Type": "Whole Exome Sequencing (WES)",
-    "Coverage/Read Details": "100x coverage",
-    "Data Size": "10-15 GB",
+    "Sequencing Type": "Human WES",
+    "Coverage/Read Details": "100x coverage, 150 bp paired-end reads",
+    "Data Size": "~10-20 GB per sample",
   },
   {
     "Sequencing Type": "RNA-Seq",
-    "Coverage/Read Details": "30M paired-end reads",
-    "Data Size": "5-10 GB",
+    "Coverage/Read Details": "50 million reads, 100 bp paired-end",
+    "Data Size": "~5-10 GB per sample",
+  },
+  {
+    "Sequencing Type": "Targeted Sequencing",
+    "Coverage/Read Details": "E.g., 100 genes, 500x coverage",
+    "Data Size": "~1-5 GB per sample",
+  },
+  {
+    "Sequencing Type": "ChIP-Seq",
+    "Coverage/Read Details": "20 million reads, 75 bp single-end",
+    "Data Size": "~1-2 GB per sample",
+  },
+  {
+    "Sequencing Type": "scRNA-Seq",
+    "Coverage/Read Details": "10,000 cells, 50,000 reads per cell",
+    "Data Size": "~50-100 GB in total",
+  },
+  {
+    "Sequencing Type": "Metagenomic Sequencing (Shotgun)",
+    "Coverage/Read Details": "10 million reads, 150 bp paired-end",
+    "Data Size": "~10-20 GB per sample",
+  },
+  {
+    "Sequencing Type": "ATAC-Seq",
+    "Coverage/Read Details": "50,000 cells, 75 bp paired-end",
+    "Data Size": "~2-5 GB per sample",
+  },
+  {
+    "Sequencing Type": "Hi-C Sequencing",
+    "Coverage/Read Details": "5 million reads, 150 bp paired-end",
+    "Data Size": "~10-20 GB per sample",
+  },
+  {
+    "Sequencing Type": "Long-read Sequencing (PacBio or Nanopore)",
+    "Coverage/Read Details": "30x coverage",
+    "Data Size": "~300-500 GB per sample",
+  },
+  {
+    "Sequencing Type": "Single-cell ATAC-Seq",
+    "Coverage/Read Details": "10,000 cells, 50,000 reads per cell",
+    "Data Size": "~50-100 GB in total",
+  },
+  {
+    "Sequencing Type": "TCR/BCR Sequencing (immune repertoire)",
+    "Coverage/Read Details": "10,000 sequences",
+    "Data Size": "~1-2 GB per sample",
+  },
+  {
+    "Sequencing Type": "Microbiome 16S rRNA Sequencing",
+    "Coverage/Read Details": "10,000 reads per sample",
+    "Data Size": "~0.5-1 GB per sample",
+  },
+  {
+    "Sequencing Type": "Exome Capture Sequencing",
+    "Coverage/Read Details": "gene panel, 500 genes, 1000x coverage",
+    "Data Size": "~5-10 GB per sample",
+  },
+  {
+    "Sequencing Type": "Small RNA-Seq",
+    "Coverage/Read Details": "10 million reads, 50 bp single-end",
+    "Data Size": "~0.5-1 GB per sample",
+  },
+  {
+    "Sequencing Type": "Methylation Array (e.g., Illumina 450K)",
+    "Coverage/Read Details": "N/A",
+    "Data Size": "~1-2 GB per sample",
+  },
+  {
+    "Sequencing Type": "Spatial Transcriptomics",
+    "Coverage/Read Details": "1 slide, 1 million reads, 100 bp paired-end",
+    "Data Size": "~5-10 GB per slide",
+  },
+  {
+    "Sequencing Type": "Epigenetic Sequencing (e.g., Bisulfite-Seq)",
+    "Coverage/Read Details": "whole genome, 30x coverage",
+    "Data Size": "~100-150 GB per sample",
   },
 ];
 
@@ -552,13 +641,11 @@ const S3CostCalculator: React.FC = () => {
             <Button mt={4} colorScheme="red" onClick={resetInputs}>
               Reset filter
             </Button>
-
-
           </Box>
 
           {/* Results Panel */}
           <Box>
-          <Box mt={4} mb={2}>
+            <Box mt={4} mb={2}>
               <Select
                 value={currency}
                 onChange={(e) => setCurrency(e.target.value)}
@@ -627,18 +714,69 @@ const S3CostCalculator: React.FC = () => {
               Show Cost Breakdown
             </Button>
 
-            <Grid templateColumns="5fr 7fr" gap={6} h="300px">
-              <Box borderWidth={1} p={4} textAlign="center">
+            <Grid templateColumns="4fr 8fr" gap={6} h="350px">
+              <Box borderWidth={1} p={2} textAlign="center">
                 <Text>Pie Chart: Cost Distribution</Text>
+                <Pie
+                  data={{
+                    labels: ["Storage Cost", "Data Transfer Cost"],
+                    datasets: [
+                      {
+                        data: [storageCost, downloadCost],
+                        backgroundColor: ["#4CAF50", "#FF9800"],
+                      },
+                    ],
+                  }}
+                />
               </Box>
 
-              <Box borderWidth={1} p={4} textAlign="center">
+              <Box borderWidth={1} p={2} textAlign="center">
                 <Text>Bar Chart: Storage Cost Distribution</Text>
+                <Bar
+                  data={{
+                    labels: storageCostDistribution.map((item) => item.Month),
+                    datasets: [
+                      {
+                        label: "Storage Cost",
+                        data: storageCostDistribution.map((item) => item.Cost),
+                        backgroundColor: "#2196F3",
+                      },
+                    ],
+                  }}
+                  options={{
+                    scales: {
+                      y: {
+                        beginAtZero: true,
+                      },
+                    },
+                  }}
+                />
               </Box>
             </Grid>
 
-            <Box mt={6} h="300px" borderWidth={1} p={4} textAlign="center">
+            <Box mt={10} h="300px" borderWidth={1} p={4} textAlign="center">
               <Text>Bar Chart: Accumulated Cost over Time</Text>
+              <Bar
+                data={{
+                  labels: storageCostDistribution.map((item) => item.Month),
+                  datasets: [
+                    {
+                      label: "Accumulated Cost",
+                      data: storageCostDistribution.map(
+                        (item) => item.Cost * (item.Month + 1)
+                      ),
+                      backgroundColor: "#FF5722",
+                    },
+                  ],
+                }}
+                options={{
+                  scales: {
+                    y: {
+                      beginAtZero: true,
+                    },
+                  },
+                }}
+              />
             </Box>
           </Box>
         </Grid>
