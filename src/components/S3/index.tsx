@@ -68,6 +68,12 @@ const KB_IN_GB = 1048576;
 const GB_IN_TB = 1024;
 
 // AWS pricing information
+const TIER1_THRESHOLD_GB = 51200;  // 50 TB in GB
+const TIER2_THRESHOLD_GB = 512000; // 500 TB in GB
+const TIER1_RATE = 0.025; // $0.025 per GB for first 50 TB
+const TIER2_RATE = 0.024; // $0.024 per GB for 50-500 TB
+const TIER3_RATE = 0.023; // $0.023 per GB beyond 500 TB
+
 const STANDARD_STORAGE_COST_GB = 0.025;
 const DATA_TRANSFER_OUT_COST = 0.09;
 const PUT_POST_COPY_LIST_REQUEST_COST = 0.000005;
@@ -326,22 +332,62 @@ const S3CostCalculator: React.FC = () => {
     requestsPerObj: number = 1,
     costBreakdown: string[] = []
   ): number => {
-    // Simplified storage cost calculation
-    const storageCostGb =
-      storage === "Standard Storage"
-        ? STANDARD_STORAGE_COST_GB
-        : DEEP_ARCHIVE_STORAGE_COST_GB;
-
     costBreakdown.push("Storage Cost Breakdown:");
-    costBreakdown.push(`${storage} Cost: $${storageCostGb} per GB/Month`);
-
-    const monthlyCost = storageCostGb * gb;
+    
+    // For Glacier Deep Archive, use flat pricing
+    if (storage === "Deep Archive") {
+      costBreakdown.push(`${storage} Cost: $${DEEP_ARCHIVE_STORAGE_COST_GB} per GB/Month`);
+      const monthlyCost = DEEP_ARCHIVE_STORAGE_COST_GB * gb;
+      const finalStorageCost = Math.round(monthlyCost * months * 100) / 100;
+      costBreakdown.push(
+        `Total Storage Cost: $${DEEP_ARCHIVE_STORAGE_COST_GB} x ${gb} GB x ${months} Month(s) = $${finalStorageCost}`
+      );
+      return finalStorageCost > 0 ? finalStorageCost : 0;
+    }
+    
+    // For S3 Standard, implement tiered pricing
+    costBreakdown.push(`${storage} uses tiered pricing:`);
+    
+    let monthlyCost = 0;
+    
+    // Calculate cost based on tiers
+    if (gb <= TIER1_THRESHOLD_GB) {
+      // All storage fits in first tier
+      monthlyCost = gb * TIER1_RATE;
+      costBreakdown.push(`Tier 1 (first 50 TB): ${gb.toLocaleString()} GB x $${TIER1_RATE} = $${(gb * TIER1_RATE).toFixed(2)}`);
+    } else if (gb <= TIER2_THRESHOLD_GB) {
+      // Storage spans first and second tiers
+      const tier1Cost = TIER1_THRESHOLD_GB * TIER1_RATE;
+      const tier2GB = gb - TIER1_THRESHOLD_GB;
+      const tier2Cost = tier2GB * TIER2_RATE;
+      
+      costBreakdown.push(`Tier 1 (first 50 TB): ${TIER1_THRESHOLD_GB.toLocaleString()} GB x $${TIER1_RATE} = $${tier1Cost.toFixed(2)}`);
+      costBreakdown.push(`Tier 2 (50-500 TB): ${tier2GB.toLocaleString()} GB x $${TIER2_RATE} = $${tier2Cost.toFixed(2)}`);
+      
+      monthlyCost = tier1Cost + tier2Cost;
+      costBreakdown.push(`Total tier cost: $${tier1Cost.toFixed(2)} + $${tier2Cost.toFixed(2)} = $${monthlyCost.toFixed(2)}`);
+    } else {
+      // Storage spans all three tiers
+      const tier1Cost = TIER1_THRESHOLD_GB * TIER1_RATE;
+      const tier2Cost = (TIER2_THRESHOLD_GB - TIER1_THRESHOLD_GB) * TIER2_RATE;
+      const tier3GB = gb - TIER2_THRESHOLD_GB;
+      const tier3Cost = tier3GB * TIER3_RATE;
+      
+      costBreakdown.push(`Tier 1 (first 50 TB): ${TIER1_THRESHOLD_GB.toLocaleString()} GB x $${TIER1_RATE} = $${tier1Cost.toFixed(2)}`);
+      costBreakdown.push(`Tier 2 (50-500 TB): ${(TIER2_THRESHOLD_GB - TIER1_THRESHOLD_GB).toLocaleString()} GB x $${TIER2_RATE} = $${tier2Cost.toFixed(2)}`);
+      costBreakdown.push(`Tier 3 (over 500 TB): ${tier3GB.toLocaleString()} GB x $${TIER3_RATE} = $${tier3Cost.toFixed(2)}`);
+      
+      monthlyCost = tier1Cost + tier2Cost + tier3Cost;
+      costBreakdown.push(`Total tier cost: $${tier1Cost.toFixed(2)} + $${tier2Cost.toFixed(2)} + $${tier3Cost.toFixed(2)} = $${monthlyCost.toFixed(2)}`);
+    }
+    
     const finalStorageCost = Math.round(monthlyCost * months * 100) / 100;
-
-    costBreakdown.push(
-      `Total Storage Cost: $${storageCostGb} x ${gb} GB x ${months} Month(s) = $${finalStorageCost}`
-    );
-
+    
+    if (months > 1) {
+      costBreakdown.push(`${storage} cost (monthly): $${monthlyCost.toFixed(2)}`);
+      costBreakdown.push(`Total Storage Cost (${months} months): $${finalStorageCost.toFixed(2)}`);
+    }
+    
     return finalStorageCost > 0 ? finalStorageCost : 0;
   };
 
@@ -418,7 +464,7 @@ const S3CostCalculator: React.FC = () => {
       <Box maxWidth="1200px" mx="auto" p={4}>
         <Text fontStyle="italic">
           Calculations made based on the pricing information retrieved from AWS
-          (Singapore) as of June 05, 2024.
+          (Singapore) as of April 11, 2025.
         </Text>
 
         <Grid templateColumns="1fr 2fr" gap={6} mt={4}>
@@ -493,7 +539,7 @@ const S3CostCalculator: React.FC = () => {
                         <Box>
                           <Text mb={1}>Total Storage Size (TB):</Text>
                           <NumberInput
-                            min={1}
+                            min={0}
                             max={1000}
                             value={sSize}
                             onChange={(_, val) => setSSize(val)}
@@ -574,7 +620,7 @@ const S3CostCalculator: React.FC = () => {
                         <Box>
                           <Text mb={1}>No of Downloading Samples/Files:</Text>
                           <NumberInput
-                            min={1}
+                            min={0}
                             max={100000}
                             value={sDownloadSamples}
                             onChange={(_, val) => setSDownloadSamples(val)}
@@ -598,7 +644,7 @@ const S3CostCalculator: React.FC = () => {
                 <Box>
                   <Text mb={1}>Number of Samples incoming per Month:</Text>
                   <NumberInput
-                    min={1}
+                    min={0}
                     max={10000}
                     value={aSamples}
                     onChange={(_, val) => setASamples(val)}
@@ -614,7 +660,7 @@ const S3CostCalculator: React.FC = () => {
                 <Box>
                   <Text mb={1}>Average Sample Size (GB):</Text>
                   <NumberInput
-                    min={1}
+                    min={0}
                     max={10000}
                     value={aSampleAvgSize}
                     onChange={(_, val) => setASampleAvgSize(val)}
@@ -634,6 +680,45 @@ const S3CostCalculator: React.FC = () => {
                     * Data incoming till {aDuration[0]} months and stored for
                     totally {aDuration[1]} months.
                   </Text>
+                  <Stack spacing={2}>
+                    <Text mb={1}>Data incoming duration (Months):</Text>
+                    <Slider
+                      min={1}
+                      max={120}
+                      step={1}
+                      value={aDuration[0]}
+                      onChange={(val) => {
+                        // Ensure incoming duration doesn't exceed total duration
+                        const newVal = Math.min(val, aDuration[1]);
+                        setADuration([newVal, aDuration[1]]);
+                      }}
+                    >
+                      <SliderTrack>
+                        <SliderFilledTrack />
+                      </SliderTrack>
+                      <SliderThumb />
+                    </Slider>
+                    <Text textAlign="right">{aDuration[0]} months</Text>
+                    
+                    <Text mb={1} mt={2}>Total storage duration (Months):</Text>
+                    <Slider
+                      min={1}
+                      max={120}
+                      step={1}
+                      value={aDuration[1]}
+                      onChange={(val) => {
+                        // Ensure total duration isn't less than incoming duration
+                        const newVal = Math.max(val, aDuration[0]);
+                        setADuration([aDuration[0], newVal]);
+                      }}
+                    >
+                      <SliderTrack>
+                        <SliderFilledTrack />
+                      </SliderTrack>
+                      <SliderThumb />
+                    </Slider>
+                    <Text textAlign="right">{aDuration[1]} months</Text>
+                  </Stack>
                 </Box>
               </Stack>
             )}
