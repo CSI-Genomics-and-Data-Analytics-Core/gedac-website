@@ -61,6 +61,7 @@ import {
   SliderTrack,
   SliderFilledTrack,
   SliderThumb,
+  extendTheme,
 } from "@chakra-ui/react";
 
 // Constants
@@ -459,8 +460,18 @@ const S3CostCalculator: React.FC = () => {
     setADuration([6, 12]);
   };
 
+  const theme = extendTheme({
+    styles: {
+      global: {
+        ":where(img, svg, video, canvas, audio, iframe, embed, object)": {
+          display: "inline",
+        },
+      },
+    },
+  });
+
   return (
-    <ChakraProvider>
+    <ChakraProvider theme={theme}>
       <Box maxWidth="1200px" mx="auto" p={4}>
         <Text fontStyle="italic">
           Calculations made based on the pricing information retrieved from AWS
