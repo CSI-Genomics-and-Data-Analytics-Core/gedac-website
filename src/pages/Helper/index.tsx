@@ -12,47 +12,18 @@ export default function Helper(): ReactNode {
     >
       <main>
         <section className="container margin-top--lg margin-bottom--xl">
-          <div className="row">
-            {/* Static Content Section */}
-            <div className="col col--4">
-              <div className="padding-right--md">
-                <h1>Computing Resource Selection Guide</h1>
-                <p>
-                  This interactive tool helps you navigate through our available computing resources
-                  based on your specific data analysis requirements. Follow the decision path by 
-                  answering questions about your workflow to find the most suitable computing environment.
-                </p>
-                <hr className="margin-top--lg margin-bottom--lg" />
-                <div className="margin-top--lg">
-                  <h3>How to use this guide</h3>
-                  <ol>
-                    <li>Follow the flowchart path based on your requirements</li>
-                    <li>Each decision point helps narrow down the best resource</li>
-                    <li>Drag nodes to rearrange the view if needed</li>
-                  </ol>
-                  <p>
-                    <a href="../docs/compute-resources" className="button button--primary button--block margin-top--md">
-                      View Detailed Resources Documentation
-                    </a>
-                  </p>
-                </div>
-              </div>
-            </div>
-
             {/* FlowHelper Interactive Section */}
-            <div className="col col--8">
-              <div className="card shadow--md">
-                <div className="card__body">
-                  <FlowHelper />
-                </div>
-                <div className="card__footer text--center">
-                  <small>
-                    You can drag nodes to rearrange the diagram for better visibility.
-                  </small>
-                </div>
+            <div className="card shadow--md">
+              <div className="card__body">
+                <FlowHelper />
+              </div>
+              <div className="card__footer text--center">
+                <small>
+                  You can drag nodes to rearrange the diagram for better
+                  visibility.
+                </small>
               </div>
             </div>
-          </div>
         </section>
       </main>
     </Layout>
