@@ -553,6 +553,8 @@ const S3CostCalculator: React.FC = () => {
                             min={0}
                             max={1000}
                             value={sSize}
+                            precision={2}
+                            step={0.1}
                             onChange={(_, val) => setSSize(val)}
                           >
                             <NumberInputField />
