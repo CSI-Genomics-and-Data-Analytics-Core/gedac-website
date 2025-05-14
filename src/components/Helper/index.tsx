@@ -104,16 +104,16 @@ const createFlowConfig = (): Record<string, FlowConfig> => {
         {
           id: "start",
           type: "input",
-          position: { x: 420, y: 0 },
+          position: { x: 420, y: verticalSpacing - 200 },
           data: { label: "Collect raw dataset" },
           style: styles.startNode,
           sourcePosition: Position.Bottom,
           draggable: true,
         },
         {
-          id: "decision1",
+          id: "analysisType",
           type: "decision",
-          position: { x: 400, y: verticalSpacing },
+          position: { x: 400, y: verticalSpacing - 100 },
           data: {
             label: "What type of analysis are you performing?",
           },
@@ -122,7 +122,7 @@ const createFlowConfig = (): Record<string, FlowConfig> => {
           draggable: true,
         },
         {
-          id: "decision2",
+          id: "rnaseqDataSize",
           position: { x: 400 - horizontalSpacing, y: verticalSpacing * 2 },
           data: { label: "Raw data size < 10TB?" },
           style: styles.decisionNode,
@@ -131,8 +131,8 @@ const createFlowConfig = (): Record<string, FlowConfig> => {
           draggable: true,
         },
         {
-          id: "decision3",
-          position: { x: 400 + horizontalSpacing, y: verticalSpacing * 2 },
+          id: "ontGpuRequired",
+          position: { x: 300 + horizontalSpacing, y: verticalSpacing * 2 },
           data: { label: "GPU required for basecalling or downstream?" },
           style: styles.decisionNode,
           targetPosition: Position.Top,
@@ -140,7 +140,7 @@ const createFlowConfig = (): Record<string, FlowConfig> => {
           draggable: true,
         },
         {
-          id: "decision4",
+          id: "gpuAcceleration",
           position: { x: 500 - horizontalSpacing, y: verticalSpacing * 3 },
           data: { label: "Does your workflow involve heavy GPU acceleration?" },
           style: styles.decisionNode,
@@ -200,55 +200,101 @@ const createFlowConfig = (): Record<string, FlowConfig> => {
           targetPosition: Position.Top,
           draggable: true,
         },
+        {
+          id: "gdcDataSize",
+          position: { x: 800 + horizontalSpacing, y: verticalSpacing * 2 },
+          data: { label: "Raw data size < 10TB?" },
+          style: styles.decisionNode,
+          targetPosition: Position.Top,
+          sourcePosition: Position.Bottom,
+          draggable: true,
+        },
+        {
+          id: "nusVandaVariantCalling",
+          position: {
+            x: 600 + horizontalSpacing * 1.5,
+            y: verticalSpacing * 3.5,
+          },
+          data: { label: "Use NUS Vanda" },
+          style: styles.serviceNode,
+          targetPosition: Position.Top,
+          draggable: true,
+        },
+        {
+          id: "nsccAspire2aVariantCalling",
+          position: { x: 1000 + horizontalSpacing, y: verticalSpacing * 3.5 },
+          data: { label: "Use NSCC ASPIRE2A" },
+          style: styles.aspireNode,
+          targetPosition: Position.Top,
+          draggable: true,
+        },
       ],
       edges: [
-        { id: "e-start-decision1", source: "start", target: "decision1" },
+        { id: "e-start-analysisType", source: "start", target: "analysisType" },
         {
-          id: "e-decision1-decision2",
-          source: "decision1",
-          target: "decision2",
+          id: "e-analysisType-rnaseqDataSize",
+          source: "analysisType",
+          target: "rnaseqDataSize",
           label: "RNASeq",
         },
         {
-          id: "e-decision1-decision3",
-          source: "decision1",
-          target: "decision3",
+          id: "e-analysisType-ontGpuRequired",
+          source: "analysisType",
+          target: "ontGpuRequired",
           label: "ONT",
         },
         {
-          id: "e-decision2-nusVanda1",
-          source: "decision2",
+          id: "e-analysisType-gdcDataSize",
+          source: "analysisType",
+          target: "gdcDataSize",
+          label: "GDC Pipeline/ Variant Calling",
+        },
+        {
+          id: "e-rnaseqDataSize-nusVanda1",
+          source: "rnaseqDataSize",
           target: "nusVanda1",
           label: "Yes",
         },
         {
-          id: "e-decision2-decision4",
-          source: "decision2",
-          target: "decision4",
+          id: "e-rnaseqDataSize-gpuAcceleration",
+          source: "rnaseqDataSize",
+          target: "gpuAcceleration",
           label: "No",
         },
         {
-          id: "e-decision4-nusHopper1",
-          source: "decision4",
+          id: "e-gpuAcceleration-nusHopper1",
+          source: "gpuAcceleration",
           target: "nusHopper1",
           label: "Yes",
         },
         {
-          id: "e-decision4-aspire2a",
-          source: "decision4",
+          id: "e-gpuAcceleration-aspire2a",
+          source: "gpuAcceleration",
           target: "aspire2a",
           label: "No",
         },
         {
-          id: "e-decision3-nusHopper2",
-          source: "decision3",
+          id: "e-ontGpuRequired-nusHopper2",
+          source: "ontGpuRequired",
           target: "nusHopper2",
           label: "Yes",
         },
         {
-          id: "e-decision3-nusVanda2",
-          source: "decision3",
+          id: "e-ontGpuRequired-nusVanda2",
+          source: "ontGpuRequired",
           target: "nusVanda2",
+          label: "No",
+        },
+        {
+          id: "e-gdcDataSize-nusVandaVariantCalling",
+          source: "gdcDataSize",
+          target: "nusVandaVariantCalling",
+          label: "Yes",
+        },
+        {
+          id: "e-gdcDataSize-nsccAspire2aVariantCalling",
+          source: "gdcDataSize",
+          target: "nsccAspire2aVariantCalling",
           label: "No",
         },
       ],
@@ -291,21 +337,30 @@ const FlowHelper: React.FC = () => {
   > = {
     analysisType: {
       question: "What type of analysis are you performing?",
-      options: ["RNASeq", "ONT"],
+      options: ["RNASeq", "ONT", "GDC Pipeline/Variant Calling"],
       next: {
-        RNASeq: "dataSize",
-        ONT: "gpuRequired",
+        RNASeq: "rnaseq_dataSize",
+        ONT: "ont_gpuRequired",
+        "GDC Pipeline/Variant Calling": "gdc_dataSize",
       },
     },
-    dataSize: {
+    rnaseq_dataSize: {
       question: "Raw data size < 10 TB?",
-      options: ["10TB-Yes", "10TB-No"],
+      options: ["rnaseq10TB_Yes", "rnaseq10TB_No"],
       next: {
-        "10TB-Yes": null, // End of flow
-        "10TB-No": "gpuAcceleration",
+        "rnaseq10TB_Yes": null, // End of flow
+        "rnaseq10TB_No": "gpuAcceleration",
       },
     },
-    gpuRequired: {
+    gdc_dataSize: {
+      question: "Raw data size < 10 TB?",
+      options: ["gdc10TB_Yes", "gdc10TB_No"],
+      next: {
+        "gdc10TB_Yes": null, // End of flow
+        "gdc10TB_No": null,
+      },
+    },
+    ont_gpuRequired: {
       question: "GPU required for basecalling or downstream?",
       options: ["GPU-Yes", "GPU-No"],
       next: {
@@ -325,14 +380,17 @@ const FlowHelper: React.FC = () => {
 
   // Mapping of answers to individual edge IDs
   const answerToEdgeMap: Record<string, string> = {
-    RNASeq: "e-decision1-decision2",
-    ONT: "e-decision1-decision3",
-    "10TB-Yes": "e-decision2-nusVanda1",
-    "10TB-No": "e-decision2-decision4",
-    "GPU-Yes": "e-decision3-nusHopper2",
-    "GPU-No": "e-decision3-nusVanda2",
-    "HeavyGPU-Yes": "e-decision4-nusHopper1",
-    "HeavyGPU-No": "e-decision4-aspire2a",
+    RNASeq: "e-analysisType-rnaseqDataSize",
+    ONT: "e-analysisType-ontGpuRequired",
+    "GDC Pipeline/Variant Calling": "e-analysisType-gdcDataSize",
+    "rnaseq10TB_Yes": "e-rnaseqDataSize-nusVanda1",
+    "rnaseq10TB_No": "e-rnaseqDataSize-gpuAcceleration",
+    "gdc10TB_Yes": "e-gdcDataSize-nusVandaVariantCalling",
+    "gdc10TB_No": "e-gdcDataSize-nsccAspire2aVariantCalling",
+    "GPU-Yes": "e-ontGpuRequired-nusHopper2",
+    "GPU-No": "e-ontGpuRequired-nusVanda2",
+    "HeavyGPU-Yes": "e-gpuAcceleration-nusHopper1",
+    "HeavyGPU-No": "e-gpuAcceleration-aspire2a",
   };
 
   // Handle node position changes (dragging)
@@ -489,8 +547,8 @@ const FlowHelper: React.FC = () => {
                   >
                     <Stack direction="column">
                       {questionModel[questionKey].options.map((option) => {
-                        const displayText = option.includes("-")
-                          ? option.split("-")[1]
+                        const displayText = option.includes("-") || option.includes("_")
+                          ? option.split(/[-_]/)[1]
                           : option;
                         return (
                           <Radio key={option} value={option}>
