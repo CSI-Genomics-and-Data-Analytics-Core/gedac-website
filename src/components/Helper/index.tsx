@@ -1,4 +1,6 @@
 import React, { useState, useCallback, useRef } from "react";
+import Link from "@docusaurus/Link";
+
 import {
   Box,
   Text,
@@ -339,34 +341,46 @@ const FlowChart = ({
 
   // Optionally, add useEffect here to zoom to the latest active question node
   React.useEffect(() => {
-    console.log("Active Questions:", activeQuestions);
-    if (activeQuestions.length > 0) {
-      // Find all nodes corresponding to the active questions
-      const activeNodes = activeQuestions
-        .map((key) => nodes.find((n) => n.id === key))
-        .filter(Boolean);
+    // Combine active-question nodes with any nodes connected by selected edges
+    const selectedEdges = edges.filter((edge) =>
+      Object.values(answers).some((ans) => answerToEdgeMap[ans] === edge.id)
+    );
 
-      if (activeNodes.length > 0 && setCenter) {
-        // Calculate the bounding box of all active nodes
-        const minX = Math.min(...activeNodes.map((n) => n.position.x));
-        const minY = Math.min(...activeNodes.map((n) => n.position.y));
-        const maxX = Math.max(
-          ...activeNodes.map((n) => n.position.x + (n.width || 180))
-        );
-        const maxY = Math.max(
-          ...activeNodes.map((n) => n.position.y + (n.height || 40))
-        );
+    const relevantNodes = new Set<Node>();
 
-        // Center the view on the bounding box of all active nodes
-        setCenter((minX + maxX) / 2, (minY + maxY) / 2, {
-          zoom: 1,
-          duration: 600,
-          fitView: true,
-          padding: 0.2,
-        });
-      }
+    // Include nodes for each selected edge
+    selectedEdges.forEach((edge) => {
+      const sourceNode = nodes.find((n) => n.id === edge.source);
+      const targetNode = nodes.find((n) => n.id === edge.target);
+      if (sourceNode) relevantNodes.add(sourceNode);
+      if (targetNode) relevantNodes.add(targetNode);
+    });
+
+    // Include all nodes that match activeQuestions
+    activeQuestions.forEach((key) => {
+      const node = nodes.find((n) => n.id === key);
+      if (node) relevantNodes.add(node);
+    });
+
+    const relevantArray = Array.from(relevantNodes);
+    if (relevantArray.length > 0 && setCenter) {
+      const minX = Math.min(...relevantArray.map((n) => n.position.x));
+      const minY = Math.min(...relevantArray.map((n) => n.position.y));
+      const maxX = Math.max(
+        ...relevantArray.map((n) => n.position.x + (n.width || 180))
+      );
+      const maxY = Math.max(
+        ...relevantArray.map((n) => n.position.y + (n.height || 40))
+      );
+
+      setCenter((minX + maxX) / 2, (minY + maxY + 100) / 2, {
+        zoom: 1,
+        duration: 600,
+        fitView: true,
+        padding: 0.2,
+      });
     }
-  }, [activeQuestions, nodes, setCenter]);
+  }, [activeQuestions, answers, edges, nodes, answerToEdgeMap, setCenter]);
 
   return (
     <ReactFlow
@@ -459,6 +473,42 @@ const FlowHelper: React.FC = () => {
     "HeavyGPU-Yes": "e-gpuAcceleration-nusHopper1",
     "HeavyGPU-No": "e-gpuAcceleration-aspire2a",
   };
+
+  const resourceSuggestionMap: Record<string, { name: string; link: string }> =
+    {
+      rnaseq10TB_Yes: {
+        name: "NUS Vanda",
+        link: "/docs/compute-resources#nus-vanda--high-throughput-computing-htc-cluster",
+      },
+      rnaseq10TB_No: {
+        name: "See GPU/NSCC resources",
+        link: "/docs/compute-resources",
+      },
+      gdc10TB_Yes: {
+        name: "NUS Vanda",
+        link: "/docs/compute-resources#nus-vanda--high-throughput-computing-htc-cluster",
+      },
+      gdc10TB_No: {
+        name: "NSCC ASPIRE2A",
+        link: "/docs/compute-resources#nscc-aspire2a--national-supercomputing-resource",
+      },
+      "GPU-Yes": {
+        name: "NUS Hopper",
+        link: "/docs/compute-resources#nus-hopper--ai-optimized-high-performance-cluster",
+      },
+      "GPU-No": {
+        name: "NUS Vanda",
+        link: "/docs/compute-resources#nus-vanda--high-throughput-computing-htc-cluster",
+      },
+      "HeavyGPU-Yes": {
+        name: "NUS Hopper",
+        link: "/docs/compute-resources#nus-hopper--ai-optimized-high-performance-cluster",
+      },
+      "HeavyGPU-No": {
+        name: "NSCC ASPIRE2A",
+        link: "/docs/compute-resources#nscc-aspire2a--national-supercomputing-resource",
+      },
+    };
 
   // Handle node position changes (dragging)
   const onNodesChange = useCallback(
@@ -576,6 +626,16 @@ const FlowHelper: React.FC = () => {
     },
   });
 
+  // Find the last answered question and its answer
+  const lastQuestionKey = activeQuestions[activeQuestions.length - 1];
+  const lastAnswer = answers[lastQuestionKey];
+
+  // Check if this is an end node (no next question)
+  const isEnd =
+    lastQuestionKey &&
+    lastAnswer &&
+    questionModel[lastQuestionKey]?.next[lastAnswer] === null;
+
   return (
     <ChakraProvider theme={theme}>
       <Flex height="100vh" overflow="hidden">
@@ -602,25 +662,29 @@ const FlowHelper: React.FC = () => {
           />
           {isDrawerOpen && (
             <Box p={4}>
-              <h1>Computing Resource Selection Guide</h1>
-              <hr className="margin-top--lg margin-bottom--lg" />
+              <Text fontSize="xl" fontWeight="bold" mb={2}>
+                Computing Resource Selection Guide
+              </Text>
+              <Box borderBottom="1px" borderColor="gray.300" mb={2} />
 
               {activeQuestions.map((questionKey) => (
-                <Box key={questionKey} mt={4}>
-                  <Text mb={2}>{questionModel[questionKey].question}</Text>
+                <Box key={questionKey} p={2}>
+                  <Text fontWeight="semibold" mb={1}>
+                    {questionModel[questionKey].question}
+                  </Text>
                   <RadioGroup
                     onChange={(value) => updateFlow(questionKey, value)}
                     value={answers[questionKey] || ""}
                   >
-                    <Stack direction="column">
+                    <Stack spacing={0.1} bg="white" pl={4}>
                       {questionModel[questionKey].options.map((option) => {
                         const displayText =
                           option.includes("-") || option.includes("_")
                             ? option.split(/[-_]/)[1]
                             : option;
                         return (
-                          <Radio key={option} value={option}>
-                            {displayText}
+                          <Radio key={option} value={option} display="flex" alignItems="center">
+                            <Text ml={1} pt={3}>{displayText}</Text>
                           </Radio>
                         );
                       })}
@@ -628,6 +692,27 @@ const FlowHelper: React.FC = () => {
                   </RadioGroup>
                 </Box>
               ))}
+
+              {isEnd && resourceSuggestionMap[lastAnswer] && (
+                <Box
+                  mt={6}
+                  mb={2}
+                  p={4}
+                  bg="blue.50"
+                  borderRadius="md"
+                  border="1px solid #3182ce"
+                >
+                  <Text fontWeight="bold" color="blue.700" mb={2}>
+                    Suggested Resource:
+                  </Text>
+                  <Link
+                    to={resourceSuggestionMap[lastAnswer].link}
+                    style={{ color: "#3182ce", textDecoration: "underline" }}
+                  >
+                    {resourceSuggestionMap[lastAnswer].name}
+                  </Link>
+                </Box>
+              )}
 
               <Button mt={6} colorScheme="red" onClick={resetFlow}>
                 Reset Flow
