@@ -25,7 +25,7 @@
     "@mdx-js/react": "^3.0.0",
     "@mui/icons-material": "^6.4.4",
     "@mui/material": "^6.4.4",
-    "@xyflow/react": "^12.5.5",
+    "@xyflow/react": "^12.6.1",
     "chart.js": "^4.4.8",
     "clsx": "^2.0.0",
     "framer-motion": "^12.6.3",

@@ -1,4 +1,4 @@
-import React, { useState, useCallback } from "react";
+import React, { useState, useCallback, useRef } from "react";
 import {
   Box,
   Text,
@@ -29,6 +29,8 @@ import {
   EdgeChange,
   OnEdgesChange,
   applyEdgeChanges,
+  useReactFlow,
+  ReactFlowProvider,
 } from "@xyflow/react";
 
 import "@xyflow/react/dist/style.css";
@@ -321,6 +323,70 @@ const createFlowConfig = (): Record<string, FlowConfig> => {
 };
 
 const flowConfigs = createFlowConfig();
+
+const FlowChart = ({
+  nodes,
+  edges,
+  nodeTypes,
+  onNodesChange,
+  onEdgesChange,
+  activeQuestions,
+  answers,
+  answerToEdgeMap,
+  questionModel,
+}) => {
+  const { setCenter } = useReactFlow();
+
+  // Optionally, add useEffect here to zoom to the latest active question node
+  React.useEffect(() => {
+    console.log("Active Questions:", activeQuestions);
+    if (activeQuestions.length > 0) {
+      // Find all nodes corresponding to the active questions
+      const activeNodes = activeQuestions
+        .map((key) => nodes.find((n) => n.id === key))
+        .filter(Boolean);
+
+      if (activeNodes.length > 0 && setCenter) {
+        // Calculate the bounding box of all active nodes
+        const minX = Math.min(...activeNodes.map((n) => n.position.x));
+        const minY = Math.min(...activeNodes.map((n) => n.position.y));
+        const maxX = Math.max(
+          ...activeNodes.map((n) => n.position.x + (n.width || 180))
+        );
+        const maxY = Math.max(
+          ...activeNodes.map((n) => n.position.y + (n.height || 40))
+        );
+
+        // Center the view on the bounding box of all active nodes
+        setCenter((minX + maxX) / 2, (minY + maxY) / 2, {
+          zoom: 1,
+          duration: 600,
+          fitView: true,
+          padding: 0.2,
+        });
+      }
+    }
+  }, [activeQuestions, nodes, setCenter]);
+
+  return (
+    <ReactFlow
+      nodes={nodes}
+      edges={edges}
+      nodeTypes={nodeTypes}
+      onNodesChange={onNodesChange}
+      onEdgesChange={onEdgesChange}
+      fitView
+      fitViewOptions={{ padding: 0.1 }}
+      minZoom={0.5}
+      maxZoom={1.5}
+      attributionPosition="bottom-left"
+    >
+      <Controls />
+      <Background variant="none" gap={12} size={1} />
+    </ReactFlow>
+  );
+};
+
 const FlowHelper: React.FC = () => {
   const [nodes, setNodes] = useState<Node[]>(flowConfigs.all.nodes);
   const [edges, setEdges] = useState<Edge[]>(flowConfigs.all.edges);
@@ -329,6 +395,7 @@ const FlowHelper: React.FC = () => {
   const [activeQuestions, setActiveQuestions] = useState<string[]>([
     "analysisType",
   ]); // Track active questions
+  const reactFlowWrapper = useRef<HTMLDivElement>(null);
 
   // Define the question model
   const questionModel: Record<
@@ -348,16 +415,16 @@ const FlowHelper: React.FC = () => {
       question: "Raw data size < 10 TB?",
       options: ["rnaseq10TB_Yes", "rnaseq10TB_No"],
       next: {
-        "rnaseq10TB_Yes": null, // End of flow
-        "rnaseq10TB_No": "gpuAcceleration",
+        rnaseq10TB_Yes: null, // End of flow
+        rnaseq10TB_No: "gpuAcceleration",
       },
     },
     gdc_dataSize: {
       question: "Raw data size < 10 TB?",
       options: ["gdc10TB_Yes", "gdc10TB_No"],
       next: {
-        "gdc10TB_Yes": null, // End of flow
-        "gdc10TB_No": null,
+        gdc10TB_Yes: null, // End of flow
+        gdc10TB_No: null,
       },
     },
     ont_gpuRequired: {
@@ -383,10 +450,10 @@ const FlowHelper: React.FC = () => {
     RNASeq: "e-analysisType-rnaseqDataSize",
     ONT: "e-analysisType-ontGpuRequired",
     "GDC Pipeline/Variant Calling": "e-analysisType-gdcDataSize",
-    "rnaseq10TB_Yes": "e-rnaseqDataSize-nusVanda1",
-    "rnaseq10TB_No": "e-rnaseqDataSize-gpuAcceleration",
-    "gdc10TB_Yes": "e-gdcDataSize-nusVandaVariantCalling",
-    "gdc10TB_No": "e-gdcDataSize-nsccAspire2aVariantCalling",
+    rnaseq10TB_Yes: "e-rnaseqDataSize-nusVanda1",
+    rnaseq10TB_No: "e-rnaseqDataSize-gpuAcceleration",
+    gdc10TB_Yes: "e-gdcDataSize-nusVandaVariantCalling",
+    gdc10TB_No: "e-gdcDataSize-nsccAspire2aVariantCalling",
     "GPU-Yes": "e-ontGpuRequired-nusHopper2",
     "GPU-No": "e-ontGpuRequired-nusVanda2",
     "HeavyGPU-Yes": "e-gpuAcceleration-nusHopper1",
@@ -547,9 +614,10 @@ const FlowHelper: React.FC = () => {
                   >
                     <Stack direction="column">
                       {questionModel[questionKey].options.map((option) => {
-                        const displayText = option.includes("-") || option.includes("_")
-                          ? option.split(/[-_]/)[1]
-                          : option;
+                        const displayText =
+                          option.includes("-") || option.includes("_")
+                            ? option.split(/[-_]/)[1]
+                            : option;
                         return (
                           <Radio key={option} value={option}>
                             {displayText}
@@ -569,22 +637,21 @@ const FlowHelper: React.FC = () => {
         </Box>
 
         {/* Main Content Section */}
-        <Box flex="1" bg="white">
-          <ReactFlow
-            nodes={nodes}
-            edges={edges}
-            nodeTypes={nodeTypes}
-            onNodesChange={onNodesChange}
-            onEdgesChange={onEdgesChange}
-            fitView
-            fitViewOptions={{ padding: 0.1 }}
-            minZoom={0.5}
-            maxZoom={1.5}
-            attributionPosition="bottom-left"
-          >
-            <Controls />
-            <Background variant="none" gap={12} size={1} />
-          </ReactFlow>
+
+        <Box flex="1" bg="white" ref={reactFlowWrapper}>
+          <ReactFlowProvider>
+            <FlowChart
+              nodes={nodes}
+              edges={edges}
+              nodeTypes={nodeTypes}
+              onNodesChange={onNodesChange}
+              onEdgesChange={onEdgesChange}
+              activeQuestions={activeQuestions}
+              answers={answers}
+              answerToEdgeMap={answerToEdgeMap}
+              questionModel={questionModel}
+            />
+          </ReactFlowProvider>
         </Box>
       </Flex>
     </ChakraProvider>
