@@ -463,7 +463,7 @@ const FlowHelper: React.FC = () => {
   const answerToEdgeMap: Record<string, string> = {
     RNASeq: "e-analysisType-rnaseqDataSize",
     ONT: "e-analysisType-ontGpuRequired",
-    "dna Pipeline/Variant Calling": "e-analysisType-dnaDataSize",
+    "DNA Sequencing/Variant Calling": "e-analysisType-dnaDataSize",
     rnaseq10TB_Yes: "e-rnaseqDataSize-nusVanda1",
     rnaseq10TB_No: "e-rnaseqDataSize-gpuAcceleration",
     dna10TB_Yes: "e-dnaDataSize-nusVandaVariantCalling",
