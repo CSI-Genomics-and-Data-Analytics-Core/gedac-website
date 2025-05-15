@@ -251,7 +251,7 @@ const createFlowConfig = (): Record<string, FlowConfig> => {
           id: "e-analysisType-gdcDataSize",
           source: "analysisType",
           target: "gdcDataSize",
-          label: "GDC Pipeline/ Variant Calling",
+          label: "DNA Sequencing/ Variant Calling",
         },
         {
           id: "e-rnaseqDataSize-nusVanda1",

@@ -5,7 +5,7 @@ sidebar_position: 2
 # Computing and Processing
 Welcome to our Computing and Processing page. We are happy that you made it here. This page will walk you through the services we offer, the benefits of working with us, and how to get started working together.
 
-## What we Offer
+## What We Offer
 We offer on-demand and dedicated access to high performance computing infrastructure for students, research groups and departments conducting resource intensive genomics research at a low cost.
 
 #### Educational HPC
