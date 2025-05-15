@@ -205,7 +205,7 @@ const createFlowConfig = (): Record<string, FlowConfig> => {
           draggable: true,
         },
         {
-          id: "gdcDataSize",
+          id: "dnaDataSize",
           position: { x: 800 + horizontalSpacing, y: verticalSpacing * 2 },
           data: { label: "Raw data size < 10TB?" },
           style: styles.decisionNode,
@@ -248,9 +248,9 @@ const createFlowConfig = (): Record<string, FlowConfig> => {
           label: "ONT",
         },
         {
-          id: "e-analysisType-gdcDataSize",
+          id: "e-analysisType-dnaDataSize",
           source: "analysisType",
-          target: "gdcDataSize",
+          target: "dnaDataSize",
           label: "DNA Sequencing/ Variant Calling",
         },
         {
@@ -290,14 +290,14 @@ const createFlowConfig = (): Record<string, FlowConfig> => {
           label: "No",
         },
         {
-          id: "e-gdcDataSize-nusVandaVariantCalling",
-          source: "gdcDataSize",
+          id: "e-dnaDataSize-nusVandaVariantCalling",
+          source: "dnaDataSize",
           target: "nusVandaVariantCalling",
           label: "Yes",
         },
         {
-          id: "e-gdcDataSize-nsccAspire2aVariantCalling",
-          source: "gdcDataSize",
+          id: "e-dnaDataSize-nsccAspire2aVariantCalling",
+          source: "dnaDataSize",
           target: "nsccAspire2aVariantCalling",
           label: "No",
         },
@@ -418,11 +418,11 @@ const FlowHelper: React.FC = () => {
   > = {
     analysisType: {
       question: "What type of analysis are you performing?",
-      options: ["RNASeq", "ONT", "GDC Pipeline/Variant Calling"],
+      options: ["RNASeq", "ONT", "DNA Sequencing/Variant Calling"],
       next: {
         RNASeq: "rnaseq_dataSize",
         ONT: "ont_gpuRequired",
-        "GDC Pipeline/Variant Calling": "gdc_dataSize",
+        "DNA Sequencing/Variant Calling": "dna_dataSize",
       },
     },
     rnaseq_dataSize: {
@@ -433,12 +433,12 @@ const FlowHelper: React.FC = () => {
         rnaseq10TB_No: "gpuAcceleration",
       },
     },
-    gdc_dataSize: {
+    dna_dataSize: {
       question: "Raw data size < 10 TB?",
-      options: ["gdc10TB_Yes", "gdc10TB_No"],
+      options: ["dna10TB_Yes", "dna10TB_No"],
       next: {
-        gdc10TB_Yes: null, // End of flow
-        gdc10TB_No: null,
+        dna10TB_Yes: null, // End of flow
+        dna10TB_No: null,
       },
     },
     ont_gpuRequired: {
@@ -463,11 +463,11 @@ const FlowHelper: React.FC = () => {
   const answerToEdgeMap: Record<string, string> = {
     RNASeq: "e-analysisType-rnaseqDataSize",
     ONT: "e-analysisType-ontGpuRequired",
-    "GDC Pipeline/Variant Calling": "e-analysisType-gdcDataSize",
+    "dna Pipeline/Variant Calling": "e-analysisType-dnaDataSize",
     rnaseq10TB_Yes: "e-rnaseqDataSize-nusVanda1",
     rnaseq10TB_No: "e-rnaseqDataSize-gpuAcceleration",
-    gdc10TB_Yes: "e-gdcDataSize-nusVandaVariantCalling",
-    gdc10TB_No: "e-gdcDataSize-nsccAspire2aVariantCalling",
+    dna10TB_Yes: "e-dnaDataSize-nusVandaVariantCalling",
+    dna10TB_No: "e-dnaDataSize-nsccAspire2aVariantCalling",
     "GPU-Yes": "e-ontGpuRequired-nusHopper2",
     "GPU-No": "e-ontGpuRequired-nusVanda2",
     "HeavyGPU-Yes": "e-gpuAcceleration-nusHopper1",
@@ -484,11 +484,11 @@ const FlowHelper: React.FC = () => {
         name: "See GPU/NSCC resources",
         link: "/docs/compute-resources",
       },
-      gdc10TB_Yes: {
+      dna10TB_Yes: {
         name: "NUS Vanda",
         link: "/docs/compute-resources#nus-vanda--high-throughput-computing-htc-cluster",
       },
-      gdc10TB_No: {
+      dna10TB_No: {
         name: "NSCC ASPIRE2A",
         link: "/docs/compute-resources#nscc-aspire2a--national-supercomputing-resource",
       },
