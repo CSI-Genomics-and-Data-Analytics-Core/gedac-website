@@ -8,9 +8,13 @@ title: Compute Resources
 
 Access to robust computational resources is critical for accelerating discoveries in bioinformatics and cancer science research. Below is an overview of the available High-Performance Computing (HPC) and High-Throughput Computing (HTC) resources within NUS and externally at NSCC, designed to support your research needs.
 
+[Website for booking](https://nusit.nus.edu.sg/hpc/)
+
 ### NUS Vanda – High-Throughput Computing (HTC) Cluster
 
 NUS Vanda is an in-house HTC cluster designed for general computational workloads. It does not feature Infiniband but offers substantial CPU-based computing power for research requiring parallel processing.
+
+[Website for booking](https://nusit.nus.edu.sg/hpc/)
 
 **Hardware Specifications:**
 - 336 Intel Xeon Platinum 8452Y CPUs
@@ -19,6 +23,8 @@ NUS Vanda is an in-house HTC cluster designed for general computational workload
 ### NUS Hopper – AI-Optimized High-Performance Cluster
 
 For AI-driven research, NUS Hopper provides cutting-edge hardware tailored to deep learning and computational biology workflows.
+
+[Website for booking](https://nusit.nus.edu.sg/hpc/)
 
 **Hardware Specifications:**
 - 6 GPU nodes, each with:
@@ -34,6 +40,8 @@ For AI-driven research, NUS Hopper provides cutting-edge hardware tailored to de
 
 NSCC's ASPIRE2A supercomputer delivers advanced capabilities for high-performance computing, providing a balanced environment for intensive computational research.
 
+[Project calling](https://www.nscc.sg/project-calls/)
+
 **Hardware Specifications:**
 - AMD-Based Cray EX supercomputer
 - 25PB of GPFS FS and 10PB of Lustre FS storage
@@ -41,6 +49,13 @@ NSCC's ASPIRE2A supercomputer delivers advanced capabilities for high-performanc
 - GPU compute nodes: 4x NVIDIA A100-40G SXM per node
 
 We encourage researchers to leverage these resources to drive impactful discoveries in cancer research and bioinformatics. If you need guidance on resource selection or optimization, feel free to consult our HPC team.
+
+| Resource Type               | RIE-Funded Pricing (S$) | Non-RIE-Funded (Standard) Pricing* (S$) | Non-RIE-Funded (Premium) Pricing* (S$) |
+|----------------------------|--------------------------|------------------------------------------|------------------------------------------|
+| CPU Core Hours             | 0.006                    | 0.022                                    | 0.033                                    |
+| GPU Card Hours - A100 (40GB) | 0.79                     | 2.43                                     | 3.11                                     |
+| GPU Card Hours - H100      | 1.26                     | 4.40                                     | 4.80                                     |
+| HDD Storage GB-month       | 0.021                    | 0.029                                    | 0.029                                    |
 
 
 ## Comparison

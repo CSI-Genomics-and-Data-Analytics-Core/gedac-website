@@ -158,7 +158,7 @@ const createFlowConfig = (): Record<string, FlowConfig> => {
             x: 400 - horizontalSpacing * 1.5,
             y: verticalSpacing * 4,
           },
-          data: { label: "Use NUS Vanda" },
+          data: { label: "NUS Vanda" },
           style: styles.serviceNode,
           targetPosition: Position.Top,
           draggable: true,
@@ -169,7 +169,7 @@ const createFlowConfig = (): Record<string, FlowConfig> => {
             x: 400 + horizontalSpacing * 1.5,
             y: verticalSpacing * 3,
           },
-          data: { label: "Use NUS Vanda" },
+          data: { label: "NUS Vanda" },
           style: styles.serviceNode,
           targetPosition: Position.Top,
           draggable: true,
@@ -180,7 +180,7 @@ const createFlowConfig = (): Record<string, FlowConfig> => {
             x: 500 - horizontalSpacing * 0.5,
             y: verticalSpacing * 4,
           },
-          data: { label: "Use NUS Hopper" },
+          data: { label: "NUS Hopper" },
           style: styles.serviceNode,
           targetPosition: Position.Top,
           draggable: true,
@@ -191,7 +191,7 @@ const createFlowConfig = (): Record<string, FlowConfig> => {
             x: 400 + horizontalSpacing * 0.5,
             y: verticalSpacing * 3,
           },
-          data: { label: "Use NUS Hopper" },
+          data: { label: "NUS Hopper" },
           style: styles.serviceNode,
           targetPosition: Position.Top,
           draggable: true,
@@ -199,7 +199,7 @@ const createFlowConfig = (): Record<string, FlowConfig> => {
         {
           id: "aspire2a",
           position: { x: 450 - horizontalSpacing, y: verticalSpacing * 4.5 },
-          data: { label: "Use NSCC ASPIRE2A" },
+          data: { label: "NSCC ASPIRE2A" },
           style: styles.aspireNode,
           targetPosition: Position.Top,
           draggable: true,
@@ -219,7 +219,7 @@ const createFlowConfig = (): Record<string, FlowConfig> => {
             x: 600 + horizontalSpacing * 1.5,
             y: verticalSpacing * 3.5,
           },
-          data: { label: "Use NUS Vanda" },
+          data: { label: "NUS Vanda" },
           style: styles.serviceNode,
           targetPosition: Position.Top,
           draggable: true,
@@ -227,7 +227,7 @@ const createFlowConfig = (): Record<string, FlowConfig> => {
         {
           id: "nsccAspire2aVariantCalling",
           position: { x: 1000 + horizontalSpacing, y: verticalSpacing * 3.5 },
-          data: { label: "Use NSCC ASPIRE2A" },
+          data: { label: "NSCC ASPIRE2A" },
           style: styles.aspireNode,
           targetPosition: Position.Top,
           draggable: true,
@@ -510,10 +510,26 @@ const FlowHelper: React.FC = () => {
       },
     };
 
+  const resourceDescriptionMap: Record<string, string> = {
+    "NUS Vanda": `
+        This platform is built to handle general scientific tasks and works especially well for analyzing genomic data. It can run many tasks at the same time using 10–15 computers (called nodes), with each one working independently. <br/><br/>However, it’s not designed for jobs that need very fast communication between computers, like those that tightly connect multiple nodes (such as with InfiniBand).
+    `,
+    "NUS Hopper": `
+      For AI-driven research, NUS Hopper provides cutting-edge hardware tailored to deep learning and computational biology workflows.
+    `,
+    "NSCC ASPIRE2A": `
+      NSCC's ASPIRE2A supercomputer delivers advanced capabilities for high-performance computing, providing a balanced environment for intensive computational research.
+    `,
+  };
+
   const popupContentMap: Record<string, { content: string }> = {
     "DNA Sequencing/Variant Calling": {
       content:
         "GeDAC has implemented a DNA sequencing workflow based on the <a style='color: #3182ce; font-weight: 600;' href='https://docs.gdc.cancer.gov/Data/Bioinformatics_Pipelines/DNA_Seq_Variant_Calling_Pipeline/' target='blank'>GDC Pipeline specification</a>, enabling harmonization and analysis of raw genomic samples.<br/><br/> For further details or access, please contact <a style='color: #3182ce; font-weight: 600;' href='/Contact' target='blank'>GeDaC Support</a>.",
+    },
+    RNASeq: {
+      content:
+        "GeDAC has setup a cloud runner to run <a style='color: #3182ce; font-weight: 600;' href='https://nf-co.re/rnaseq/3.14.0/' target='blank'>Nextflow RNAseq Pipeline</a>, supported by a scalable environment that handles high data volumes efficiently.<br/><br/> For further details or access, please feel free to visit <a style='color: #3182ce; font-weight: 600;' href='https://www.cloudflow.gedac.org/' target='blank'>Cloudflow</a> and contact <a style='color: #3182ce; font-weight: 600;' href='/Contact' target='blank'>GeDaC Support</a>.",
     },
   };
 
@@ -648,11 +664,13 @@ const FlowHelper: React.FC = () => {
       <Flex height="100vh" overflow="hidden">
         {/* Drawer Section */}
         <Box
-          width={isDrawerOpen ? "400px" : "50px"}
+          width={isDrawerOpen ? "450px" : "50px"}
           transition="width 0.3s"
           bg="gray.100"
           borderRight="1px solid #ccc"
           position="relative"
+          overflowY="auto"
+          maxH="100vh"
         >
           <IconButton
             aria-label="Toggle Drawer"
@@ -704,7 +722,6 @@ const FlowHelper: React.FC = () => {
                       })}
                     </Stack>
                   </RadioGroup>
-                  {/* Show popup section immediately after this question if answer matches */}
                   {popupContentMap[answers[questionKey]] && (
                     <Box
                       mt={4}
@@ -715,7 +732,7 @@ const FlowHelper: React.FC = () => {
                       border="1px solid #CBD5E1"
                     >
                       <Box
-                        fontSize="sm"
+                        fontSize="xs"
                         fontStyle="italic"
                         color="gray.700"
                         dangerouslySetInnerHTML={{
@@ -745,6 +762,17 @@ const FlowHelper: React.FC = () => {
                   >
                     {resourceSuggestionMap[lastAnswer].name}
                   </Link>
+                  <Box
+                    mt={2}
+                    color="gray.700"
+                    fontSize="sm"
+                    dangerouslySetInnerHTML={{
+                      __html:
+                        resourceDescriptionMap[
+                          resourceSuggestionMap[lastAnswer].name
+                        ],
+                    }}
+                  />
                 </Box>
               )}
 
