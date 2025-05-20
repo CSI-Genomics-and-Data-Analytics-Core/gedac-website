@@ -525,11 +525,11 @@ const FlowHelper: React.FC = () => {
   const popupContentMap: Record<string, { content: string }> = {
     "DNA Sequencing/Variant Calling": {
       content:
-        "GeDAC has implemented a DNA sequencing workflow based on the <a style='color: #3182ce; font-weight: 600;' href='https://docs.gdc.cancer.gov/Data/Bioinformatics_Pipelines/DNA_Seq_Variant_Calling_Pipeline/' target='blank'>GDC Pipeline specification</a>, enabling harmonization and analysis of raw genomic samples.<br/><br/> For further details or access, please contact <a style='color: #3182ce; font-weight: 600;' href='/Contact' target='blank'>GeDaC Support</a>.",
+        "GeDAC has implemented a DNA sequencing workflow based on the <a style='color: #3182ce; font-weight: 600;' href='https://docs.gdc.cancer.gov/Data/Bioinformatics_Pipelines/DNA_Seq_Variant_Calling_Pipeline/' target='blank'>GDC Pipeline specification</a>, enabling harmonization and analysis of raw genomic samples.<br/><br/> For further details or access, please contact <a style='color: #3182ce; font-weight: 600;' href='/contact' target='blank'>GeDaC Support</a>.",
     },
     RNASeq: {
       content:
-        "GeDAC has setup a cloud runner to run <a style='color: #3182ce; font-weight: 600;' href='https://nf-co.re/rnaseq/3.14.0/' target='blank'>Nextflow RNAseq Pipeline</a>, supported by a scalable environment that handles high data volumes efficiently.<br/><br/> For further details or access, please feel free to visit <a style='color: #3182ce; font-weight: 600;' href='https://www.cloudflow.gedac.org/' target='blank'>Cloudflow</a> and contact <a style='color: #3182ce; font-weight: 600;' href='/Contact' target='blank'>GeDaC Support</a>.",
+        "GeDAC has setup a cloud runner to run <a style='color: #3182ce; font-weight: 600;' href='https://nf-co.re/rnaseq/3.14.0/' target='blank'>Nextflow RNAseq Pipeline</a>, supported by a scalable environment that handles high data volumes efficiently.<br/><br/> For further details or access, please feel free to visit <a style='color: #3182ce; font-weight: 600;' href='https://www.cloudflow.gedac.org/' target='blank'>Cloudflow</a> and contact <a style='color: #3182ce; font-weight: 600;' href='/contact' target='blank'>GeDaC Support</a>.",
     },
   };
 
@@ -793,7 +793,7 @@ const FlowHelper: React.FC = () => {
                     If you'd like help planning or selecting the right resources
                     for your project, please{" "}
                     <Link
-                      to="/Contact"
+                      to="/contact"
                       style={{ color: "#3182ce", textDecoration: "underline" }}
                     >
                       contact the GeDAC team

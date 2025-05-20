@@ -120,12 +120,6 @@ const config: Config = {
         //   position: "right",
         //   label: "Team",
         // },
-        // {
-        //   to: "/Contact",
-        //   sidebarId: "tutorialSidebar",
-        //   position: "right",
-        //   label: "Contact",
-        // },
         {
           href: "https://github.com/CSI-Genomics-and-Data-Analytics-Core",
           label: "GitHub",
