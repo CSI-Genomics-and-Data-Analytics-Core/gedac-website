@@ -510,6 +510,13 @@ const FlowHelper: React.FC = () => {
       },
     };
 
+  const popupContentMap: Record<string, { content: string }> = {
+    "DNA Sequencing/Variant Calling": {
+      content:
+        "GeDAC has implemented a DNA sequencing workflow based on the <a style='color: #3182ce; font-weight: 600;' href='https://docs.gdc.cancer.gov/Data/Bioinformatics_Pipelines/DNA_Seq_Variant_Calling_Pipeline/' target='blank'>GDC Pipeline specification</a>, enabling harmonization and analysis of raw genomic samples.<br/><br/> For further details or access, please contact <a style='color: #3182ce; font-weight: 600;' href='/Contact' target='blank'>GeDaC Support</a>.",
+    },
+  };
+
   // Handle node position changes (dragging)
   const onNodesChange = useCallback(
     (changes: NodeChange[]) =>
@@ -683,13 +690,40 @@ const FlowHelper: React.FC = () => {
                             ? option.split(/[-_]/)[1]
                             : option;
                         return (
-                          <Radio key={option} value={option} display="flex" alignItems="center">
-                            <Text ml={1} pt={3}>{displayText}</Text>
+                          <Radio
+                            key={option}
+                            value={option}
+                            display="flex"
+                            alignItems="center"
+                          >
+                            <Text ml={1} pt={3}>
+                              {displayText}
+                            </Text>
                           </Radio>
                         );
                       })}
                     </Stack>
                   </RadioGroup>
+                  {/* Show popup section immediately after this question if answer matches */}
+                  {popupContentMap[answers[questionKey]] && (
+                    <Box
+                      mt={4}
+                      mb={2}
+                      p={4}
+                      bg="gray.50"
+                      borderRadius="md"
+                      border="1px solid #CBD5E1"
+                    >
+                      <Box
+                        fontSize="sm"
+                        fontStyle="italic"
+                        color="gray.700"
+                        dangerouslySetInnerHTML={{
+                          __html: popupContentMap[answers[questionKey]].content,
+                        }}
+                      />
+                    </Box>
+                  )}
                 </Box>
               ))}
 
