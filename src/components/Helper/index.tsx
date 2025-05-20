@@ -478,41 +478,41 @@ const FlowHelper: React.FC = () => {
     {
       rnaseq10TB_Yes: {
         name: "NUS Vanda",
-        link: "/docs/compute-resources#nus-vanda--high-throughput-computing-htc-cluster",
+        link: "/content/compute-resources#nus-vanda--high-throughput-computing-htc-cluster",
       },
       rnaseq10TB_No: {
         name: "See GPU/NSCC resources",
-        link: "/docs/compute-resources",
+        link: "/content/compute-resources",
       },
       dna10TB_Yes: {
         name: "NUS Vanda",
-        link: "/docs/compute-resources#nus-vanda--high-throughput-computing-htc-cluster",
+        link: "/content/compute-resources#nus-vanda--high-throughput-computing-htc-cluster",
       },
       dna10TB_No: {
         name: "NSCC ASPIRE2A",
-        link: "/docs/compute-resources#nscc-aspire2a--national-supercomputing-resource",
+        link: "/content/compute-resources#nscc-aspire2a--national-supercomputing-resource",
       },
       "GPU-Yes": {
         name: "NUS Hopper",
-        link: "/docs/compute-resources#nus-hopper--ai-optimized-high-performance-cluster",
+        link: "/content/compute-resources#nus-hopper--ai-optimized-high-performance-cluster",
       },
       "GPU-No": {
         name: "NUS Vanda",
-        link: "/docs/compute-resources#nus-vanda--high-throughput-computing-htc-cluster",
+        link: "/content/compute-resources#nus-vanda--high-throughput-computing-htc-cluster",
       },
       "HeavyGPU-Yes": {
         name: "NUS Hopper",
-        link: "/docs/compute-resources#nus-hopper--ai-optimized-high-performance-cluster",
+        link: "/content/compute-resources#nus-hopper--ai-optimized-high-performance-cluster",
       },
       "HeavyGPU-No": {
         name: "NSCC ASPIRE2A",
-        link: "/docs/compute-resources#nscc-aspire2a--national-supercomputing-resource",
+        link: "/content/compute-resources#nscc-aspire2a--national-supercomputing-resource",
       },
     };
 
   const resourceDescriptionMap: Record<string, string> = {
     "NUS Vanda": `
-        This platform is built to handle general scientific tasks and works especially well for analyzing genomic data. It can run many tasks at the same time using 10–15 computers (called nodes), with each one working independently. <br/><br/>However, it’s not designed for jobs that need very fast communication between computers, like those that tightly connect multiple nodes (such as with InfiniBand).
+        This platform is built to handle general scientific tasks and works especially well for analyzing genomic data..
     `,
     "NUS Hopper": `
       For AI-driven research, NUS Hopper provides cutting-edge hardware tailored to deep learning and computational biology workflows.
@@ -773,6 +773,33 @@ const FlowHelper: React.FC = () => {
                         ],
                     }}
                   />
+                </Box>
+              )}
+              {isEnd && (
+                <Box
+                  mt={4}
+                  p={4}
+                  bg="green.50"
+                  borderRadius="md"
+                  border="1px solid #38A169"
+                >
+                  <Text fontSize="sm" color="gray.700" mb={2}>
+                    <b>Note:</b> When choosing a resource, it's important to
+                    consider several factors such as <b>cost</b>,{" "}
+                    <b>data size</b>, <b>turnaround time</b>, and{" "}
+                    <b>GPU availability</b>.
+                    <br />
+                    <br />
+                    If you'd like help planning or selecting the right resources
+                    for your project, please{" "}
+                    <Link
+                      to="/Contact"
+                      style={{ color: "#3182ce", textDecoration: "underline" }}
+                    >
+                      contact the GeDAC team
+                    </Link>
+                    .
+                  </Text>
                 </Box>
               )}
 

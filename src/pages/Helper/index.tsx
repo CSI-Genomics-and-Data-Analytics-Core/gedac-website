@@ -1,7 +1,7 @@
 import type { ReactNode } from "react";
 import useDocusaurusContext from "@docusaurus/useDocusaurusContext";
 import Layout from "@theme/Layout";
-import FlowHelper from "@site/src/components/Helper";
+import FlowHelper from "@site/src/components/helper";
 
 export default function Helper(): ReactNode {
   const { siteConfig } = useDocusaurusContext();

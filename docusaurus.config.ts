@@ -101,7 +101,7 @@ const config: Config = {
           position: "right",
           items: [
             {
-              to: "/Helper",
+              to: "/helper",
               label: "Resource Helper",
             },
             {
@@ -154,7 +154,7 @@ const config: Config = {
             },
             {
               label: "Resource Helper",
-              to: "/Helper",
+              to: "/helper",
             },
           ],
         },
