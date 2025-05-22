@@ -34,7 +34,7 @@ GeDAC Server is a high-performance, single-node system designed for GPU-accelera
 - **CPU:** 64-core/128-thread
 - **RAM:** 2TB
 - **GPU:** 2× NVIDIA H100
-- **Storage:** 240TB home, 49TB SSD scratch, 288TB HDD (PowerVault MD2412)
+- **Storage:** 240TB home, 49TB SSD scratch
 
 Best suited for researchers needing a dedicated environment for GPU-intensive workflows, large datasets, or custom interactive analysis.
 
