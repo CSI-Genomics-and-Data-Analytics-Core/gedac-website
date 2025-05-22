@@ -1,8 +1,6 @@
 import { themes as prismThemes } from "prism-react-renderer";
 import type { Config } from "@docusaurus/types";
 import type * as Preset from "@docusaurus/preset-classic";
-import { FaCloud, FaCalculator, FaGithub, FaNewspaper } from "react-icons/fa";
-
 // This runs in Node.js - Don't use client-side code here (browser APIs, JSX...)
 
 const config: Config = {
@@ -192,6 +190,12 @@ const config: Config = {
     prism: {
       theme: prismThemes.github,
       darkTheme: prismThemes.dracula,
+    },
+    news: {
+      showReadingTime: true,
+      blogSidebarCount: 30,
+      blogSidebarTitle: 'All our posts',
+      postsPerPage: 10, // Adjust as needed
     },
   } satisfies Preset.ThemeConfig,
 

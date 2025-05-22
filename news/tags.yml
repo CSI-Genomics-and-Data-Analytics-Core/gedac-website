@@ -2,3 +2,7 @@ newsletter:
   label: Newsletter
   permalink: /news/tags/newsletter
   description: Monthly Newsletter
+event:
+  label: Event
+  permalink: /news/tags/event
+  description: CSI-GeDaC Events
