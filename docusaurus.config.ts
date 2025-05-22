@@ -47,6 +47,15 @@ const config: Config = {
          * Path to data on filesystem relative to site dir.
          */
         path: "./news",
+        /**
+         * Blog title used for SEO and other purposes.
+         */
+        blogTitle: "News",
+        blogSidebarCount: "ALL",
+        blogSidebarTitle: "All our news",
+        showReadingTime: true,
+        postsPerPage: 2, // Adjust as needed
+
       },
     ],
   ],
@@ -190,12 +199,6 @@ const config: Config = {
     prism: {
       theme: prismThemes.github,
       darkTheme: prismThemes.dracula,
-    },
-    news: {
-      showReadingTime: true,
-      blogSidebarCount: 30,
-      blogSidebarTitle: 'All our posts',
-      postsPerPage: 10, // Adjust as needed
     },
   } satisfies Preset.ThemeConfig,
 
