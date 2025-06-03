@@ -575,7 +575,6 @@ const FlowHelper: React.FC = () => {
     setActiveQuestions(newActiveQuestions);
 
     // Highlight all edges corresponding to the current and previous answers
-    // Highlight all edges corresponding to the current and previous answers
     setEdges((prevEdges) =>
       prevEdges.map((edge) => {
         const isSelected = Object.values(updatedAnswers).some(

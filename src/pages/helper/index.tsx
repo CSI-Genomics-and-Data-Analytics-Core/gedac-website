@@ -12,18 +12,16 @@ export default function Helper(): ReactNode {
     >
       <main>
         <section className="container margin-top--lg margin-bottom--xl">
-            {/* FlowHelper Interactive Section */}
-            <div className="card shadow--md">
-              <div className="card__body">
-                <FlowHelper />
-              </div>
-              <div className="card__footer text--center">
-                <small>
-                  You can drag nodes to rearrange the diagram for better
-                  visibility.
-                </small>
-              </div>
+          <div className="card shadow--md">
+            <div className="card__body">
+              <FlowHelper />
             </div>
+            <div className="card__footer text--center">
+              <small>
+                You can drag nodes to rearrange the diagram for better visibility.
+              </small>
+            </div>
+          </div>
         </section>
       </main>
     </Layout>
