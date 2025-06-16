@@ -13,4 +13,39 @@
 
 .navbar {
   font-size: 18px;
+  min-height: 100px; /* Increase to accommodate larger logo and title */
+  padding: 0.5rem 0; /* Add some vertical padding */
+}
+
+/* Increase navbar title font size */
+.navbar__title {
+  font-size: 34px !important;
+  font-weight: 600;
+  line-height: 1.2; /* Better line height for large text */
+}
+
+/* Ensure logo and title are properly aligned */
+.navbar__brand {
+  align-items: center;
+  display: flex;
+  gap: 15px; /* Space between logo and title */
+}
+
+/* Style the logo specifically */
+.navbar__logo {
+  display: flex;
+  align-items: center;
+}
+
+/* Adjust navbar items to be vertically centered */
+.navbar__inner {
+  min-height: 100px;
+  align-items: center;
+  padding: 0 1rem; /* Add horizontal padding */
+}
+
+/* Ensure navbar items are properly spaced */
+.navbar__items {
+  align-items: center;
+  height: 100%;
 }

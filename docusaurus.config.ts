@@ -6,7 +6,7 @@ import type * as Preset from "@docusaurus/preset-classic";
 const config: Config = {
   title: "Genomics and Data Analytics Core",
   tagline: "",
-  favicon: "img/favicon.ico",
+  favicon: "img/logo.png",
 
   // Set the production url of your site here
   url: "https://www.gedac.org/",
@@ -80,13 +80,13 @@ const config: Config = {
 
   themeConfig: {
     // Replace with your project's social card
-    image: "favicon.ico",
+    image: "img/gedac_logo.png",
     navbar: {
       title: "Genomics and Data Analytics Core",
       logo: {
         alt: "Genomics and Data Analytics Core",
         src: "img/csi_nus_logo.png",
-        style: { height: "40px" }, // Increase the size of the logo
+        style: { height: "80px" }, // Increase the size of the logo
       },
       items: [
         { to: "/news", label: "News", position: "right" },
