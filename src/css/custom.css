@@ -22,13 +22,26 @@
   font-size: 34px !important;
   font-weight: 600;
   line-height: 1.2; /* Better line height for large text */
+  order: 2; /* Ensure title comes last */
 }
 
-/* Ensure logo and title are properly aligned */
 .navbar__brand {
   align-items: center;
   display: flex;
   gap: 15px; /* Space between logo and title */
+  position: relative;
+}
+
+.navbar__brand::after {
+  content: '';
+  background-image: url('/img/gedac.png');
+  background-size: contain;
+  background-repeat: no-repeat;
+  background-position: center;
+  width: 60px;
+  height: 60px;
+  display: block;
+  order: 1; /* Place it between logo and title */
 }
 
 /* Style the logo specifically */
