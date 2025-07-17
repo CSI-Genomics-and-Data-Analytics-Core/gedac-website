@@ -108,6 +108,10 @@ const config: Config = {
           position: "right",
           items: [
             {
+              to: "/launchpad",
+              label: "GeDaC Launchpad",
+            },
+            {
               to: "/helper",
               label: "Resource Helper",
             },
