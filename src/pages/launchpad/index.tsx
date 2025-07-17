@@ -48,41 +48,52 @@ const LaunchpadContent = () => {
     setIsLoading(true);
     
     try {
-      // Method 1: Try to access the internal service directly
-      // This is the most reliable way to check NUS network connectivity
-      const controller = new AbortController();
-      const timeoutId = setTimeout(() => controller.abort(), 3000); // 3 second timeout
+      // For production, we can't reliably test connectivity to private IPs
+      // due to browser security restrictions. Just open the link directly.
+      
+      // Check if we're on a local/development environment
+      const isLocalDev = window.location.hostname === 'localhost' || 
+                        window.location.hostname === '127.0.0.1' ||
+                        window.location.hostname.includes('dev') ||
+                        window.location.hostname.includes('test');
+      
+      if (isLocalDev) {
+        // In development, try to test connectivity first
+        const controller = new AbortController();
+        const timeoutId = setTimeout(() => controller.abort(), 3000);
 
-      // Try to reach the internal service
-      const response = await fetch("http://172.18.149.93/", {
-        method: "HEAD",
-        mode: "no-cors",
-        signal: controller.signal,
-      });
+        try {
+          const response = await fetch("http://172.18.149.93/", {
+            method: "HEAD",
+            mode: "no-cors",
+            signal: controller.signal,
+          });
+          clearTimeout(timeoutId);
+        } catch (error) {
+          clearTimeout(timeoutId);
+          console.log("Direct access failed:", error);
+          alert("Unable to connect to the launchpad service. Please ensure you're connected to NUS WiFi or VPN and try again.");
+          return;
+        }
+      } else {
+        // In production, show a warning but allow the user to proceed
+        const proceed = confirm(
+          "You're about to access an internal NUS service. Please ensure you're connected to NUS WiFi or VPN.\n\n" +
+          "If you're not on the NUS network, the page will not load.\n\n" +
+          "Click OK to continue or Cancel to abort."
+        );
+        
+        if (!proceed) {
+          return;
+        }
+      }
       
-      clearTimeout(timeoutId);
-      
-      // If we get here, the service is accessible
+      // Open the service
       window.open("http://172.18.149.93/", "_blank");
-      return;
       
     } catch (error) {
-      console.log("Direct access failed:", error);
-      
-      // Method 2: Check if we can reach a known NUS endpoint
-      try {
-        const nusCheck = await fetch("https://www.nus.edu.sg/favicon.ico", {
-          method: "HEAD",
-          mode: "no-cors",
-        });
-        
-        // If NUS site is reachable but internal service isn't, show specific message
-        alert("You appear to be connected to the internet, but the internal NUS service is not accessible. Please ensure you're connected to NUS WiFi or VPN and try again.");
-        
-      } catch (nusError) {
-        // If we can't reach NUS site either, it's likely a general connectivity issue
-        alert("Network connection issue detected. Please check your internet connection and ensure you're connected to NUS WiFi or VPN.");
-      }
+      console.error("Error:", error);
+      alert("An error occurred. Please try again.");
     } finally {
       setIsLoading(false);
     }
