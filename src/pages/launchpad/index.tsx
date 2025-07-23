@@ -112,7 +112,7 @@ const LaunchpadContent = () => {
         <VStack spacing={12} align="center">
           {/* Hero Content */}
           <ScaleFade in={isOpen} initialScale={0.9}>
-            <VStack spacing={6} textAlign="center" maxW="1000px">
+            <VStack spacing={4} textAlign="center" maxW="1000px">
               <Heading size="2xl" lineHeight="shorter" color={headingColor}>
                 Launch Your{" "}
                 <Text
@@ -169,8 +169,8 @@ const LaunchpadContent = () => {
                 {isLoading ? "Connecting..." : "Get Started"}
               </Button>
               {/* Steps */}
-              <Box bg={stepBg} borderRadius="xl" p={6} w="full">
-                <Text fontWeight="semibold" mb={6} textAlign="center">
+              <Box bg={stepBg} borderRadius="xl"  w="full">
+                <Text fontWeight="semibold" mb={2} textAlign="center">
                   How it works:
                 </Text>
                 <Flex
@@ -179,7 +179,7 @@ const LaunchpadContent = () => {
                   justify="center"
                   gap={6}
                 >
-                  <VStack spacing={3} align="center" flex={1}>
+                  <VStack spacing={2} align="center" flex={1}>
                     <Flex
                       w={10}
                       h={10}
