@@ -39,8 +39,9 @@ const LaunchpadContent = () => {
   const stepBg = useColorModeValue("gray.100", "gray.700");
   const textColor = useColorModeValue("gray.800", "white");
   const headingColor = useColorModeValue("black", "white");
-  const iconColor = useColorModeValue("purple.600", "purple.300");
-  const iconBg = useColorModeValue("purple.100", "purple.800");
+  const iconColor = useColorModeValue("blue.600", "blue.300");
+  const iconBg = useColorModeValue("blue.50", "blue.800");
+  const selectBg = useColorModeValue("white", "gray.600");
 
   const handleLaunchClick = async () => {
     if (isLoading) return; // Prevent multiple clicks
@@ -117,7 +118,7 @@ const LaunchpadContent = () => {
                 Launch Your{" "}
                 <Text
                   as="span"
-                  bgGradient="linear(to-r, yellow.300, yellow.600)"
+                  bgGradient="linear(to-r, blue.400, blue.600)"
                   bgClip="text"
                 >
                   Data Science
@@ -152,7 +153,7 @@ const LaunchpadContent = () => {
 
               <Button
                 size="lg"
-                colorScheme="purple"
+                colorScheme="blue"
                 variant="solid"
                 leftIcon={<FaRocket />}
                 onClick={handleLaunchClick}
@@ -183,7 +184,7 @@ const LaunchpadContent = () => {
                     <Flex
                       w={10}
                       h={10}
-                      bg="purple.500"
+                      bg="blue.500"
                       borderRadius="full"
                       align="center"
                       justify="center"
@@ -200,13 +201,13 @@ const LaunchpadContent = () => {
                   </VStack>
 
                   <Box
-                    color="purple.500"
+                    color="blue.500"
                     display={{ base: "block", md: "none" }}
                   >
                     <FaArrowRight style={{ transform: "rotate(90deg)" }} />
                   </Box>
                   <Box
-                    color="purple.500"
+                    color="blue.500"
                     display={{ base: "none", md: "block" }}
                   >
                     <FaArrowRight />
@@ -216,7 +217,7 @@ const LaunchpadContent = () => {
                     <Flex
                       w={10}
                       h={10}
-                      bg="purple.500"
+                      bg="blue.500"
                       borderRadius="full"
                       align="center"
                       justify="center"
@@ -233,13 +234,13 @@ const LaunchpadContent = () => {
                   </VStack>
 
                   <Box
-                    color="purple.500"
+                    color="blue.500"
                     display={{ base: "block", md: "none" }}
                   >
                     <FaArrowRight style={{ transform: "rotate(90deg)" }} />
                   </Box>
                   <Box
-                    color="purple.500"
+                    color="blue.500"
                     display={{ base: "none", md: "block" }}
                   >
                     <FaArrowRight />
@@ -249,7 +250,7 @@ const LaunchpadContent = () => {
                     <Flex
                       w={10}
                       h={10}
-                      bg="purple.500"
+                      bg="blue.500"
                       borderRadius="full"
                       align="center"
                       justify="center"
