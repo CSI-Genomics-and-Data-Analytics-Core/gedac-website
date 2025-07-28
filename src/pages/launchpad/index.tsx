@@ -127,17 +127,17 @@ const LaunchpadContent = () => {
               </Heading>
 
               <Text fontSize="xl" opacity={0.9}>
-                Access your{" "}
+                Launch your{" "}
                 <Badge
-                  colorScheme="orange"
+                  colorScheme="green"
                   fontSize="md"
                   px={3}
                   py={1}
                   borderRadius="full"
                 >
-                  Free
+                  Ready-to-use
                 </Badge>{" "}
-                personal RStudio or JupyterLab instance{" "}
+                data science workspace in seconds.{" "}
                 <Badge
                   colorScheme="blue"
                   fontSize="md"
@@ -145,10 +145,10 @@ const LaunchpadContent = () => {
                   py={1}
                   borderRadius="full"
                 >
-                  instantly
+                  No setup required
                 </Badge>
                 <br />
-                Zero installation, maximum productivity, NUS-grade security.
+                Pre-configured RStudio & JupyterLab environments on NUS network.
               </Text>
 
               <Button
