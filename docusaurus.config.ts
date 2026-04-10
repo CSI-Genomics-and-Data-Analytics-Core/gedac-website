@@ -208,12 +208,6 @@ const config: Config = {
 
   scripts: [
     {
-      src: "https://widget.freshworks.com/widgets/150000001296.js",
-      async: true,
-      defer: true,
-    },
-    // For inline scripts, use this format instead
-    {
       src: "/freshworks-init.js",
       async: false,
     },
