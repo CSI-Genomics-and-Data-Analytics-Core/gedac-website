@@ -65,7 +65,6 @@ import {
 } from "@chakra-ui/react";
 
 // Constants
-const KB_IN_GB = 1048576;
 const GB_IN_TB = 1024;
 
 // AWS pricing information
@@ -75,14 +74,99 @@ const TIER1_RATE = 0.025; // $0.025 per GB for first 50 TB
 const TIER2_RATE = 0.024; // $0.024 per GB for 50-500 TB
 const TIER3_RATE = 0.023; // $0.023 per GB beyond 500 TB
 
-const STANDARD_STORAGE_COST_GB = 0.025;
-const DATA_TRANSFER_OUT_COST = 0.09;
 const PUT_POST_COPY_LIST_REQUEST_COST = 0.000005;
 const GET_SELECT_1000_REQUEST_COST = 0.0004;
 const GET_SELECT_REQUEST_COST = 0.0000004;
 const DEEP_ARCHIVE_STORAGE_COST_GB = 0.002;
 const DEEP_ARCHIVE_RETRIEVAL_COST_GB = 0.02;
 const DEEP_ARCHIVE_REQUEST_COST = 0.0000025;
+
+// Singapore (ap-southeast-1) data transfer out to External (Internet), beyond global free tier.
+// Source: AWS Price List API (AWSDataTransfer) for ap-southeast-1.
+const SG_EGRESS_TIER1_LIMIT_GB = 10240;
+const SG_EGRESS_TIER2_LIMIT_GB = 51200;
+const SG_EGRESS_TIER3_LIMIT_GB = 153600;
+const SG_EGRESS_TIER1_RATE = 0.12;
+const SG_EGRESS_TIER2_RATE = 0.085;
+const SG_EGRESS_TIER3_RATE = 0.082;
+const SG_EGRESS_TIER4_RATE = 0.08;
+
+function calculateS3StandardTieredMonthlyStorageCost(gb: number): number {
+  if (gb <= 0) return 0;
+  if (gb <= TIER1_THRESHOLD_GB) return gb * TIER1_RATE;
+  if (gb <= TIER2_THRESHOLD_GB) {
+    return (
+      TIER1_THRESHOLD_GB * TIER1_RATE +
+      (gb - TIER1_THRESHOLD_GB) * TIER2_RATE
+    );
+  }
+  return (
+    TIER1_THRESHOLD_GB * TIER1_RATE +
+    (TIER2_THRESHOLD_GB - TIER1_THRESHOLD_GB) * TIER2_RATE +
+    (gb - TIER2_THRESHOLD_GB) * TIER3_RATE
+  );
+}
+
+function calculateSingaporeTieredEgressCost(
+  gb: number,
+  costBreakdown: string[]
+): number {
+  const totalGb = Math.max(0, gb);
+  if (totalGb === 0) return 0;
+
+  costBreakdown.push(
+    "Data Transfer Out to Internet (Singapore) uses tiered pricing (beyond global free tier)."
+  );
+
+  let remaining = totalGb;
+  let cost = 0;
+
+  const tier1Gb = Math.min(remaining, SG_EGRESS_TIER1_LIMIT_GB);
+  if (tier1Gb > 0) {
+    cost += tier1Gb * SG_EGRESS_TIER1_RATE;
+    costBreakdown.push(
+      `Tier 1 (first 10 TB): ${tier1Gb.toLocaleString()} GB x $${SG_EGRESS_TIER1_RATE} = $${(
+        tier1Gb * SG_EGRESS_TIER1_RATE
+      ).toFixed(2)}`
+    );
+    remaining -= tier1Gb;
+  }
+
+  const tier2Cap = SG_EGRESS_TIER2_LIMIT_GB - SG_EGRESS_TIER1_LIMIT_GB;
+  const tier2Gb = Math.min(remaining, tier2Cap);
+  if (tier2Gb > 0) {
+    cost += tier2Gb * SG_EGRESS_TIER2_RATE;
+    costBreakdown.push(
+      `Tier 2 (next 40 TB): ${tier2Gb.toLocaleString()} GB x $${SG_EGRESS_TIER2_RATE} = $${(
+        tier2Gb * SG_EGRESS_TIER2_RATE
+      ).toFixed(2)}`
+    );
+    remaining -= tier2Gb;
+  }
+
+  const tier3Cap = SG_EGRESS_TIER3_LIMIT_GB - SG_EGRESS_TIER2_LIMIT_GB;
+  const tier3Gb = Math.min(remaining, tier3Cap);
+  if (tier3Gb > 0) {
+    cost += tier3Gb * SG_EGRESS_TIER3_RATE;
+    costBreakdown.push(
+      `Tier 3 (next 100 TB): ${tier3Gb.toLocaleString()} GB x $${SG_EGRESS_TIER3_RATE} = $${(
+        tier3Gb * SG_EGRESS_TIER3_RATE
+      ).toFixed(2)}`
+    );
+    remaining -= tier3Gb;
+  }
+
+  if (remaining > 0) {
+    cost += remaining * SG_EGRESS_TIER4_RATE;
+    costBreakdown.push(
+      `Tier 4 (>150 TB): ${remaining.toLocaleString()} GB x $${SG_EGRESS_TIER4_RATE} = $${(
+        remaining * SG_EGRESS_TIER4_RATE
+      ).toFixed(2)}`
+    );
+  }
+
+  return cost;
+}
 
 // Sample NGS details data
 const NGS_DETAILS = [
@@ -182,6 +266,8 @@ const S3CostCalculator: React.FC = () => {
   // State variables
   const [mode, setMode] = useState<string>("Simple");
   const [currency, setCurrency] = useState<string>("USD");
+  /** USD → SGD multiplier when displaying SGD (editable; not an official AWS rate). */
+  const [usdToSgd, setUsdToSgd] = useState<number>(1.35);
   const [storageClass, setStorageClass] = useState<string>("Standard Storage");
   const [totalMonths, setTotalMonths] = useState<number>(1);
 
@@ -291,11 +377,12 @@ const S3CostCalculator: React.FC = () => {
           Month: i + 1,
           Cost:
             i < aDuration[0]
-              ? aSamples * (i + 1) * aSampleAvgSize * STANDARD_STORAGE_COST_GB
-              : aSamples *
-                aDuration[0] *
-                aSampleAvgSize *
-                STANDARD_STORAGE_COST_GB,
+              ? calculateS3StandardTieredMonthlyStorageCost(
+                  aSamples * (i + 1) * aSampleAvgSize
+                )
+              : calculateS3StandardTieredMonthlyStorageCost(
+                  aSamples * aDuration[0] * aSampleAvgSize
+                ),
         })
       );
     }
@@ -401,14 +488,12 @@ const S3CostCalculator: React.FC = () => {
     requestsPerObj: number = 2,
     costBreakdown: string[] = []
   ): number => {
-    // Simplified data transfer cost calculation
     costBreakdown.push("Data Transfer Cost Breakdown:");
-    costBreakdown.push(
-      `Data Transfer Out to Internet Cost: $${DATA_TRANSFER_OUT_COST} per GB`
-    );
 
     const requestsCost = requestsPerObj * nSamples * GET_SELECT_REQUEST_COST;
-    const transferCost = Math.round(gb * DATA_TRANSFER_OUT_COST * 100) / 100;
+    const transferCost =
+      Math.round(calculateSingaporeTieredEgressCost(gb, costBreakdown) * 100) /
+      100;
 
     const totalCost = (requestsCost + transferCost) * times;
 
@@ -436,8 +521,9 @@ const S3CostCalculator: React.FC = () => {
         accumSamples += sampleMonthlyCount;
       }
 
+      const monthlyGb = accumSamples * sampleAvgSize;
       const monthlyCost =
-        accumSamples * sampleAvgSize * STANDARD_STORAGE_COST_GB;
+        calculateS3StandardTieredMonthlyStorageCost(monthlyGb);
       totalCost += monthlyCost;
     }
 
@@ -475,7 +561,14 @@ const S3CostCalculator: React.FC = () => {
       <Box maxWidth="1200px" mx="auto" p={4}>
         <Text fontStyle="italic">
           Calculations made based on the pricing information retrieved from AWS
-          (Singapore) as of April 11, 2025.
+          (Singapore) as of{" "}
+          {new Date().toLocaleDateString("en-US", {
+            year: "numeric",
+            month: "long",
+            day: "numeric",
+          })}
+          . Estimates only; AWS bills in USD; SGD display uses a user-adjustable
+          FX rate.
         </Text>
 
         <Grid templateColumns="1fr 2fr" gap={6} mt={4}>
@@ -744,13 +837,36 @@ const S3CostCalculator: React.FC = () => {
           {/* Results Panel */}
           <Box>
             <Box mt={4} mb={2}>
-              <Select
-                value={currency}
-                onChange={(e) => setCurrency(e.target.value)}
-              >
-                <option value="USD">US Dollar</option>
-                <option value="SGD">Singapore Dollar</option>
-              </Select>
+              <Stack spacing={2}>
+                <Select
+                  value={currency}
+                  onChange={(e) => setCurrency(e.target.value)}
+                >
+                  <option value="USD">US Dollar</option>
+                  <option value="SGD">Singapore Dollar</option>
+                </Select>
+                {currency === "SGD" && (
+                  <Box>
+                    <Text fontSize="sm" mb={1}>
+                      USD → SGD (for display only)
+                    </Text>
+                    <NumberInput
+                      min={0.5}
+                      max={5}
+                      step={0.01}
+                      precision={2}
+                      value={usdToSgd}
+                      onChange={(_, val) => setUsdToSgd(val)}
+                    >
+                      <NumberInputField />
+                      <NumberInputStepper>
+                        <NumberIncrementStepper />
+                        <NumberDecrementStepper />
+                      </NumberInputStepper>
+                    </NumberInput>
+                  </Box>
+                )}
+              </Stack>
             </Box>
             <Grid templateColumns="repeat(3, 1fr)" gap={6} mb={6}>
               {/* Value boxes */}
@@ -761,7 +877,7 @@ const S3CostCalculator: React.FC = () => {
                     <Text fontWeight="bold">Total Cost</Text>
                     <Heading size="md">
                       {(currency === "SGD"
-                        ? totalCost * 1.35
+                        ? totalCost * usdToSgd
                         : totalCost
                       ).toFixed(2)}{" "}
                       {currency}
@@ -777,7 +893,7 @@ const S3CostCalculator: React.FC = () => {
                     <Text fontWeight="bold">Storage Cost</Text>
                     <Heading size="md">
                       {(currency === "SGD"
-                        ? storageCost * 1.35
+                        ? storageCost * usdToSgd
                         : storageCost
                       ).toFixed(2)}{" "}
                       {currency}
@@ -793,7 +909,7 @@ const S3CostCalculator: React.FC = () => {
                     <Text fontWeight="bold">Data-Transfer Cost</Text>
                     <Heading size="md">
                       {(currency === "SGD"
-                        ? downloadCost * 1.35
+                        ? downloadCost * usdToSgd
                         : downloadCost
                       ).toFixed(2)}{" "}
                       {currency}
@@ -860,8 +976,13 @@ const S3CostCalculator: React.FC = () => {
                   datasets: [
                     {
                       label: "Accumulated Cost",
-                      data: storageCostDistribution.map(
-                        (item) => item.Cost * (item.Month + 1)
+                      data: storageCostDistribution.reduce(
+                        (acc: number[], item: { Cost: number }) => {
+                          const prev = acc.length ? acc[acc.length - 1] : 0;
+                          acc.push(prev + (Number(item.Cost) || 0));
+                          return acc;
+                        },
+                        []
                       ),
                       backgroundColor: "#FF5722",
                     },
