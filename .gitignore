@@ -9,6 +9,9 @@
 .docusaurus
 .cache-loader
 
+# Claude Code
+.claude/
+
 # Misc
 .astro
 .DS_Store
