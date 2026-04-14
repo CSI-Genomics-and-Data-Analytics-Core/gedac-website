@@ -22,6 +22,9 @@ const config: Config = {
   onBrokenLinks: "warn",
   onBrokenMarkdownLinks: "warn",
 
+  // Loaded after plugin client modules; defines gtag stub if the head snippet did not run
+  clientModules: [require.resolve("./src/clientModules/gtag-stub.js")],
+
   // Even if you don't use internationalization, you can use this field to set
   // useful metadata like html lang. For example, if your site is Chinese, you
   // may want to replace "en" with "zh-Hans".
@@ -101,6 +104,11 @@ const config: Config = {
           sidebarId: "tutorialSidebar",
           position: "right",
           label: "Research",
+        },
+        {
+          to: "/contact",
+          label: "Contact",
+          position: "right",
         },
         {
           type: "dropdown",
@@ -208,7 +216,7 @@ const config: Config = {
 
   scripts: [
     {
-      src: "/freshworks-init.js",
+      src: "/contact-fab.js",
       async: false,
     },
   ],

@@ -26,7 +26,7 @@ GeDAC Cloudflow is a fully managed, cloud-based platform for analyzing large-sca
 GeDAC Server is a dedicated, high-performance computer with powerful CPUs, lots of memory, and two advanced GPUs. **It’s easy to use and ideal for any researcher who needs fast computing for data analysis, deep learning, or large genomics projects.**
 :::
 
-[**Request Project Consultation →**](https://support.gedac.org/support/tickets/new)
+[**Email us for a project consultation →**](mailto:csi_gedac@nus.edu.sg)
 
 **Overview:**  
 GeDAC Server is a high-performance, single-node system designed for GPU-accelerated research at the Cancer Science Institute, NUS. It features:

@@ -1,11 +1,46 @@
 ---
 sidebar_position: 10
+title: Contact
+sidebar_label: Contact
 ---
-# Contact
 
-We’d love to hear from you! Whether you have questions about our services, need support, or are interested in collaborating, feel free to [reach out](https://support.gedac.org/support/tickets/new).
+import styles from "@site/src/css/contact.module.css";
 
+<div className={styles.contactSection}>
+<h2 className={styles.reachHeading}>Reach us</h2>
 
+<div className={styles.contactGrid}>
+  <div className={styles.contactCard}>
+    <div className={styles.cardTitle}>
+      Email
+    </div>
+    <p className={styles.emailLine}>
+      <a href="mailto:csi_gedac@nus.edu.sg">csi_gedac@nus.edu.sg</a>
+    </p>
+    <p className={styles.subLabel}>For an initial discussion:</p>
+    <ul className={styles.bulletList}>
+      <li>Project goal / biological question</li>
+      <li>Sample type + approximate n (groups/replicates)</li>
+      <li>Timeline + any constraints</li>
+    </ul>
+  </div>
 
-### Contact Information
-For all inquiries, please email us at: 📧 [csi_gedac@nus.edu.sg](mailto:csi_gedac@nus.edu.sg)
+  <div className={`${styles.contactCard} ${styles.locationCard}`}>
+    <div className={styles.cardTitle}>
+      Location
+    </div>
+    <div className={styles.locationBody}>
+      <p className={styles.facilityName}>Genomics and Data Analytics Core (GeDaC)</p>
+      <p className={styles.locationOrg}>
+        Cancer Science Institute of Singapore · National University of Singapore
+      </p>
+      <address className={styles.locationAddress}>
+        <span className={styles.addrLine}>14 Medical Drive</span>
+        <span className={styles.addrLine}>MD6 – Centre for Translational Medicine</span>
+        <span className={styles.addrLine}>Level 11</span>
+        <span className={styles.addrLine}>Singapore 117599</span>
+      </address>
+    </div>
+  </div>
+</div>
+</div>
